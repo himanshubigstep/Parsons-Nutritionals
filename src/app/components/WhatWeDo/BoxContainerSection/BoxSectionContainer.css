@@ -1,0 +1,8 @@
+.marker-list ul {
+    list-style: disc;
+    padding-left: 2rem;
+}
+.marker-list ul li {
+    font-size: 20px;
+    margin-bottom: 1rem;
+}

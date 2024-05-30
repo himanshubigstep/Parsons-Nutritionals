@@ -1,57 +1,43 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import TopBanner from '../components/Common/Banner/TopBanner'
 import BoxSectionContainer from '../components/WhatWeDo/BoxContainerSection/BoxSectionContainer'
 import BoxSectionContainerReverse from '../components/WhatWeDo/BoxSectionContainerReverse/BoxSectionContainerReverse'
 import AboutContact from '../components/Common/ContactBlock/AboutContact'
+import { EsgPageData } from '../Api/Api'
 
 const ESG = () => {
+  const [esgPageValue, setesgPageValue] = useState<any>(null);
 
-  const BannerContainerData = {
-      BannerHeading: "Environmental, Social, and Governance",
-      BannerParagraph: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
-  }
-    
-  const bannerImage = 'https://images.pexels.com/photos/1043458/pexels-photo-1043458.jpeg'
-  
-  const sections = [
-    {
-      title: 'ESG Reporting and Standards',
-      info: [
-        // { label: 'Initiate in', content: '2016-ongoing' },
-        // {
-        //   label: 'Goal',
-        //   content: 'To bring a paradigm shift in formulation + manufacturing process of their core product',
-        // },
-        {
-          // label: 'our Role',
-          content: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-          ],
-        },
-      ],
-      imageSrc: 'https://images.pexels.com/photos/1659438/pexels-photo-1659438.jpeg',
-    },
-  ];
+  useEffect(() => {
+    const fetchDataFromApi = async () => {
+      try {
+        const responseData = await EsgPageData();
+        const homePageMembersData = responseData.data.attributes;
+        setesgPageValue(homePageMembersData);
+      } catch (error) {
+        console.log(error, 'api-get-error');
+      }
+    };
 
-  const contactSections = [
-    {
-      backgroundImage: 'https://images.pexels.com/photos/45853/grey-crowned-crane-bird-crane-animal-45853.jpeg',
-      message: 'We love to hear from you. please complete the form below for your service requirements in detail.',
-      buttonText: 'Contact Us'
-    },
-  ];
+    fetchDataFromApi();
+  }, []);
+
+  const contactSections = esgPageValue
+
+  const bannerImage = esgPageValue?.Header?.media?.data?.attributes?.formats?.large?.url
+
+  const BannerContainerData = esgPageValue?.Header?.content
 
   return (
     <div>
       <TopBanner bannerImage={bannerImage} BannerContainerData={BannerContainerData} />
       <div id='esg-reporting-and-standards' className='w-full'>
-        <BoxSectionContainer sections={sections} />
+        <BoxSectionContainer contactSections={contactSections} />
       </div>
       <div id='esg-implementation' className='w-full'>
-        <BoxSectionContainerReverse sections={sections} />
+        <BoxSectionContainerReverse contactSections={contactSections} />
       </div>
       <AboutContact contactSections={contactSections} />
     </div>

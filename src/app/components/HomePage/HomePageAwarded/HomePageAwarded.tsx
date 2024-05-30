@@ -33,7 +33,6 @@ const sliderImagesRight = [
 ];
 
 const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDataValue: any, homePageAwardValue: any }) => {
-    const mediaUrl = process.env.NEXT_PUBLIC_HOST_URL
     const AwardedDataTitle = homePageDataValue?.AwardSection?.title
     const AwardedDataIcon = homePageDataValue?.AwardSection?.media?.data?.attributes?.formats?.medium?.url
     const AwardImages = homePageAwardValue
@@ -55,7 +54,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
                         <img
                             className="w-[12rem] h-[12rem] object-cover rounded-3xl"
                             alt="Our Vision"
-                            src={`${mediaUrl}${AwardedDataIcon}`}
+                            src={`${AwardedDataIcon}`}
                         />
                     </div>
                     <div className='text-white text-4xl font-bold'>
@@ -70,7 +69,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
                                     key={index}
                                     className="w-full h-[33.3%] rounded-2xl"
                                     alt={`Slider Image ${index + 1}`}
-                                    src={`${mediaUrl}${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                                 />
                             ))}
                         </div>
@@ -82,7 +81,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
                                     key={index}
                                     className="w-full h-[33.3%] rounded-2xl"
                                     alt={`Slider Image ${index + 1}`}
-                                    src={`${mediaUrl}${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                                 />
                             ))}
                         </div>

@@ -1,3 +1,7 @@
+.list-styles li {
+    margin-bottom: 1rem;
+    font-size: 20px;
+}
 .list-styles li::before {
     content: "✔";
     display: inline-block;

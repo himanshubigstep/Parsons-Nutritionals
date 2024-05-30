@@ -13,7 +13,6 @@ interface ImageData {
 }
 
 const HomePageOurClients = ({homePageDataValue, homePageClientValue}: {homePageDataValue:any, homePageClientValue:any}) => {
-  const mediaUrl = process.env.NEXT_PUBLIC_HOST_URL
   const OurClientsPartnerData = homePageDataValue?.CustomerSection
   const OurClientDataValue = homePageClientValue
   return (
@@ -27,7 +26,7 @@ const HomePageOurClients = ({homePageDataValue, homePageClientValue}: {homePageD
             {OurClientDataValue && OurClientDataValue.map((item: ImageData, index: number) => (
               <div key={index} className="min-w-[150px] sm:min-w-[240px] h-[100px] sm:h-[140px] px-2 sm:px-4 py-2 sm:py-4 bg-white rounded-lg flex justify-center items-center">
                 <img
-                  src={`${mediaUrl}${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
+                  src={`${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
                   alt={`Carousel image ${index + 1}`}
                   className="w-full h-full object-contain mx-2"
                 />

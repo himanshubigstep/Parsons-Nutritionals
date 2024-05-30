@@ -7,7 +7,6 @@ import './HomePageOurValues.css'
 const md = new MarkdownIt();
 
 const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) => {
-    const mediaUrl = process.env.NEXT_PUBLIC_HOST_URL
     const ourValuesData = homePageDataValue?.Values
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     return (
@@ -31,7 +30,7 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
                                 <img
                                     className="w-full overflow-hidden h-full"
                                     alt=""
-                                    src={`${mediaUrl}${item?.icon?.data?.attributes?.formats?.small?.url}`}
+                                    src={`${item?.icon?.data?.attributes?.formats?.small?.url}`}
                                 />
                             </div>
                             {item.title}

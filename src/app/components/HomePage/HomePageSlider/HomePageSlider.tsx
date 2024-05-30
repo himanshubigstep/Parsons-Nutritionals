@@ -14,7 +14,6 @@ interface ImageData {
 }
 
 const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
-    const mediaUrl = process.env.NEXT_PUBLIC_HOST_URL
     const HomePageSliderData = homePageDataValue?.Header;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [previousIndex, setPreviousIndex] = useState(0);
@@ -55,7 +54,7 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
                             key={index}
                             className={`w-full max-w-full mx-auto rounded-3xl absolute inset-0 transform transition-transform duration-500 ${index === currentIndex ? 'translate-x-0 image-centered' : index === previousIndex && currentIndex > previousIndex ? '-translate-x-full left-image' : 'translate-x-full right-image'}`}
                         >
-                            <img src={`${mediaUrl}${item.attributes.formats.large.url}`} alt={`Slide ${index}`} className="w-full h-full object-cover rounded-3xl" />
+                            <img src={`${item.attributes.formats.large.url}`} alt={`Slide ${index}`} className="w-full h-full object-cover rounded-3xl" />
                         </div>
                     ))}
                 </div>

@@ -5,7 +5,6 @@ import './HomePageWhatWeAre.css'
 const md = new MarkdownIt();
 
 const HomePageWhatWeAre = ({ homePageDataValue }: { homePageDataValue: any }) => {
-    const mediaUrl = process.env.NEXT_PUBLIC_HOST_URL
     const whatAreWeData = homePageDataValue?.WhatAreWe
     const imageUrl = whatAreWeData?.media?.data?.attributes?.formats?.large?.url;
     const content = typeof whatAreWeData?.content?.content === 'string' ? whatAreWeData?.content?.content : '';
@@ -26,7 +25,7 @@ const HomePageWhatWeAre = ({ homePageDataValue }: { homePageDataValue: any }) =>
                     <img
                         className="rounded-[37px] w-full h-full object-cover"
                         alt="Worker"
-                        src={`${mediaUrl}${imageUrl}`}
+                        src={`${imageUrl}`}
                     />
                 )}
             </div>

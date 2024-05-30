@@ -5,6 +5,7 @@ interface TopBannerProps {
     bannerImage?: string;
     BannerContainerData?: any;
     BannerContainerDataContent?: any;
+    aboutUsPageDataValue?: any
 }
 
 const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData, BannerContainerDataContent }) => {
@@ -12,7 +13,7 @@ const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData,
         <div className='relative w-full h-[480px] max-w-full flex flex-col justify-center items-center'>
             <div className='absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-50'></div>
             <img
-                src={bannerImage}
+                src={`${bannerImage}`}
                 className='w-full h-full object-cover'
                 alt='banner-image'
             />
