@@ -1,0 +1,20 @@
+.list-styles li::before {
+    content: "✔";
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.2em;
+    margin-right: 0.8em;
+    color: #fff;
+    background-color: #10B981;
+}
+
+@media screen and (max-width: 768px) {
+    .white-reverse-text {
+        width: 95%;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+}

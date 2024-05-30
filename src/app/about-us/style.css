@@ -1,0 +1,11 @@
+@media screen and (max-width: 768px) {
+    .about-page {
+        flex-direction: column;
+        padding-top: 80px;
+        padding-bottom: 0;
+    }
+    .about-page-img {
+        width: 95%;
+        margin: 20px auto;
+    }
+}
