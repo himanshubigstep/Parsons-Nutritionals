@@ -13,7 +13,7 @@ const NavBar = () => {
     };
 
     return (
-        <div className="shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)] bg-white w-full max-w-full mx-auto h-[5.688rem] flex flex-col items-center justify-center py-[0.625rem] px-[2rem] box-border text-left text-[0.875rem] text-darkslate-500">
+        <div className="relative z-20 shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)] bg-white w-full max-w-full mx-auto h-[5.688rem] flex flex-col items-center justify-center py-[0.625rem] px-[2rem] box-border text-left text-[0.875rem] text-darkslate-500">
             <div className="w-full max-w-[1280px] mx-auto flex flex-row items-center justify-between">
                 <Link className='flex flex-col gap-2 py-2' href="/">
                     <Image
@@ -96,7 +96,6 @@ const NavItem = ({ href, children, subMenuItems }: { href: string; children: Rea
 
     const toggleSubMenu = (event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLDivElement;
-        // setIsSubMenuOpen(!isSubMenuOpen);
         if (target.classList.contains('arrow-icon')) {
             setIsSubMenuOpen(!isSubMenuOpen);
         }

@@ -1,15 +1,31 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import TopBanner from '../components/Common/Banner/TopBanner'
 import ContactForm from '../components/ContactUs/ContactForm/ContactForm'
 import ContactAddress from '../components/ContactUs/ContactAddress/ContactAddress'
+import { ContactPageData } from '../Api/Api'
 
 const ContactUs = () => {
-    const BannerContainerData = {
-        BannerHeading: "Contact us",
-        BannerParagraph: "We love to hear from you. please complete the form below for your service requirements in detail."
-    }
+    const [contactPageData, setContactPageData] = useState<any>(null);
+
+    useEffect(() => {
+      const fetchDataFromApi = async () => {
+        try {
+          const responseData = await ContactPageData();
+          const contactPageData = responseData.data.attributes;
+          setContactPageData(contactPageData);
+        } catch (error) {
+          console.log(error, 'api-get-error');
+        }
+      };
+  
+      fetchDataFromApi();
+    }, []);
+
+    const BannerContainerData = contactPageData?.Header?.content
     
-    const bannerImage = 'https://images.pexels.com/photos/1043458/pexels-photo-1043458.jpeg'
+    const bannerImage = contactPageData?.Header?.media?.data?.attributes?.formats?.large?.url
 
   return (
     <main className="flex min-h-screen flex-col items-center">
@@ -17,7 +33,7 @@ const ContactUs = () => {
         <div className='w-full relative py-24'>
             <div className='max-w-[1280px] mx-auto flex flex-col md:flex-row justify-center items-start gap-8'>
                 <ContactForm />
-                <ContactAddress />
+                <ContactAddress contactPageData = {contactPageData} />
             </div>
         </div>
     </main>

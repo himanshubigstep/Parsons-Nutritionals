@@ -13,10 +13,8 @@ interface ProductCategoryProps {
 }
 
 const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (productType: string) => void }> = ({ productPageTypes, productPageContent, onProductTypeClick }) => {
-  // Counter for matching product types
   const productTypeCount: { [key: string]: number } = {};
 
-  // Counting occurrences of each product type
   if (productPageContent) {
     productPageContent.forEach((product: { attributes: { product_type: { data: { attributes: { name: any; }; }; }; }; }) => {
       const productTypeName = product.attributes.product_type.data.attributes.name;
@@ -27,19 +25,16 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
   const allProductCount = productPageContent ? productPageContent.length : 0;
   productTypeCount["All"] = allProductCount;
 
-  // Create a new array with "All" type at the beginning
   const productTypesWithAll = productPageTypes ? [{ id: "all", attributes: { name: "All" } }, ...productPageTypes] : [];
 
-  // State to keep track of selected product type
   const [selectedProductType, setSelectedProductType] = useState<string>("All");
 
   const handleProductTypeClick = (productType: string) => {
     if (productType === "All") {
-      // If "All" is clicked, trigger the callback with an empty string
-      setSelectedProductType("All"); // Update selected product type state
-      onProductTypeClick(""); // Pass an empty string to indicate "All" is selected
+      setSelectedProductType("All");
+      onProductTypeClick("");
     } else {
-      setSelectedProductType(productType); // Update selected product type state
+      setSelectedProductType(productType);
       onProductTypeClick(productType);
     }
   };

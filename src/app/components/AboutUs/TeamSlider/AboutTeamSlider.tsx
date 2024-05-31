@@ -24,10 +24,9 @@ interface TeamMember {
 
 const AboutTeamSlider = ({homePageMembersValue}: {homePageMembersValue: any}) => {
   if (!homePageMembersValue) {
-    return null; // Or some other fallback UI if homePageMembersValue is null or undefined
+    return null;
   }
   const aboutUsClientData = homePageMembersValue;
-  // const content = typeof aboutUsClientData?.attributes?.career_highlights === 'string' ? aboutUsClientData?.attributes?.career_highlights : '';
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const [startIndex, setStartIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -85,12 +84,12 @@ const AboutTeamSlider = ({homePageMembersValue}: {homePageMembersValue: any}) =>
         ))}
         {pageCount > 1 && (
           <div className="absolute top-[50%] transform translate-y-[-50%] right-0 space-x-2">
-            {currentPage > 0 && ( // Show previous button if not on first page
+            {currentPage > 0 && (
               <button onClick={handlePrevPage} className="h-[5rem] w-[5rem] bg-[#0059DF] opacity-[0.7] rounded-l-[5px] text-white font-medium text-5xl">
                 {'<'}
               </button>
             )}
-            {currentPage < pageCount - 1 && ( // Show next button if not on last page
+            {currentPage < pageCount - 1 && (
               <button onClick={handleNextPage} className="h-[5rem] w-[5rem] bg-[#0059DF] opacity-[0.7] rounded-r-[5px] text-white font-medium text-5xl">
                 {'>'}
               </button>

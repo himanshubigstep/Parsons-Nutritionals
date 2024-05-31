@@ -18,8 +18,7 @@ interface Product {
 }
 
 interface ProductPageData {
-  data: any; // Define your data structure here
-  // Add more specific types/interfaces as needed
+  data: any;
 }
 
 const ProductRange = () => {

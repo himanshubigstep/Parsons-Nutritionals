@@ -22,10 +22,10 @@ const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData,
                 <div className='z-10 absolute left-0 right-0 top-[50%] transform -translate-y-[50%] px-8 py-8 rounded-xl bg-white w-[95%] md:w-[55%] h-auto mx-auto flex justify-center items-center'>
                     <img
                         className='w-[8rem] h-[8rem] object-contain'
-                        src={BannerContainerDataContent.BannerContainerIcon}
+                        src="https://img.icons8.com/?size=256&id=20523&format=png"
                         alt='banner-icon'
                     />
-                    <h1 className='text-6xl font-extrabold text-black'>{BannerContainerDataContent.BannerHeading}</h1>
+                    <h1 className='text-6xl font-extrabold text-black'>{BannerContainerDataContent?.Header?.content?.title}</h1>
                 </div>
             }
         </div>

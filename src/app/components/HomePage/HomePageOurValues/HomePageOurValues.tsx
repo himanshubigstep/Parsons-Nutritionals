@@ -40,9 +40,6 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
                                 className="h-full w-[95.37%] leading-[1.875rem] marker-down"
                                 dangerouslySetInnerHTML={{ __html: md.render(item.content) }}
                             >
-                                {/* <p className={`[margin-block-start:0] [margin-block-end:20px] mb-8 ${hoveredIndex === index ? 'text-white' : 'text-black'}`}>
-                                    <p dangerouslySetInnerHTML={{ __html: md.render(item.content) }} />
-                                </p> */}
                             </div>
                         </div>
                     </div>

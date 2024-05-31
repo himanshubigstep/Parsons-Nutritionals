@@ -61,11 +61,6 @@ const HomePageTeamSlider = ({homePageDataValue, homePageMembersValue}: {homePage
                                     className='text-left text-lg text-black list-disc px-4'
                                     dangerouslySetInnerHTML={{ __html: md.render(member?.attributes?.career_highlights) }}
                                 >
-                                    {/* {member.details.map((detail, idx) => (
-                                        <li key={idx} className='mb-4'>
-                                            {detail}
-                                        </li>
-                                    ))} */}
                                 </ul>
                             </div>
                         </div>

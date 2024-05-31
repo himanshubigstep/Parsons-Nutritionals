@@ -12,36 +12,15 @@ interface ImageData {
     };
 }
 
-const sliderImagesLeft = [
-    'https://images.pexels.com/photos/2449605/pexels-photo-2449605.png',
-    'https://images.pexels.com/photos/1368382/pexels-photo-1368382.jpeg',
-    'https://images.pexels.com/photos/1671325/pexels-photo-1671325.jpeg',
-    'https://images.pexels.com/photos/2603464/pexels-photo-2603464.jpeg',
-    'https://images.pexels.com/photos/247122/pexels-photo-247122.jpeg',
-    'https://images.pexels.com/photos/1755683/pexels-photo-1755683.jpeg',
-    'https://images.pexels.com/photos/2823459/pexels-photo-2823459.jpeg'
-];
-
-const sliderImagesRight = [
-    'https://images.pexels.com/photos/301673/pexels-photo-301673.jpeg',
-    'https://images.pexels.com/photos/963436/pexels-photo-963436.jpeg',
-    'https://images.pexels.com/photos/1164985/pexels-photo-1164985.jpeg',
-    'https://images.pexels.com/photos/1808331/pexels-photo-1808331.jpeg',
-    'https://images.pexels.com/photos/1539116/pexels-photo-1539116.jpeg',
-    'https://images.pexels.com/photos/53464/sheraton-palace-hotel-lobby-architecture-san-francisco-53464.jpeg',
-    'https://images.pexels.com/photos/1129413/pexels-photo-1129413.jpeg'
-];
-
 const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDataValue: any, homePageAwardValue: any }) => {
     const AwardedDataTitle = homePageDataValue?.AwardSection?.title
     const AwardedDataIcon = homePageDataValue?.AwardSection?.media?.data?.attributes?.formats?.medium?.url
     const AwardImages = homePageAwardValue
 
     if (!AwardImages) {
-        return null; // or handle the null case accordingly
+        return null;
     }
-
-    // Divide AwardImages array into two halves
+    
     const halfLength = Math.ceil(AwardImages.length / 2);
     const leftHalf = AwardImages.slice(0, halfLength);
     const rightHalf = AwardImages.slice(halfLength);

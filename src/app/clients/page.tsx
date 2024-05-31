@@ -41,7 +41,6 @@ const Clients = () => {
   const contactSections = clientPageDataValue
 
   const bannerImage = clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url
-  console.log(bannerImage)
 
   return (
     <main className="flex min-h-screen flex-col items-center">

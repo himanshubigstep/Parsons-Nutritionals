@@ -37,7 +37,7 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
 
     useEffect(() => {
         if (HomePageSliderData?.media?.data?.length) {
-            const interval = setInterval(goToNext, 5000); // Change 500 to 5000 for 5-second interval
+            const interval = setInterval(goToNext, 5000);
     
             return () => {
                 clearInterval(interval);

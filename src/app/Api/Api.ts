@@ -192,3 +192,79 @@ export const ProductPageContent = async () => {
     throw error;
   }
 };
+
+export const ContactPageData = async () => {
+  try {
+    const response = await axios.get(`${ApiBaseUrl}/contact-page`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'application/json',
+      },
+      params: {
+        "populate[Header][populate]": "*",
+        "populate[MapLocation][populate]": "*",
+        "populate[Address][populate]": "*",
+        "populate[Phone][populate]": "*",
+        "populate[Media]": "*"
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+export const ContactPagePostForm = async (formData: { name: string; email: string; mobile: string; city: string; country: string; company_name: string; website: string; service_requirements: string; }) => {
+  try {
+    const response = await axios.post(`${ApiBaseUrl}/contacts`, {
+      data: formData
+    }, {
+      headers: {
+        'ngrok-skip-browser-warning': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+export const WhatWeDoData = async () => {
+  try {
+    const response = await axios.get(`${ApiBaseUrl}/work-page`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'application/json',
+      },
+      params: {
+        populate: {
+          0: 'Breakthrough',
+          1: 'Breakthrough.header',
+          2: 'Breakthrough.Breakthrough.header.image',
+          3: 'Breakthrough.Breakthrough.body',
+          4: 'Breakthrough.Breakthrough.footer.icon',
+          5: 'Footprint',
+          6: 'Footprint.header',
+          7: 'Footprint.blocks',
+          8: 'Footprint.LogoBlock.logos',
+          9: 'Footprint.body_media',
+          10: 'Footprint.MapLocation.LocationIcon',
+          11: 'Facilities.Header',
+          12: 'Facilities.FacilitesList.image',
+          13: 'Chains.Header',
+          14: 'ChainsBody.content',
+          15: 'ChainsBody.media',
+          16: 'ProjectsBody.content',
+          17: 'ProjectsBody.media',
+          18: 'Header.content',
+          19: 'Header.media',
+          20: 'Projects.Header'
+        }
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};

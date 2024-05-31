@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import TopBanner from '../components/Common/Banner/TopBanner'
-import BoxSectionContainer from '../components/WhatWeDo/BoxContainerSection/BoxSectionContainer'
-import BoxSectionContainerReverse from '../components/WhatWeDo/BoxSectionContainerReverse/BoxSectionContainerReverse'
+import BoxSectionContainer from '../components/Esg/BoxContainerSection/BoxSectionContainer'
+import BoxSectionContainerReverse from '../components/Esg/BoxSectionContainerReverse/BoxSectionContainerReverse'
 import AboutContact from '../components/Common/ContactBlock/AboutContact'
 import { EsgPageData } from '../Api/Api'
 

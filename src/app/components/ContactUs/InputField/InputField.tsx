@@ -22,14 +22,16 @@ const InputField: React.FC<InputProps> = ({ type, placeholder, value, onChange, 
                     placeholder={placeholder}
                     value={value}
                     onChange={handleChange}
+                    required
                 />
             ) : (
                 <input
                     className='w-full py-0 px-4 h-[60px] outline-none rounded-lg'
-                    type="text"
+                    type={type}
                     placeholder={placeholder}
                     value={value}
                     onChange={handleChange}
+                    required
                 />
             )}
         </div>
