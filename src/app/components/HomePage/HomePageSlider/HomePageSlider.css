@@ -1,0 +1,17 @@
+.right-image {
+    margin-right: 110px;
+}
+
+.left-image {
+    margin-left: 110px;
+}
+
+.image-centered {
+    max-width: 80%;
+}
+
+.right-image, .left-image {
+    height: 420px;
+    position: absolute;
+    top: 60px;
+}

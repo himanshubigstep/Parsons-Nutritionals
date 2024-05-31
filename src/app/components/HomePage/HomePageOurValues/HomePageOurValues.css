@@ -1,0 +1,7 @@
+.marker-down ul {
+    list-style: disc;
+    padding-left: 2rem;
+}
+.marker-down ul li {
+    margin-bottom: 1rem;
+}

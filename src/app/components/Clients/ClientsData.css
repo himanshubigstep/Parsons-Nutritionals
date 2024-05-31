@@ -1,0 +1,73 @@
+.clients-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.big-container:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: 5%;
+    bottom: 5%;
+    background: #F0F0F9;
+}
+.big-container:after {
+    content: "";
+    position: absolute;
+    background: white;
+    left: 0;
+    right: 80%;
+    top: 5%;
+    bottom: 5%;
+    border-radius: 0 3rem 3rem 0;
+}
+.tab-active:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #0059DF;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    .big-container:before, .big-container:after {
+        display: none;
+    }
+    .client-block {
+        max-width: 100%;
+        width: 100%;
+        flex-direction: column;
+    }
+    .client-block-img {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 1rem;
+    }
+    .client-block-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 1rem;
+    }
+    .client-block-content-text {
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    .client-block-content-text p {
+        text-align: left;
+    }
+    .scroll-button {
+        width: 100%;
+    }
+    .scroll-button-tab {
+        overflow-x: auto;
+    }
+    .scroll-button-tab > button {
+        min-width: 8rem;
+    }
+}
