@@ -25,6 +25,8 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
     const leftHalf = AwardImages.slice(0, halfLength);
     const rightHalf = AwardImages.slice(halfLength);
 
+    console.log(leftHalf, rightHalf)
+
     return (
         <div className="relative flex bg-[#0059D5] h-[48rem] w-full text-[1.125rem] text-darkslate-500">
             <div className='max-w-[1280px] mx-auto flex flex-col md:flex-row'>
@@ -48,7 +50,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
                                     key={index}
                                     className="w-full h-[33.3%] rounded-2xl"
                                     alt={`Slider Image ${index + 1}`}
-                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
                                 />
                             ))}
                         </div>
@@ -60,7 +62,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
                                     key={index}
                                     className="w-full h-[33.3%] rounded-2xl"
                                     alt={`Slider Image ${index + 1}`}
-                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
                                 />
                             ))}
                         </div>

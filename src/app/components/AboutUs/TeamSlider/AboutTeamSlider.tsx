@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useState } from 'react';
 import './AboutTeamSlider.css';
 
@@ -23,13 +21,10 @@ interface TeamMember {
 }
 
 const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }) => {
-  if (!homePageMembersValue) {
-    return null;
-  }
-  const aboutUsClientData = homePageMembersValue;
-  const [selectedImageIndex, setSelectedImageIndex] = useState(() => null);
-  const [startIndex, setStartIndex] = useState(() => 0);
-  const [currentPage, setCurrentPage] = useState(() => 0);
+  const aboutUsClientData = homePageMembersValue || []; // Ensure aboutUsClientData is not undefined
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [startIndex, setStartIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const imagesPerPage = 5;
 
   const handleClick = (index: any | React.SetStateAction<null>) => {
@@ -57,6 +52,10 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
 
   const pageCount = Math.ceil(aboutUsClientData.length / imagesPerPage);
   const pages = Array.from({ length: pageCount }, (_, i) => i);
+
+  if (!homePageMembersValue) {
+    return null;
+  }
 
   return (
     <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 py-16'>
