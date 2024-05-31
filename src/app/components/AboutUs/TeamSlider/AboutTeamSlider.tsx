@@ -22,14 +22,14 @@ interface TeamMember {
   };
 }
 
-const AboutTeamSlider = ({homePageMembersValue}: {homePageMembersValue: any}) => {
+const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }) => {
   if (!homePageMembersValue) {
     return null;
   }
   const aboutUsClientData = homePageMembersValue;
-  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-  const [startIndex, setStartIndex] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(() => null);
+  const [startIndex, setStartIndex] = useState(() => 0);
+  const [currentPage, setCurrentPage] = useState(() => 0);
   const imagesPerPage = 5;
 
   const handleClick = (index: any | React.SetStateAction<null>) => {
