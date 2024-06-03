@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="w-full h-full lg:h-[27rem] text-left text-[1rem] bg-black flex flex-col justify-center items-center py-8 px-8">
             <div className='w-full max-w-[1280px] h-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4'>
 
-                <div className='flex flex-col lg:flex-row justify-between items-start gap-10'>
+                <div className='flex flex-col lg:flex-row justify-between items-center gap-10'>
                     <div className="flex flex-col items-start justify-start gap-5">
                         <Image
                             className="w-[110px] relative h-[90px] object-cover"
@@ -23,7 +23,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-start justify-start text-[1.25rem]">
+                    {/* <div className="flex flex-col items-start justify-start text-[1.25rem]">
                         <div className="w-[95%] lg:w-[31.188rem] relative h-[9.75rem]">
                             <div className="leading-[1.875rem] font-semibold w-full lg:w-[28.813rem] text-white mb-5">
                                 Stay In Touch
@@ -47,7 +47,7 @@ const Footer = () => {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="flex flex-col items-start justify-start text-gray-600 font-text-sm-regular">

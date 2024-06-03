@@ -17,6 +17,7 @@ const ContactForm = () => {
 
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [serviceError, setServiceError] = useState<string>('');
+    const [showSuccessDialog, setShowSuccessDialog] = useState<boolean>(false);
 
     const validateMobile = (mobile: string) => {
         const mobilePattern = /^\d{10}$/; // Assumes a 10-digit mobile number
@@ -57,6 +58,7 @@ const ContactForm = () => {
         try {
             const responseData = await ContactPagePostForm(formData);
             console.log('Form data submitted successfully:', responseData);
+            setShowSuccessDialog(true);
             setFormData({
                 name: '',
                 email: '',
@@ -67,6 +69,9 @@ const ContactForm = () => {
                 website: '',
                 service_requirements: ''
             });
+            setTimeout(() => {
+                setShowSuccessDialog(false);
+            }, 10000);
         } catch (error: any) {
             console.error('Error submitting form data:', error);
             if (error.response) {
@@ -113,6 +118,14 @@ const ContactForm = () => {
                         {serviceError && field.name === 'email' && <span className="text-red-500">{serviceError}</span>}
                     </div>
                 ))}
+                {showSuccessDialog && (
+                    <div className="fixed right-2 bottom-2 flex items-center justify-center shadow-[0px_8px_25px_rgba(71,_71,_71,_0.5)] z-[99] rounded-2xl">
+                        <div className="bg-white p-8 rounded-lg">
+                            <p className="text-green-500 font-bold">Your query has been submitted successfully.</p>
+                            <button onClick={() => setShowSuccessDialog(false)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Close</button>
+                        </div>
+                    </div>
+                )}
                 <Button className='mt-16 w-[12rem] h-[60px] bg-[#0059DF] text-white font-bold rounded-lg flex justify-center items-center' onClick={handleClick}>
                     Send Query
                 </Button>
