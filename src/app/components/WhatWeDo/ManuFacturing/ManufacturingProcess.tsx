@@ -40,7 +40,7 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
                             <div className='w-full h-auto px-8 py-8 flex gap-4'>
                                 <div className='image-icon-container w-[5rem] h-[5rem] flex justify-center items-center bg-[#F0F0F9] rounded-lg'>
                                     <img
-                                        className=''
+                                        className='px-4 py-4'
                                         src={process?.footer?.icon?.data?.attributes?.formats?.small?.url}
                                         alt=''
                                     />

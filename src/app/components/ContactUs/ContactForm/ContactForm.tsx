@@ -16,6 +16,12 @@ const ContactForm = () => {
     });
 
     const [errors, setErrors] = useState<Record<string, string>>({});
+    const [serviceError, setServiceError] = useState<string>('');
+
+    const validateMobile = (mobile: string) => {
+        const mobilePattern = /^\d{10}$/; // Assumes a 10-digit mobile number
+        return mobilePattern.test(mobile);
+    };
 
     const handleInputChange = (key: string) => (value: string) => {
         setFormData((prevState) => ({
@@ -39,6 +45,14 @@ const ContactForm = () => {
             }));
             return;
         }
+
+        if (!validateMobile(formData.mobile)) {
+            setErrors((prevState) => ({
+                ...prevState,
+                mobile: 'Please enter a valid mobile number'
+            }));
+            return;
+        }
     
         try {
             const responseData = await ContactPagePostForm(formData);
@@ -56,15 +70,11 @@ const ContactForm = () => {
         } catch (error: any) {
             console.error('Error submitting form data:', error);
             if (error.response) {
-                // Check if the error is related to the email field
                 if (error.response.data.error && error.response.data.error.field === 'email') {
-                    // Display the specific error message for the email field
-                    setErrors((prevState) => ({
-                        ...prevState,
-                        email: error.response.data.error.message
-                    }));
+                    setServiceError('Please enter a valid email address');
                 } else {
                     console.error('Error response:', error.response.data.error.message);
+                    setServiceError(error.response.data.error.message)
                 }
             }
         }
@@ -77,23 +87,21 @@ const ContactForm = () => {
         placeholder: string;
         value: string;
         onChange: (value: string) => void;
-        required: boolean;
     }[] = [
-        { name: 'name', type: "text", label: "Name", placeholder: "Enter Your Name", value: formData.name, onChange: handleInputChange('name'), required: true },
-        { name: 'email', type: "email", label: "Email", placeholder: "Enter Your Email", value: formData.email, onChange: handleInputChange('email'), required: true },
-        { name: 'mobile', type: "text", label: "Mobile Number", placeholder: "Enter Your Mobile Number", value: formData.mobile, onChange: handleInputChange('mobile'), required: true },
-        { name: 'city', type: "text", label: "City", placeholder: "Enter Your City", value: formData.city, onChange: handleInputChange('city'), required: true },
-        { name: 'country', type: "text", label: "Country", placeholder: "Enter Your Country", value: formData.country, onChange: handleInputChange('country'), required: true },
-        { name: 'company_name', type: "text", label: "Company Name", placeholder: "Enter Your Company Name", value: formData.company_name, onChange: handleInputChange('company_name'), required: true },
-        { name: 'website', type: "text", label: "Website", placeholder: "Enter Your Website", value: formData.website, onChange: handleInputChange('website'), required: true },
-        { name: 'service_requirements', type: "textarea", label: "Describe Your Service Requirements in Detail*", placeholder: "Describe Your Service Requirements in Detail*", value: formData.service_requirements, onChange: handleInputChange('service_requirements'), required: true }
+        { name: 'name', type: "text", label: "Name", placeholder: "Enter Your Name", value: formData.name, onChange: handleInputChange('name') },
+        { name: 'email', type: "email", label: "Email", placeholder: "Enter Your Email", value: formData.email, onChange: handleInputChange('email') },
+        { name: 'mobile', type: "text", label: "Mobile Number", placeholder: "Enter Your Mobile Number", value: formData.mobile, onChange: handleInputChange('mobile') },
+        { name: 'city', type: "text", label: "City", placeholder: "Enter Your City", value: formData.city, onChange: handleInputChange('city') },
+        { name: 'country', type: "text", label: "Country", placeholder: "Enter Your Country", value: formData.country, onChange: handleInputChange('country') },
+        { name: 'company_name', type: "text", label: "Company Name", placeholder: "Enter Your Company Name", value: formData.company_name, onChange: handleInputChange('company_name') },
+        { name: 'website', type: "text", label: "Website", placeholder: "Enter Your Website", value: formData.website, onChange: handleInputChange('website') },
+        { name: 'service_requirements', type: "textarea", label: "Describe Your Service Requirements in Detail*", placeholder: "Describe Your Service Requirements in Detail*", value: formData.service_requirements, onChange: handleInputChange('service_requirements') }
     ];
     return (
         <div className='relative mb-8 w-[95%] mx-auto md:w-[60%] flex'>
             <div className='w-full flex flex-col'>
                 {inputFields.map((field, index) => (
                     <div key={index} className="mb-4">
-                    {field.required && <span className="text-red-500">* Required</span>}
                         <InputField
                             type={field.type}
                             label={field.label}
@@ -102,6 +110,7 @@ const ContactForm = () => {
                             onChange={field.onChange}
                         />
                         {errors[field.name] && <span className="text-red-500">{errors[field.name]}</span>}
+                        {serviceError && field.name === 'email' && <span className="text-red-500">{serviceError}</span>}
                     </div>
                 ))}
                 <Button className='mt-16 w-[12rem] h-[60px] bg-[#0059DF] text-white font-bold rounded-lg flex justify-center items-center' onClick={handleClick}>
