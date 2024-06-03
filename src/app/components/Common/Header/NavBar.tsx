@@ -98,6 +98,8 @@ const NavItem = ({ href, children, subMenuItems }: { href: string; children: Rea
         const target = event.target as HTMLDivElement;
         if (target.classList.contains('arrow-icon')) {
             setIsSubMenuOpen(!isSubMenuOpen);
+        } else {
+            closeSubMenu();
         }
     };
 

@@ -144,16 +144,6 @@ const Footer = () => {
                                 alt=""
                                 src={LinkedIn}
                             />
-                            <Image
-                                className="w-[28px] relative h-[28px] object-cover invert"
-                                alt=""
-                                src={InstaGram}
-                            />
-                            <Image
-                                className="w-[28px] relative h-[28px] object-cover invert"
-                                alt=""
-                                src={YouTube}
-                            />
                         </div>
                     </div>
                 </div>
