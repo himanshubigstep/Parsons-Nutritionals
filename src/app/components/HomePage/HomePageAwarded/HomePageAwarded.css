@@ -19,11 +19,11 @@
 .slide-images {
     display: flex;
     flex-direction: column;
-    animation: slideUp 40s linear infinite;
+    animation: slideUp 15s linear infinite;
 }
 
 .slide-images.reverse {
-    animation: slideDown 40s linear infinite;
+    animation: slideDown 15s linear infinite;
 }
 
 .slide-images img {

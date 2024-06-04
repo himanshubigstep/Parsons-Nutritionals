@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="w-full h-full lg:h-[27rem] text-left text-[1rem] bg-black flex flex-col justify-center items-center py-8 px-8">
             <div className='w-full max-w-[1280px] h-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4'>
 
-                <div className='flex flex-col lg:flex-row justify-between items-center gap-10'>
+                <div className='flex flex-1 flex-col lg:flex-row justify-between items-start gap-10'>
                     <div className="flex flex-col items-start justify-start gap-5">
                         <Image
                             className="w-[110px] relative h-[90px] object-cover"
@@ -48,6 +48,14 @@ const Footer = () => {
                             </div>
                         </div>
                     </div> */}
+                    <div className='mx-auto h-full'>
+                        <div className='px-8 flex flex-col justify-center gap-5'>
+                            <h1 className='text-3xl text-white font-bold'>
+                                Join Our Team
+                            </h1>
+                            <Link href='/contact-us' className='text-center text-black text-lg font-bold bg-white px-2 py-2 rounded-lg w-[10rem]'>Join Now</Link>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="flex flex-col items-start justify-start text-gray-600 font-text-sm-regular">
@@ -86,7 +94,7 @@ const Footer = () => {
                                         target="_blank"
                                     >
                                         <span className="[text-decoration:underline]">
-                                            What We Do
+                                            Whacentert We Do
                                         </span>
                                     </Link>
                                     <Link
@@ -107,7 +115,7 @@ const Footer = () => {
                                             ESG
                                         </span>
                                     </Link>
-                                    <Link
+                                    {/* <Link
                                         className="relative leading-[1.5rem] font-medium text-lg mb-2"
                                         href="/contact-us"
                                         target="_blank"
@@ -115,7 +123,7 @@ const Footer = () => {
                                         <span className="[text-decoration:underline]">
                                             Contact Us
                                         </span>
-                                    </Link>
+                                    </Link> */}
                                 </div>
                             </div>
                         </div>
@@ -129,7 +137,7 @@ const Footer = () => {
                     <div className="flex-1 relative leading-[1.5rem]">
                         © 2015 mannventures.com. All rights reserved
                     </div>
-                    <div className="w-[14.188rem] relative flex items-center gap-5">
+                    <div className="w-[14.188rem] relative flex justify-end items-center gap-5">
                         <Link href='terms-conditions' className="leading-[1.5rem]">
                             Terms
                         </Link>
@@ -137,7 +145,7 @@ const Footer = () => {
                             Privacy
                         </Link>
                     </div>
-                    <div className="flex flex-row items-center justify-start">
+                    {/* <div className="flex flex-row items-center justify-start">
                         <div className="flex flex-row items-center justify-start gap-[1.5rem]">
                             <Image
                                 className="w-[28px] relative h-[28px] object-cover invert"
@@ -145,7 +153,7 @@ const Footer = () => {
                                 src={LinkedIn}
                             />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
