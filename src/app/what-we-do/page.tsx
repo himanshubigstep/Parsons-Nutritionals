@@ -71,7 +71,7 @@ const WhatWeDo = () => {
         <GraphicalFootPrints whatWeDoDataValue={whatWeDoDataValue} />
       </div>
 
-      <div className='relative w-full max-w-[1280px] mx-auto'>
+      {/* <div className='relative w-full max-w-[1280px] mx-auto'>
         <div className='text-center w-full pt-24'>
           <h3 className='font-bold text-2xl md:text-4xl mb-4'>{contactSections?.Projects?.Header?.title}</h3>
           <p className='font-normal text-md md:text-lg'>
@@ -87,9 +87,9 @@ const WhatWeDo = () => {
           <SectionContainerReverse contactSections={contactSections} />
         </div>
 
-      </div>
+      </div> */}
 
-      <div id='our-facilities'>
+      {/* <div id='our-facilities'>
         <OurFacilities contactSections={contactSections} />
       </div>
 
@@ -109,7 +109,7 @@ const WhatWeDo = () => {
           <ChainsBodyReverse contactSections={contactSections} />
         </div>
 
-      </div>
+      </div> */}
 
     </main>
   )

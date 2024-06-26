@@ -78,15 +78,6 @@ export default function AboutUs() {
         </div>
       </div>
 
-      <div id='-food-and-healthcare-' className='relative w-full max-w-[1280px] flex justify-center items-center pt-32 about-page'>
-        <div className='w-1/2 mt-[-10%] mr-[-5%] z-10 flex justify-center items-center rounded-[2.4rem] about-page-img'>
-          {aboutUsPageDataValue?.BodyContent[1]?.images?.data.map((item: any, index: number) => (
-            <img className='h-[480px] w-full rounded-[2.4rem]' key={index} src={`${item?.attributes?.formats?.large?.url}`} alt={item?.attributes?.formats?.small?.url} />
-          ))}
-        </div>
-        <WhiteBoxReverse aboutUsPageDataValue={aboutUsPageDataValue} />
-      </div>
-
       <div id='our-team' className='w-full max-w-[1280px] mx-auto'>
         <AboutTeamSlider homePageMembersValue = {homePageMembersValue} />
       </div>
@@ -97,6 +88,15 @@ export default function AboutUs() {
 
       <div id='our-strength' className='w-full max-w-[1280px] mx-auto'>
         <AboutUsStrength aboutUsPageDataValue = {aboutUsPageDataValue} />
+      </div>
+
+      <div id='-food-and-healthcare-' className='relative w-full max-w-[1280px] flex justify-center items-center pt-16 pb-32 about-page'>
+        <div className='w-1/2 mt-[-10%] mr-[-5%] z-10 flex justify-center items-center rounded-[2.4rem] about-page-img'>
+          {aboutUsPageDataValue?.BodyContent[1]?.images?.data.map((item: any, index: number) => (
+            <img className='h-[480px] w-full rounded-[2.4rem]' key={index} src={`${item?.attributes?.formats?.large?.url}`} alt={item?.attributes?.formats?.small?.url} />
+          ))}
+        </div>
+        <WhiteBoxReverse aboutUsPageDataValue={aboutUsPageDataValue} />
       </div>
 
       <AboutContact contactSections={contactSections} />
