@@ -19,7 +19,7 @@ const Footer = () => {
                             src={Logo}
                         />
                         <div className="w-[95%] lg:w-[15rem] relative leading-[1.5rem] text-white">
-                            Mann Ventures - your ideal business partner
+                        Parsons Nutritionals - your ideal business partner
                         </div>
                     </div>
 

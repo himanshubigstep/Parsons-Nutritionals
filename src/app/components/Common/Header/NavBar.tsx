@@ -24,13 +24,21 @@ const NavBar = () => {
                     <p className='relative text-md'>Logo Text</p>
                 </Link>
                 <div className="hidden lg:flex flex-row items-center justify-center gap-[2rem]">
-                    <NavItem href="/about-us" subMenuItems={['About Mann Ventures', ' Food and healthcare ', 'Our Team', 'Infrastructure', 'Our Strength']}>
+                    <NavItem href="/about-us" subMenuItems={['About Parsons Nutritionals', ' Food and healthcare ', 'Our Team', 'Infrastructure', 'Our Strength']}>
                         About us
                     </NavItem>
                     <NavItem href="/clients">
                         Clients
                     </NavItem>
-                    <NavItem href="/what-we-do" subMenuItems={['Manufacturing Process', 'Geographical Footprint', 'Joint Facility', 'Jar Line Automation', 'Our Facilities', 'Backward Integration', 'Own Bakery']}>
+                    <NavItem href="/what-we-do" subMenuItems={[
+                        'Manufacturing Process',
+                        'Geographical Footprint',
+                        // 'Joint Facility',
+                        // 'Jar Line Automation',
+                        // 'Our Facilities',
+                        // 'Backward Integration',
+                        // 'Own Bakery'
+                        ]}>
                         What We Do
                     </NavItem>
                     <NavItem href="/product-range">
@@ -54,13 +62,21 @@ const NavBar = () => {
                 {isOpen && (
                     <div className="lg:hidden absolute top-[5.688rem] left-0 w-full bg-white z-10 shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)]">
                         <div className="flex flex-col items-center justify-start gap-4 py-4">
-                            <NavItem href="/about-us" subMenuItems={['About Mann Ventures', ' Food and healthcare ', 'Our Team', 'Infrastructure', 'Our Strength']}>
+                            <NavItem href="/about-us" subMenuItems={['About Parsons Nutritionals', ' Food and healthcare ', 'Our Team', 'Infrastructure', 'Our Strength']}>
                                 About us
                             </NavItem>
                             <NavItem href="/clients">
                                 Clients
                             </NavItem>
-                            <NavItem href="/what-we-do" subMenuItems={['Manufacturing Process', 'Geographical Footprint', 'Joint Facility', 'Jar Line Automation', 'Our Facilities', 'Backward Integration', 'Own Bakery']}>
+                            <NavItem href="/what-we-do" subMenuItems={[
+                                'Manufacturing Process',
+                                'Geographical Footprint',
+                                // 'Joint Facility',
+                                // 'Jar Line Automation',
+                                // 'Our Facilities',
+                                // 'Backward Integration',
+                                // 'Own Bakery'
+                                ]}>
                                 What We Do
                             </NavItem>
                             <NavItem href="/product-range">
@@ -112,9 +128,18 @@ const NavItem = ({ href, children, subMenuItems }: { href: string; children: Rea
             <div className="flex justify-between items-center gap-2 leading-[1.5rem] font-medium text-lg" onClick={toggleSubMenu}>
                 <Link href={href}>{children}</Link>
                 {subMenuItems && subMenuItems.length > 0 && (
-                    <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 text-darkslate-500 arrow-icon ${isSubMenuOpen ? 'transform rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    <div style={{
+                        width: 24,
+                        height: 45,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        cursor: 'pointer'
+                    }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 text-darkslate-500 arrow-icon ${isSubMenuOpen ? 'transform rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
                 )}
             </div>
             {subMenuItems && isSubMenuOpen && (
