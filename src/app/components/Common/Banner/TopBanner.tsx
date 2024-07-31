@@ -1,21 +1,38 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import BannerSubContainer from './BannerSubContainer/BannerSubContainer';
 
 interface TopBannerProps {
     bannerImage?: string;
     BannerContainerData?: any;
     BannerContainerDataContent?: any;
-    aboutUsPageDataValue?: any
+    aboutUsPageDataValue?: any;
 }
 
 const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData, BannerContainerDataContent }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageError, setImageError] = useState(false);
+
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+    };
+
+    const handleImageError = () => {
+        setImageError(true);
+        setImageLoaded(true); // To ensure the gray background remains if image fails to load
+    };
+
     return (
         <div className='relative w-full h-[480px] max-w-full flex flex-col justify-center items-center'>
-            <div className='absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-50'></div>
+            <div
+                className={`absolute left-0 right-0 top-0 bottom-0 w-full h-full ${imageLoaded ? 'bg-transparent' : 'bg-gray-400'} opacity-50`}
+            ></div>
             <img
-                src={`${bannerImage}`}
-                className='w-full h-full object-cover'
+                src={bannerImage}
+                className={`w-full h-full object-cover ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
                 alt='banner-image'
+                onLoad={handleImageLoad}
+                onError={handleImageError}
             />
             {BannerContainerData && <BannerSubContainer BannerContainerData={BannerContainerData} />}
             {BannerContainerDataContent &&
@@ -33,3 +50,4 @@ const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData,
 }
 
 export default TopBanner;
+
