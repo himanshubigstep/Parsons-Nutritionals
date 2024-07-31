@@ -1,16 +1,30 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
 const AboutContact = ({ contactSections }: { contactSections: any }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+    };
+
+    const handleImageError = () => {
+        setImageLoaded(true); // Optional: You might want to handle the error case differently
+    };
     const contactSectionData = contactSections?.ContactUs
     return (
         <>
-            <div className="relative w-full max-w-full h-[38rem] mx-auto pt-8">
-                <div className='absolute left-0 right-0 top-0 bottom-0 w-full h-full bg-black opacity-50 z-10'></div>
+            <div className="relative w-full max-w-full h-[38rem] mx-auto pt-8">                
+            <div
+                className={`absolute left-0 right-0 top-0 bottom-0 w-full h-full ${imageLoaded ? 'bg-transparent' : 'bg-gray-400'} opacity-50`}
+            ></div>
                 <img
-                    className="rounded-6xl w-full object-cover absolute left-0 right-0 top-0 bottom-0 h-full"
+                    className={`rounded-6xl w-full object-cover absolute left-0 right-0 top-0 bottom-0 h-full ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                     alt="Our Vision"
                     src={contactSectionData?.media?.data?.attributes?.formats?.large?.url}
+                    onLoad={handleImageLoad}
+                    onError={handleImageError}
                 />
                 <div className='absolute left-0 right-0 top-0 bottom-0 w-full max-w-[1280px] mx-auto'>
                     <div className="px-4 py-4 sm:px-8 sm:py-8 bg-[#0059DF] absolute top-[50%] translate-y-[-50%] z-20 right-0 rounded-3xl w-full sm:w-[28rem] flex justify-center items-center flex-col">
