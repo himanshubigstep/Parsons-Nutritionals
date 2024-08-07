@@ -30,14 +30,23 @@ const ESG = () => {
 
   const BannerContainerData = esgPageValue?.Header?.content
 
+  const pdfFileUrl = 'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf'
+
   return (
     <div>
       <TopBanner bannerImage={bannerImage} BannerContainerData={BannerContainerData} />
+      <div className='relative'>
       <div id='esg-reporting-and-standards' className='w-full'>
         <BoxSectionContainer contactSections={contactSections} />
       </div>
       <div id='esg-implementation' className='w-full'>
         <BoxSectionContainerReverse contactSections={contactSections} />
+      </div>
+      <div className='absolute top-8 right-8'>
+        <a target='_blank' href={pdfFileUrl} download className='p-4 rounded-lg bg-blue-500 hover:bg-blue-800 text-white'>
+          Download PDF
+        </a>
+      </div>
       </div>
       <AboutContact contactSections={contactSections} />
     </div>

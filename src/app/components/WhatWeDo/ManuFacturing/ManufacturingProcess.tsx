@@ -37,7 +37,7 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
                                     </div>
                                 </div>
                             </div>
-                            <div className='w-full h-auto px-8 py-8 flex gap-4'>
+                            {/* <div className='w-full h-auto px-8 py-8 flex gap-4'>
                                 <div className='image-icon-container w-[5rem] h-[5rem] flex justify-center items-center bg-[#F0F0F9] rounded-lg'>
                                     <img
                                         className='px-4 py-4'
@@ -51,7 +51,7 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
                                         {process?.footer?.description}
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     ))}
                 </div>
