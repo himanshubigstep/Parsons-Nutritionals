@@ -9,7 +9,9 @@ interface ClientDetail {
         image: {
             data: {
                 attributes: {
+                    url: any;
                     formats: {
+                        url: string;
                         thumbnail: {
                             url: string;
                         };
@@ -53,9 +55,9 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                         <div key={index} className={`client-block h-full max-w-[60%] mx-auto flex justify-center items-center py-8 ${activeTab === index ? '' : 'hidden'}`}>
                             <div className='client-block-img mr-[-10%] w-1/3 h-[320px] bg-[#FFEAEC] rounded-3xl z-10 flex justify-center items-center'>
                                 <img
-                                    className='w-[80%] mx-auto'
+                                    className='w-[100%] mx-auto'
                                     alt={`client-logo-${index}`}
-                                    src={`${client?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
+                                    src={`${client?.attributes?.image?.data?.attributes?.url}`}
                                 />
                             </div>
                             <div className='client-block-content relative w-2/3 h-[420px] bg-[#F0F0F9] rounded-[3rem] flex items-center big-container'>
