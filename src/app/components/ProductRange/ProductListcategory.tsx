@@ -69,7 +69,7 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({ productPageHeader
             <img
               src={product.attributes.media.data.attributes.formats.medium.url}
               alt={product.attributes.name}
-              className="w-full h-[200px] rounded-xl bg-red-500 mb-4 object-cover"
+              className="w-full h-[200px] rounded-xl bg-white mb-4 object-contain"
             />
             <h3 className="text-lg font-semibold mb-2">{product.attributes.name}</h3>
           </div>
