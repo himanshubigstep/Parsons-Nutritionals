@@ -60,7 +60,7 @@ export default function AboutUs() {
 
   const contactSections = aboutUsPageDataValue
 
-  const bannerImage = aboutUsPageDataValue?.Header?.media?.data?.attributes?.formats?.large?.url
+  const bannerImage = aboutUsPageDataValue?.Header?.media?.data?.attributes?.url
 
   const BannerContainerData = aboutUsPageDataValue?.Header?.content
 

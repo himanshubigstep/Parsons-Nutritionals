@@ -13,6 +13,7 @@ interface InfrastructureDetail {
         media: {
             data: {
                 attributes: {
+                    url: string;
                     formats: {
                         large: {
                             url: string
@@ -47,7 +48,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                         <div key={index} className={`infrastructure-block w-full px-0 md:px-8 py-8 flex justify-center items-center ${activeTab === index ? '' : 'hidden'}`}>
                             <div className='infrastructure-block-img w-[40%] h-[420px] rounded-3xl bg-black mr-[-12%] z-10'>
                                 <img
-                                    src={detail.attributes?.media?.data?.attributes?.formats?.large?.url}
+                                    src={detail.attributes?.media?.data?.attributes?.url}
                                     alt='infrastructure'
                                     className='w-full h-full object-cover rounded-3xl'
                                 />
