@@ -16,11 +16,11 @@ const HomePageOurClients = ({homePageDataValue, homePageClientValue}: {homePageD
   const OurClientsPartnerData = homePageDataValue?.CustomerSection
   const OurClientDataValue = homePageClientValue
   return (
-    <div className="relative bg-[#0059DF] w-full h-auto sm:h-[20.875rem] text-[1.5rem] sm:text-[2.25rem] font-montserrat">
+    <div className="relative bg-[#0059DF] w-full h-auto md:h-[20.875rem] text-[1.5rem] sm:text-[2.25rem] font-montserrat">
       <div className="max-w-[1280px] mx-auto font-extrabold flex items-center justify-center w-full py-4 sm:py-8 text-white capitalize">
         {OurClientsPartnerData?.title}
       </div>
-      <div className="w-full max-w-[1280px] mx-auto h-[12rem] sm:h-[9.938rem] overflow-hidden">
+      <div className="w-full max-w-[1280px] mx-auto md:h-[12rem] sm:h-[9.938rem] h-auto md:pb-0 pb-4 overflow-hidden">
         <div className="w-full flex flex-row items-start justify-start gap-4 sm:gap-[1.25rem]">
           <div className="flex gap-4 sm:gap-8 w-full mx-auto animate-marquee whitespace-nowrap">
             {OurClientDataValue && OurClientDataValue.map((item: ImageData, index: number) => (

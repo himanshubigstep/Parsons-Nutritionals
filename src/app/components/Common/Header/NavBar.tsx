@@ -61,7 +61,7 @@ const NavBar = () => {
                 </div>
                 {isOpen && (
                     <div className="lg:hidden absolute top-[5.688rem] left-0 w-full bg-white z-10 shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)]">
-                        <div className="flex flex-col items-center justify-start gap-4 py-4">
+                        <div className="flex flex-col md:items-center md:justify-start gap-4 md:py-4 p-4">
                             <NavItem href="/about-us" subMenuItems={['About Parsons Nutritionals', ' Food and healthcare ', 'Our Team', 'Infrastructure', 'Our Strength']}>
                                 About us
                             </NavItem>
@@ -88,7 +88,7 @@ const NavBar = () => {
                         </div>
                 <div className="lg:flex flex-row items-start justify-start text-[1rem] text-base-white font-text-sm-regular">
                     <div className="shadow-[0px_1px_2px_rgba(16,_24,_40,_0.05)] rounded-lg bg-light-blue overflow-hidden flex flex-row items-center justify-center py-[0.625rem] px-[1.125rem] gap-[0.5rem]">
-                        <Link href="/contact-us" className="relative leading-[1.5rem] font-medium text-lg px-4 py-4 bg-[#0059DF] rounded-xl text-white">
+                        <Link href="/contact-us" className="md:w-auto w-full text-center relative leading-[1.5rem] font-medium text-lg px-4 py-4 bg-[#0059DF] rounded-xl text-white">
                             Contact us
                         </Link>
                     </div>

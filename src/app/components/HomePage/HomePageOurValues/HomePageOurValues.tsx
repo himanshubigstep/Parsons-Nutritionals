@@ -10,7 +10,7 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
     const ourValuesData = homePageDataValue?.Values
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     return (
-        <div className="w-full max-w-[1280px] mx-auto py-24 text-left text-[1rem] text-primary-700">
+        <div className="w-full max-w-[1280px] mx-auto md:py-24 py-8 text-left text-[1rem] text-primary-700">
             <div className="text-center font-text-sm-regular mb-8">
                 <div className="text-[2.25rem] tracking-[-0.02em] leading-[2.75rem] font-semibold text-black capitalize">
                     {ourValuesData?.title}
@@ -21,7 +21,7 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
             {ourValuesData?.items.map((item: any, index: number) => (
                     <div
                         key={index}
-                        className="w-full sm:w-[48%] lg:w-[30%] h-[25rem] bg-white rounded-2xl hover:bg-[#0059DF] px-8 py-8 mb-8 sm:mb-0"
+                        className="w-full sm:w-[48%] lg:w-[30%] md:h-[25rem] h-auto bg-white rounded-2xl hover:bg-[#0059DF] px-8 py-8 mb-8 sm:mb-0"
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                     >

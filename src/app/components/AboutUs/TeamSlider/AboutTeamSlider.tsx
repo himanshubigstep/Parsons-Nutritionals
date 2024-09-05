@@ -58,7 +58,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
   }
 
   return (
-    <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 py-16'>
+    <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 md:py-16 py-8'>
       <h1 className="text-3xl font-extrabold dark:text-white">Our Team</h1>
       <div className="w-full flex justify-center items-center gap-2 rounded-xl overflow-hidden relative">
         {aboutUsClientData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
@@ -66,11 +66,11 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
             <img
               src={item?.attributes?.image?.data?.attributes?.formats?.medium?.url}
               alt='image'
-              className={`w-full h-[480px] object-cover rounded-xl cursor-pointer`}
+              className={`w-full md:h-[480px] h-[360px] object-cover rounded-xl cursor-pointer`}
               onClick={() => handleClick(index + startIndex)}
             />
             {selectedImageIndex === index + startIndex && (
-              <div className="absolute top-[80%] left-[50%] transform translate-x-[-50%] translate-y-[-80%] px-4 py-4 rounded-xl w-[75%] flex justify-center items-center bg-gray-700 bg-opacity-50 text-white">
+              <div className="absolute top-[80%] left-[50%] transform translate-x-[-50%] translate-y-[-80%] px-4 py-4 rounded-xl md:w-[75%] w-full flex justify-center items-center bg-gray-700 bg-opacity-50 text-white">
                 <div>
                   <h3 className="text-2xl font-bold">{item?.attributes?.name}</h3>
                   <p className='font-medium'>

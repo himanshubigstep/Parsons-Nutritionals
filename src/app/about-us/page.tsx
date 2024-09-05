@@ -73,7 +73,7 @@ export default function AboutUs() {
         <WhiteBoxText aboutUsPageDataValue={aboutUsPageDataValue} />
         <div className='w-1/2 mt-[10%] ml-[-5%] z-10 flex justify-center items-center rounded-[2.4rem] about-page-img'>
           {aboutUsPageDataValue?.BodyContent[0]?.images?.data.map((item: any, index: number) => (
-            <img className='h-[480px] w-full rounded-[2.4rem]' key={index} src={`${item?.attributes?.formats?.large?.url}`} alt={item?.attributes?.formats?.small?.url} />
+            <img className='md:h-[480px] w-full rounded-[2.4rem]' key={index} src={`${item?.attributes?.formats?.large?.url}`} alt={item?.attributes?.formats?.small?.url} />
           ))}
         </div>
       </div>
@@ -90,7 +90,7 @@ export default function AboutUs() {
         <AboutUsStrength aboutUsPageDataValue = {aboutUsPageDataValue} />
       </div>
 
-      <div id='-food-and-healthcare-' className='relative w-full max-w-[1280px] flex justify-center items-center pt-16 pb-32 about-page'>
+      <div id='-food-and-healthcare-' className='relative w-full max-w-[1280px] flex justify-center items-center md:pt-16 md:pb-32 py-8 about-page'>
         <div className='w-1/2 mt-[-10%] mr-[-5%] z-10 flex justify-center items-center rounded-[2.4rem] about-page-img'>
           {aboutUsPageDataValue?.BodyContent[1]?.images?.data.map((item: any, index: number) => (
             <img className='h-[480px] w-full rounded-[2.4rem]' key={index} src={`${item?.attributes?.formats?.large?.url}`} alt={item?.attributes?.formats?.small?.url} />
