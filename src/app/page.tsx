@@ -77,7 +77,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-between md:p-0 p-4">
       <HomePageSlider homePageDataValue={homePageDataValue} />
       <HomePageWhatWeAre homePageDataValue={homePageDataValue} />
       <HomePageOurClients homePageDataValue={homePageDataValue} homePageClientValue={homePageClientValue} />

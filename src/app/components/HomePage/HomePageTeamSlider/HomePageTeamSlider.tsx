@@ -38,7 +38,7 @@ const HomePageTeamSlider = ({homePageDataValue, homePageMembersValue}: {homePage
     };
 
     return (
-        <div className='relative w-full max-w-[1280px] mx-auto h-full md:h-[42rem] py-24'>
+        <div className='relative w-full max-w-[1280px] mx-auto h-full md:h-[42rem] md:py-24 py-8'>
             <div className='w-full flex justify-center items-center text-3xl text-black font-bold'>
                 <h1 className='w-[48rem] mb-8 text-center'>
                     {TeamSliderTitle}
@@ -47,7 +47,7 @@ const HomePageTeamSlider = ({homePageDataValue, homePageMembersValue}: {homePage
             <div className='relative w-full h-full flex justify-center items-center gap-4 overflow-x-hidden'>
 
                 {TeamSliderData && TeamSliderData.map((member: TeamMember, index: number) => (
-                    <div key={index} onClick={() => handleClick(index)} className={`bg-white h-full rounded-2xl w-[70%] flex flex-col md:flex-row justify-between items-center px-4 py-4 gap-4 transition-transform duration-500 ${index === currentIndex ? 'opacity-100 w-[70%]' : 'opacity-20 w-[15%] absolute'}`} style={{ transform: `translateX(${(index - currentIndex) * 100}%)`, marginLeft: index === 0 ? '0' : '1rem', marginRight: index === TeamSliderData.length - 1 ? '0' : '1rem' }}>
+                    <div key={index} onClick={() => handleClick(index)} className={`bg-white h-full rounded-2xl md:w-[70%] w-full flex flex-col md:flex-row justify-between items-center px-4 py-4 gap-4 transition-transform duration-500 ${index === currentIndex ? 'opacity-100 w-[70%]' : 'opacity-20 w-[15%] absolute'}`} style={{ transform: `translateX(${(index - currentIndex) * 100}%)`, marginLeft: index === 0 ? '0' : '1rem', marginRight: index === TeamSliderData.length - 1 ? '0' : '1rem' }}>
                         <div className='w-[95%] md:w-1/3 h-full bg-[#0059D5] rounded-2xl'>
                             <img src={`${member?.attributes?.image?.data?.attributes?.formats?.medium?.url}`} alt='' className='w-full h-full rounded-2xl object-cover' />
                         </div>

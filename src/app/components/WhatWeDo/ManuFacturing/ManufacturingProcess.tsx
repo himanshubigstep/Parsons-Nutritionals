@@ -4,7 +4,7 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
     const manufacturingHeader = whatWeDoDataValue?.Breakthrough?.header
     const manufacturingData = whatWeDoDataValue?.Breakthrough?.Breakthrough
     return (
-        <div className='w-full max-w-[1280px] mx-auto relative py-24 flex flex-col justify-center items-center'>
+        <div className='w-full max-w-[1280px] mx-auto relative md:py-24 py-8 flex flex-col justify-center items-center'>
             <div className='w-full flex flex-col justify-center items-center'>
                 <div className='header w-[95%] mx-auto flex flex-col justify-center items-center'>
                     <h2 className='text-3xl font-bold text-black leading-[2.75rem]'>
@@ -23,7 +23,7 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
                                     src={process?.header?.image?.data?.attributes?.url}
                                     alt='content-box-image'
                                 />
-                                <div className='absolute left-0 right-0 bottom-0 bg-[#0059DF] w-full h-[8rem] flex items-center py-8 px-8 gap-4'>
+                                <div className='absolute left-0 right-0 bottom-0 bg-[#0059DF] w-full md:h-[8rem] flex items-center py-8 px-8 gap-4'>
                                     <div className='text-white font-bold text-5xl w-[5rem] h-[5rem] flex justify-center items-center'>
                                         {process?.body?.number}
                                     </div>

@@ -33,7 +33,7 @@ const WhiteBoxText = ({ aboutUsPageDataValue }: { aboutUsPageDataValue: any }) =
             </ul>
             <div className='flex flex-col md:flex-row relative gap-4 mt-8 mb-8'>
                 {boxDataLogo && boxDataLogo.length > 0 && boxDataLogo.map((item: ImageData, index: number) => (
-                    <img className='h-[40px]' key={index} src={`${item?.attributes?.formats?.thumbnail?.url}`} alt={item?.attributes?.formats?.small?.url} />
+                    <img className='md:h-[40px] object-cover' key={index} src={`${item?.attributes?.formats?.thumbnail?.url}`} alt={item?.attributes?.formats?.small?.url} />
                 ))}
             </div>
         </div>

@@ -49,7 +49,7 @@ const Footer = () => {
                         </div>
                     </div> */}
                     <div className='w-full mx-auto h-full'>
-                        <div className='px-8 flex justify-center max-w-[85%] items-start flex-col'>
+                        <div className='md:px-8 flex justify-center max-w-[85%] items-start flex-col'>
                             <h1 className='text-3xl text-white font-bold mb-2'>
                                 Join Our Team
                             </h1>
@@ -61,9 +61,9 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-start justify-start text-gray-600 font-text-sm-regular">
+                <div className="w-full md-w-auto flex flex-col items-start justify-start text-gray-600 font-text-sm-regular">
                     <div className="self-stretch flex flex-col items-end justify-start gap-[0.75rem]">
-                        <div className="flex flex-row items-center justify-start text-gray-200 bg-black">
+                        <div className="w-full md:w-auto flex flex-row items-center justify-start text-gray-200 bg-black">
                             <div className="overflow-hidden flex flex-row items-center justify-center gap-[0.5rem]">
                                 <div className="relative leading-[1.5rem] font-semibold flex flex-col">
                                     <Link

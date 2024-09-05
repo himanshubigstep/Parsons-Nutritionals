@@ -9,7 +9,7 @@ const BoxSectionContainerReverse = ({ contactSections }: { contactSections: any 
   const esgPageDataImage = contactSections?.Body[1]?.media?.data?.attributes?.formats?.medium?.url
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto py-24">
+    <div className="w-full max-w-[1280px] mx-auto md:py-24 py-8">
       <div className="w-full flex flex-col md:flex-row justify-center items-center">
           <div className="w-[95%] md:w-[45%] h-[520px] rounded-[3.75rem] z-10">
             <img
