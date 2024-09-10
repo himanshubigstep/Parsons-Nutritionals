@@ -81,7 +81,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                                             ))}
                                         </ul>
                                     </div>
-                                    <div className='flex justify-start items-center mt-8'>
+                                    <div className='flex justify-center sm:justify-start items-center mt-8'>
                                         <Button
                                             onClick={() => {
                                                 window.open('/contact-us', '_blank');
