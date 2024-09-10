@@ -6,6 +6,27 @@
     margin-left: 110px;
 }
 
+@media (max-width: 600px) {
+    .left-image {
+        margin-left: 22px; /* Apply when screen width is less than 600px */
+    }
+}
+
+@media (max-width: 600px) {
+    .right-image {
+        margin-right: 22px; /* Apply when screen width is less than 600px */
+    }
+}
+
+@media (max-width: 600px) {
+    .text-box  {
+       z-index:1
+    }
+}
+
+
+
+
 .image-centered {
     max-width: 80%;
 }
