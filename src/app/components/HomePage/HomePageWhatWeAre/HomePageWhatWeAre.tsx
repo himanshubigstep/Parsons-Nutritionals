@@ -15,7 +15,7 @@ const HomePageWhatWeAre = ({ homePageDataValue }: { homePageDataValue: any }) =>
                     {whatAreWeData?.content?.title}
                 </div>
                 <div
-                    className="leading-[1.875rem] text-gray1-200 text-left markdown-content max-w-[95%]"
+                    className="leading-[1.875rem] text-gray1-200 text-left markdown-content max-w-[95%] md:line-clamp-none line-clamp-6"
                     dangerouslySetInnerHTML={{ __html: md.render(content) }}
                 >
                 </div>

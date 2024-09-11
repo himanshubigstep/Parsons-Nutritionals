@@ -46,7 +46,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                 <div className='w-full relative flex justify-between items-center gap-8 infrastructure'>
                     {InfrastructureData && InfrastructureData.map((detail: InfrastructureDetail, index: number) => (
                         <div key={index} className={`infrastructure-block w-full px-0 md:px-8 py-8 flex justify-center items-center ${activeTab === index ? '' : 'hidden'}`}>
-                            <div className='infrastructure-block-img w-[40%] h-[420px] rounded-3xl bg-black mr-[-12%] z-10'>
+                            <div className='infrastructure-block-img w-[40%] md:h-[420px] rounded-3xl bg-black mr-[-12%] z-10'>
                                 <img
                                     src={detail.attributes?.media?.data?.attributes?.url}
                                     alt='infrastructure'
@@ -109,12 +109,12 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                             </Button>
                         ))}
                     </div>
-                    <div className='flex justify-center items-center absolute left-0 top-[50%] transform -translate-y-1/2'>
+                    <div className='flex justify-center items-center absolute md:left-0 left-[-5%] top-[50%] transform -translate-y-1/2'>
                         <Button className='px-4 py-2 rounded-lg focus:outline-none bg-gray-200 text-gray-800' onClick={handlePrevTab}>
                             {'<'}
                         </Button>
                     </div>
-                    <div className='flex justify-center items-center absolute right-0 top-[50%] transform -translate-y-1/2'>
+                    <div className='flex justify-center items-center absolute md:right-0 right-[-5%] top-[50%] transform -translate-y-1/2'>
                         <Button className='px-4 py-2 rounded-lg focus:outline-none bg-gray-200 text-gray-800' onClick={handleNextTab}>
                             {'>'}
                         </Button>

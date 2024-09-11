@@ -1,3 +1,9 @@
 .client-width-full {
     width: 50%;
 }
+
+@media screen and (max-width: 768px) {
+    .client-width-full {
+        width: 100%;
+    }
+}

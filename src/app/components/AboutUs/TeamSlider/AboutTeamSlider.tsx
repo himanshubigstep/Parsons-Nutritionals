@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AboutTeamSlider.css';
 
 interface TeamMember {
@@ -22,12 +22,31 @@ interface TeamMember {
 
 const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }) => {
   const aboutUsClientData = homePageMembersValue || []; // Ensure aboutUsClientData is not undefined
-  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [startIndex, setStartIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const imagesPerPage = 5;
+  const [imagesPerPage, setImagesPerPage] = useState(5);
 
-  const handleClick = (index: any | React.SetStateAction<null>) => {
+  // Function to determine the number of images per page based on screen size
+  const updateImagesPerPage = () => {
+    if (window.innerWidth < 768) {
+      setImagesPerPage(2); // Mobile devices
+    } else {
+      setImagesPerPage(5); // Desktop and larger screens
+    }
+  };
+
+  // Update imagesPerPage on window resize
+  useEffect(() => {
+    updateImagesPerPage();
+    window.addEventListener('resize', updateImagesPerPage);
+    return () => {
+      window.removeEventListener('resize', updateImagesPerPage);
+    };
+  }, []);
+
+  const handleClick = (index: number) => {
     setSelectedImageIndex(index === selectedImageIndex ? null : index);
   };
 
@@ -62,7 +81,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
       <h1 className="text-3xl font-extrabold dark:text-white">Our Team</h1>
       <div className="w-full flex justify-center items-center gap-2 rounded-xl overflow-hidden relative">
         {aboutUsClientData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
-          <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} w-[20%] relative rounded-xl transition-all duration-500 ease-in-out`}>
+          <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} md:w-[20%] w-[50%] relative rounded-xl transition-all duration-500 ease-in-out`}>
             <img
               src={item?.attributes?.image?.data?.attributes?.formats?.medium?.url}
               alt='image'

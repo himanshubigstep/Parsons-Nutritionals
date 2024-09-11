@@ -61,7 +61,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="w-full md-w-auto flex flex-col items-start justify-start text-gray-600 font-text-sm-regular">
+                <div className="flex flex-col items-start justify-start text-gray-600 font-text-sm-regular w-full md:w-auto">
                     <div className="self-stretch flex flex-col items-end justify-start gap-[0.75rem]">
                         <div className="w-full md:w-auto flex flex-row items-center justify-start text-gray-200 bg-black">
                             <div className="overflow-hidden flex flex-row items-center justify-center gap-[0.5rem]">
