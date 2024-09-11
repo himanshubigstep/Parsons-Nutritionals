@@ -13,12 +13,14 @@ import HomePageLegacy from "./components/HomePage/HomePageLegacy/HomePageLegacy"
 import { HomePageAwardstData, HomePageClientData, HomePageData, HomePageMemberstData } from "./Api/Api";
 import Image from "next/image";
 import backgroundImage from '@/app/assets/home-page/home-page-bottom-bg.png'
+import backgroundImageMobile from '@/app/assets/home-page/home-page-bottom-bg-mobile.png'
 
 export default function Home() {
   const [homePageDataValue, setHomePageDataValue] = useState(null);
   const [homePageClientValue, setHomePageClientValue] = useState(null);
   const [homePageAwardValue, setHomePageAwardValue] = useState(null);
   const [homePageMembersValue, setHomePageMembersValue] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -76,6 +78,21 @@ export default function Home() {
     fetchDataFromApi();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Set initial state
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Clean up event listener on unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between md:p-0 pt-4">
       <HomePageSlider homePageDataValue={homePageDataValue} />
@@ -90,7 +107,7 @@ export default function Home() {
       <div className="w-full h-full md:rounded-3xl bg-white md:py-16">
         <div className="w-full max-w-[1280px] mx-auto h-full md:rounded-3xl bg-white">
           <Image
-            src={backgroundImage}
+            src={isMobile ? backgroundImageMobile : backgroundImage}
             alt="Background Image"
             className="w-full h-full object-contain md:rounded-3xl"
           />
