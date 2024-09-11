@@ -4,8 +4,8 @@ import './AboutStreangth.css'
 const AboutUsStrength = ({ aboutUsPageDataValue }: { aboutUsPageDataValue: any }) => {
     const strengthsData = aboutUsPageDataValue?.Strengths
     return (
-        <div className='max-w-[1280px] mx-auto w-full px-8 py-8 flex justify-center items-center mb-8 our-strength'>
-            <div className='w-[40%] h-[720px] rounded-3xl bg-black px-8 py-8 mr-[-8%] z-10 flex flex-col gap-8 items-start our-strength-img'>
+        <div className='max-w-[1280px] mx-auto w-full px-8 py-8 flex justify-center items-center md:mb-8 our-strength'>
+            <div className='w-[40%] md:h-[720px] rounded-3xl bg-black px-8 py-8 mr-[-8%] z-10 flex flex-col gap-8 items-start our-strength-img'>
                 <h2 className='text-3xl font-extrabold text-white'>{strengthsData?.title}</h2>
                 <img
                     src={strengthsData?.media?.data?.attributes?.formats?.small?.url}

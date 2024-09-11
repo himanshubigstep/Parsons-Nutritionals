@@ -23,7 +23,7 @@ const BoxSectionContainer = ({ contactSections }: { contactSections: any }) => {
             </div>
           </div>
         </div>
-        <div className="w-[95%] md:w-[45%] mx-auto h-[520px] rounded-[3.75rem]">
+        <div className="w-[95%] md:w-[45%] mx-auto md:h-[520px] rounded-[3.75rem]">
           <img
             className="w-full h-full object-cover rounded-[3.75rem] ml-0 md:ml-[-15%] mt-8 md:mt-[10%]"
             src={esgPageDataImage}
