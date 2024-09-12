@@ -55,7 +55,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                         <div key={index} className={`client-block h-full max-w-[60%] mx-auto flex justify-center items-center py-8 ${activeTab === index ? '' : 'hidden'}`}>
                             <div className='client-block-img mr-[-10%] w-1/3 h-[320px] bg-[#FFEAEC] rounded-3xl z-10 flex justify-center items-center'>
                                 <img
-                                    className='w-[100%] mx-auto'
+                                    className='md:w-[100%] w-1/2 mx-auto'
                                     alt={`client-logo-${index}`}
                                     src={`${client?.attributes?.image?.data?.attributes?.url}`}
                                 />
@@ -65,7 +65,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                                     <h1 className='relative text-3xl font-bold mb-2'>
                                         {client?.attributes?.name}
                                     </h1>
-                                    <p className='text-lg font-medium text-justify'>
+                                    <p className='text-lg font-medium text-justify md:line-clamp-none line-clamp-[10]'>
                                         {client?.attributes?.description}
                                     </p>
                                 </div>
@@ -76,11 +76,11 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                 </div>
                 {/* Tab navigation */}
                 <div className="flex justify-center gap-4 mb-4 scroll-button relative max-w-[1280px] mx-auto">
-                    <div className='flex max-w-[80%] mx-auto gap-2 scroll-button-tab'>
+                    <div className='flex md:max-w-[80%] max-w-[70%] mx-auto gap-2 scroll-button-tab'>
                         {clientDestails && clientDestails.map((detail: ClientDetail, index: number) => (
                             <Button
                                 key={index}
-                                className={`px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 text-gray-800'}`}
+                                className={`flex items-center px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 text-gray-800'}`}
                                 onClick={() => setActiveTab(index)}
                             >
                                 {detail?.attributes?.name}
