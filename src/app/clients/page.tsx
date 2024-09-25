@@ -9,6 +9,7 @@ import { ClientPageData, HomePageClientData } from '../Api/Api'
 const Clients = () => {
   const [clientPageDataValue, setClientPageDataValue] = useState<any>(null);
   const [homePageClientValue, setHomePageClientValue] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -18,37 +19,45 @@ const Clients = () => {
         setClientPageDataValue(clientPageData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        if (homePageClientValue !== null) {
+          setLoading(false);
+        }
       }
     };
 
-    fetchDataFromApi();
-  }, []);
-
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
+    const fetchHomePageClientData = async () => {
       try {
         const responseData = await HomePageClientData();
         const homePageClientData = responseData.data;
         setHomePageClientValue(homePageClientData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        if (clientPageDataValue !== null) {
+          setLoading(false);
+        }
       }
     };
 
     fetchDataFromApi();
-  }, []);
+    fetchHomePageClientData();
+  }, [clientPageDataValue, homePageClientValue]);
 
-  const contactSections = clientPageDataValue
+  if (loading) {
+    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
+  }
 
-  const bannerImage = clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url
+  const contactSections = clientPageDataValue;
+  const bannerImage = clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url;
 
   return (
     <main className="flex min-h-screen flex-col items-center">
       <TopBanner bannerImage={bannerImage} />
-      <ClientsData clientPageDataValue = {clientPageDataValue} homePageClientValue = {homePageClientValue} />
+      <ClientsData clientPageDataValue={clientPageDataValue} homePageClientValue={homePageClientValue} />
       <AboutContact contactSections={contactSections} />
     </main>
-  )
-}
+  );
+};
 
-export default Clients
+export default Clients;

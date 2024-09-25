@@ -11,7 +11,7 @@ const BoxSectionContainer = ({ contactSections }: { contactSections: any }) => {
   return (
     <div className="w-full max-w-[1280px] mx-auto md:py-24 pb-8 pt-24">
       <div className="w-full flex flex-col md:flex-row justify-center items-center">
-        <div className="w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white rounded-[3.75rem] flex flex-col py-8 px-8">
+        <div className="w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-[3.75rem] flex flex-col py-8 px-8">
           <div className="w-full">
             <h3 className="font-semibold text-2xl md:text-4xl mb-4">{esgPageDataContent?.title}</h3>
             <div className="font-medium uppercase text-xl mb-4 w-[95%] md:w-[85%]">

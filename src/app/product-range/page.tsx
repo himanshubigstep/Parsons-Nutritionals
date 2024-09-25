@@ -68,7 +68,7 @@ const ProductRange = () => {
   }
   
   return (
-    <main className="flex min-h-screen flex-col items-center bg-white">
+    <main className="flex min-h-screen flex-col items-center bg-white dark:bg-black">
       <TopBanner bannerImage={bannerImage} />
       <div className='w-full max-w-[1280px] mx-auto relative flex flex-col md:flex-row gap-8 md:py-16 py-8'>
         <ProductCategory

@@ -7,25 +7,31 @@ import ContactAddress from '../components/ContactUs/ContactAddress/ContactAddres
 import { ContactPageData } from '../Api/Api'
 
 const ContactUs = () => {
-    const [contactPageData, setContactPageData] = useState<any>(null);
+  const [contactPageData, setContactPageData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      const fetchDataFromApi = async () => {
-        try {
-          const responseData = await ContactPageData();
-          const contactPageData = responseData.data.attributes;
-          setContactPageData(contactPageData);
-        } catch (error) {
-          console.log(error, 'api-get-error');
-        }
-      };
-  
-      fetchDataFromApi();
-    }, []);
+  useEffect(() => {
+    const fetchDataFromApi = async () => {
+      try {
+        const responseData = await ContactPageData();
+        const contactPageData = responseData.data.attributes;
+        setContactPageData(contactPageData);
+      } catch (error) {
+        console.log(error, 'api-get-error');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    const BannerContainerData = contactPageData?.Header?.content
-    
-    const bannerImage = contactPageData?.Header?.media?.data?.attributes?.formats?.large?.url
+    fetchDataFromApi();
+  }, []);
+
+  if (loading) {
+    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
+  }
+
+  const BannerContainerData = contactPageData?.Header?.content;
+  const bannerImage = contactPageData?.Header?.media?.data?.attributes?.formats?.large?.url;
 
   return (
     <main className="flex min-h-screen flex-col items-center">

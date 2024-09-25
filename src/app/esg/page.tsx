@@ -8,16 +8,19 @@ import AboutContact from '../components/Common/ContactBlock/AboutContact'
 import { EsgPageData } from '../Api/Api'
 
 const ESG = () => {
-  const [esgPageValue, setesgPageValue] = useState<any>(null);
+  const [esgPageValue, setEsgPageValue] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         const responseData = await EsgPageData();
         const homePageMembersData = responseData.data.attributes;
-        setesgPageValue(homePageMembersData);
+        setEsgPageValue(homePageMembersData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setLoading(false); // Ensure loading state is set to false when done
       }
     };
 
@@ -31,6 +34,10 @@ const ESG = () => {
   const BannerContainerData = esgPageValue?.Header?.content
 
   const pdfFileUrl = 'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf'
+
+  if (loading) {
+    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
+  }
 
   return (
     <div>

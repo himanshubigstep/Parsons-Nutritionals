@@ -39,7 +39,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
     };
 
     return (
-        <div className='relative bg-white w-full max-w-[1280px] mx-auto mb-16'>
+        <div className='relative bg-white dark:bg-black w-full max-w-[1280px] mx-auto mb-16'>
             <div className='w-full overflow-hidden flex flex-col justify-between items-center px-8 py-8'>
                 <h1 className="text-3xl font-extrabold dark:text-white mb-2">Infrastructure</h1>
                 {/* Tab content */}
@@ -53,7 +53,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                                     className='w-full h-full object-cover rounded-3xl'
                                 />
                             </div>
-                            <div className='infrastructure-block-content w-[60%] h-[540px] rounded-3xl bg-[#F0F0F9]'>
+                            <div className='infrastructure-block-content w-[60%] h-[540px] rounded-3xl bg-[#F0F0F9] dark:bg-black dark:border-2 dark:border-gray-700'>
                                 <div className='infrastructure-block-inner w-[95%] h-full pl-48 py-8'>
                                     <h2 className='text-2xl font-bold leading-none tracking-tight text-black md:text-2xl lg:text-2xl dark:text-white'>
                                         {detail.attributes?.name}
@@ -81,7 +81,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                                             ))}
                                         </ul>
                                     </div>
-                                    <div className='flex justify-center sm:justify-start items-center mt-8'>
+                                    {/* <div className='flex justify-center sm:justify-start items-center mt-8'>
                                         <Button
                                             onClick={() => {
                                                 window.open('/contact-us', '_blank');
@@ -90,7 +90,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                                         >
                                             Contact Now
                                         </Button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                         {InfrastructureData && InfrastructureData.map((detail: InfrastructureDetail, index: number) => (
                             <Button
                                 key={index}
-                                className={`px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 text-gray-800'}`}
+                                className={`px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-400'}`}
                                 onClick={() => setActiveTab(index)}
                             >
                                 {detail.attributes?.name}
@@ -110,12 +110,12 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                         ))}
                     </div>
                     <div className='flex justify-center items-center absolute md:left-0 left-[-5%] top-[50%] transform -translate-y-1/2'>
-                        <Button className='px-4 py-2 rounded-lg focus:outline-none bg-gray-200 text-gray-800' onClick={handlePrevTab}>
+                        <Button className='px-4 py-2 rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-400' onClick={handlePrevTab}>
                             {'<'}
                         </Button>
                     </div>
                     <div className='flex justify-center items-center absolute md:right-0 right-[-5%] top-[50%] transform -translate-y-1/2'>
-                        <Button className='px-4 py-2 rounded-lg focus:outline-none bg-gray-200 text-gray-800' onClick={handleNextTab}>
+                        <Button className='px-4 py-2 rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-400' onClick={handleNextTab}>
                             {'>'}
                         </Button>
                     </div>

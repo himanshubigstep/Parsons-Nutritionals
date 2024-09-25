@@ -8,7 +8,7 @@ const HomePageLegacy = () => {
   return (
     <div className='relative w-full max-w-[1280px] mx-auto pb-24'>
       <div className="text-[1rem] text-center text-primary-700 font-text-sm-regular mb-8">
-        <div className="md:text-[2.25rem] text-[26px] tracking-[-0.02em] leading-[2.75rem] font-semibold text-black">
+        <div className="md:text-[2.25rem] text-[26px] tracking-[-0.02em] leading-[2.75rem] font-semibold text-black dark:text-white">
           A legacy with an immaculate reputation
         </div>
       </div>
