@@ -21,77 +21,46 @@ export default function Home() {
   const [homePageAwardValue, setHomePageAwardValue] = useState(null);
   const [homePageMembersValue, setHomePageMembersValue] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
+    const fetchDataFromApis = async () => {
       try {
-        const responseData = await HomePageData();
-        const homePageData = responseData.data.attributes;
-        setHomePageDataValue(homePageData);
+        const [homePageResponse, clientResponse, awardResponse, membersResponse] = await Promise.all([
+          HomePageData(),
+          HomePageClientData(),
+          HomePageAwardstData(),
+          HomePageMemberstData()
+        ]);
+
+        setHomePageDataValue(homePageResponse.data.attributes);
+        setHomePageClientValue(clientResponse.data);
+        setHomePageAwardValue(awardResponse.data);
+        setHomePageMembersValue(membersResponse.data);
+
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchDataFromApi();
-  }, []);
-
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const responseData = await HomePageClientData();
-        const homePageClientData = responseData.data;
-        setHomePageClientValue(homePageClientData);
-      } catch (error) {
-        console.log(error, 'api-get-error');
-      }
-    };
-
-    fetchDataFromApi();
-  }, []);
-
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const responseData = await HomePageAwardstData();
-        const homePageAwardData = responseData.data;
-        setHomePageAwardValue(homePageAwardData);
-      } catch (error) {
-        console.log(error, 'api-get-error');
-      }
-    };
-
-    fetchDataFromApi();
-  }, []);
-
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const responseData = await HomePageMemberstData();
-        const homePageMembersData = responseData.data;
-        setHomePageMembersValue(homePageMembersData);
-      } catch (error) {
-        console.log(error, 'api-get-error');
-      }
-    };
-
-    fetchDataFromApi();
+    fetchDataFromApis();
   }, []);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
-    // Set initial state
     handleResize();
-
-    // Add resize event listener
     window.addEventListener('resize', handleResize);
     
-    // Clean up event listener on unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  if (isLoading) {
+    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between md:p-0 pt-4">
@@ -104,12 +73,12 @@ export default function Home() {
       <HomePageTeamSlider homePageDataValue={homePageDataValue} homePageMembersValue={homePageMembersValue} />
       <HomePageJoinTeam homePageDataValue={homePageDataValue} />
       <HomePageLegacy />
-      <div className="w-full h-full md:rounded-3xl bg-white md:py-16">
-        <div className="w-full max-w-[1280px] mx-auto h-full md:rounded-3xl bg-white">
+      <div className="w-full h-full md:rounded-3xl bg-white dark:bg-black md:py-16">
+        <div className="w-full max-w-[1280px] mx-auto h-full md:rounded-3xl bg-white dark:bg-gray-800">
           <Image
             src={isMobile ? backgroundImageMobile : backgroundImage}
             alt="Background Image"
-            className="w-full h-full object-contain md:rounded-3xl"
+            className="dark:invert w-full h-full object-contain md:rounded-3xl"
           />
         </div>
       </div>

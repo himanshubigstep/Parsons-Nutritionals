@@ -40,7 +40,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
         setActiveTab((prev) => (prev === clientDestails.length - 1 ? 0 : prev + 1));
     };
     return (
-        <div className='relative w-full h-full bg-white px-8 py-24'>
+        <div className='relative w-full h-full bg-white dark:bg-black px-8 md:py-24 py-8'>
 
             <div className='w-full max-w-[1280px] mx-auto'>
                 <h1 className='text-center text-5xl font-bold mb-4 uppercase'>{clientData?.About?.title}</h1>
@@ -60,7 +60,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                                     src={`${client?.attributes?.image?.data?.attributes?.url}`}
                                 />
                             </div>
-                            <div className='client-block-content relative w-2/3 h-[420px] bg-[#F0F0F9] rounded-[3rem] flex items-center big-container'>
+                            <div className='client-block-content relative w-2/3 h-[420px] bg-[#F0F0F9] dark:bg-[#242424] rounded-[3rem] flex items-center big-container'>
                                 <div className='client-block-content-text z-20 pl-36 max-w-[90%]'>
                                     <h1 className='relative text-3xl font-bold mb-2'>
                                         {client?.attributes?.name}

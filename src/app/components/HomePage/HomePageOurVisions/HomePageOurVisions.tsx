@@ -9,7 +9,7 @@ const HomePageOurVisions = ({homePageDataValue}: {homePageDataValue:any}) => {
     const OurVisionDataImage = homePageDataValue?.Vision?.media?.data?.attributes?.formats?.large?.url
     const content = typeof OurVisionData?.content === 'string' ? OurVisionData?.content : '';
     return (
-        <div className="relative w-full md:w-full max-w-full mx-auto pt-8">
+        <div className="relative w-full md:w-full max-w-full mx-auto pt-8 dark:pt-0">
             <img
                 className="rounded-6xl absolute sm:relative  w-full h-auto sm:h-[35.688rem] object-cover"
                 alt="Our Vision"

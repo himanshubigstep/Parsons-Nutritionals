@@ -22,7 +22,7 @@ const WhiteBoxText = ({ aboutUsPageDataValue }: { aboutUsPageDataValue: any }) =
     const boxDataLogo = aboutUsPageDataValue?.BodyContent[0]?.content?.logos?.data
     const content = typeof boxData?.content?.content === 'string' ? boxData?.content?.content : '';
     return (
-        <div className='relative bg-white rounded-[2.4rem] w-1/2 px-8 pt-8 white-text-box'>
+        <div className='relative bg-white dark:bg-black dark:border-2 dark:border-gray-700 rounded-[2.4rem] w-1/2 px-8 pt-8 white-text-box'>
             <h2 className='mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-3xl dark:text-white'>{boxData?.content?.title}</h2>
 
             <ul
@@ -33,7 +33,7 @@ const WhiteBoxText = ({ aboutUsPageDataValue }: { aboutUsPageDataValue: any }) =
             </ul>
             <div className='flex flex-col md:flex-row justify-center items-center relative gap-4 mt-8 mb-8'>
                 {boxDataLogo && boxDataLogo.length > 0 && boxDataLogo.map((item: ImageData, index: number) => (
-                    <img className='sm:h-[40px] w-[150px] object-cover' key={index} src={`${item?.attributes?.formats?.thumbnail?.url}`} alt={item?.attributes?.formats?.small?.url} />
+                    <img className='sm:h-[40px] md:w-[150px] object-contain w-full overflow-hidden flex flex-col justify-between items-center px-8 py-8' key={index} src={`${item?.attributes?.formats?.thumbnail?.url}`} alt={item?.attributes?.formats?.small?.url} />
                 ))}
             </div>
         </div>

@@ -4,13 +4,13 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
     const manufacturingHeader = whatWeDoDataValue?.Breakthrough?.header
     const manufacturingData = whatWeDoDataValue?.Breakthrough?.Breakthrough
     return (
-        <div className='w-full max-w-[1280px] mx-auto relative md:py-24 py-8 flex flex-col justify-center items-center'>
+        <div className='w-full max-w-[1280px] mx-auto relative md:py-24 py-0 flex flex-col justify-center items-center'>
             <div className='w-full flex flex-col justify-center items-center'>
                 <div className='header w-[95%] mx-auto flex flex-col justify-center items-center'>
-                    <h2 className='text-3xl font-bold text-black leading-[2.75rem]'>
+                    <h2 className='text-3xl font-bold text-black dark:text-white leading-[2.75rem]'>
                         {manufacturingHeader?.title}
                     </h2>
-                    <p className='text-md font-medium text-black leading-[1.875rem]'>
+                    <p className='text-md font-medium text-black dark:text-white leading-[1.875rem]'>
                         {manufacturingHeader?.content}
                     </p>
                 </div>

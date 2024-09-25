@@ -47,7 +47,7 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
   };
 
   return (
-    <div className="relative w-[95%] mx-auto md:w-[25%]">
+    <div className="relative w-[95%] mx-auto md:w-[25%] dark:border-r-[1px] dark:border-gray-700">
       {/* Hamburger Menu Button */}
       <div className="md:hidden flex items-center justify-between py-4 md:px-8 px-4">
         <h2 className='text-2xl font-bold'>Products Type</h2>

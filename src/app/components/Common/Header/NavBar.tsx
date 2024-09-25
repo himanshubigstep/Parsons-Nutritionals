@@ -1,27 +1,42 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from '@/app/assets/home-page/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const subMenuRefMobile = useRef<HTMLDivElement>(null);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (subMenuRefMobile.current && !subMenuRefMobile.current.contains(event.target as Node)) {
+                toggleMenu();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
-        <div className="relative z-20 shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)] bg-white w-full max-w-full mx-auto h-[5.688rem] flex flex-col items-center justify-center py-[0.625rem] px-[2rem] box-border text-left text-[0.875rem] text-darkslate-500">
+        <div className="relative z-20 shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)] bg-white dark:bg-black dark:border-b-2 dark:border-gray-700 w-full max-w-full mx-auto h-[5.688rem] flex flex-col items-center justify-center py-[0.625rem] px-[2rem] box-border text-left text-[0.875rem] text-darkslate-500">
             <div className="w-full max-w-[1280px] mx-auto flex flex-row items-center justify-between">
-                <Link className='flex flex-col gap-2 py-2' href="/">
+                <Link className='flex flex-col gap-2 py-2 justify-center items-center' href="/">
                     <Image
                         className="w-[4.125rem] relative h-auto object-cover"
                         alt=""
                         src={Logo}
                     />
-                    <p className='relative text-md'>Logo Text</p>
+                    <p className='relative text-md font-medium'>Parsons Nutritionals</p>
                 </Link>
                 <div className="hidden lg:flex flex-row items-center justify-center gap-[2rem]">
                     <NavItem href="/about-us" subMenuItems={['About Parsons Nutritionals', ' Food and healthcare ', 'Our Team', 'Infrastructure', 'Our Strength']}>
@@ -109,6 +124,7 @@ const NavBar = () => {
 
 const NavItem = ({ href, children, subMenuItems }: { href: string; children: React.ReactNode; subMenuItems?: string[] }) => {
     const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+    const subMenuRef = useRef<HTMLDivElement>(null);
 
     const toggleSubMenu = (event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLDivElement;
@@ -123,8 +139,22 @@ const NavItem = ({ href, children, subMenuItems }: { href: string; children: Rea
         setIsSubMenuOpen(false);
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (subMenuRef.current && !subMenuRef.current.contains(event.target as Node)) {
+                closeSubMenu();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
-        <div className="relative">
+        <div className="relative" ref={subMenuRef}>
             <div className="flex justify-between items-center gap-2 leading-[1.5rem] font-medium text-lg" onClick={toggleSubMenu}>
                 <Link href={href}>{children}</Link>
                 {subMenuItems && subMenuItems.length > 0 && (
@@ -143,10 +173,10 @@ const NavItem = ({ href, children, subMenuItems }: { href: string; children: Rea
                 )}
             </div>
             {subMenuItems && isSubMenuOpen && (
-                <div className="absolute w-[12rem] z-10 top-[50px] left-0 bg-white shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)] rounded-tl-0 rounded-tr-0 rounded-bl-3xl rounded-br-3xl">
+                <div className="absolute w-[12rem] z-10 top-[50px] left-0 bg-white dark:bg-black shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)] rounded-tl-0 rounded-tr-0 rounded-bl-3xl rounded-br-3xl">
                     {subMenuItems.map((item, index) => (
                         <Link key={index} href={`${href}#${item.toLowerCase().replace(/\s+/g, '-')}`}>
-                            <div className="text-darkslate-500 px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={closeSubMenu}>{item}</div>
+                            <div className="text-darkslate-500 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer" onClick={closeSubMenu}>{item}</div>
                         </Link>
                     ))}
                 </div>

@@ -10,8 +10,8 @@ const HomePageWhatWeAre = ({ homePageDataValue }: { homePageDataValue: any }) =>
     const content = typeof whatAreWeData?.content?.content === 'string' ? whatAreWeData?.content?.content : '';
     return (
         <div className="relative  flex-col-reverse sm:flex-row w-full max-w-[1280px] mx-auto md:py-24 py-8 flex flex-wrap justify-center items-center">
-            <div className="mt-40 z-1 text-box sm:mt-0 sm:z-10 mr-[0] md:mr-[-30px] w-[95%] md:w-1/2 h-auto md:h-[420px] rounded-3xl text-primary-700 font-text-sm-regular bg-white flex flex-col justify-start overflow-y-auto md:px-8 p-4 mb-8 md:mb-0">
-                <div className="text-[2.25rem] tracking-[-0.02em] leading-[2.75rem] font-semibold text-black text-left mb-4">
+            <div className="what-we-are dark:border-2 dark:border-gray-700 mt-40 z-1 text-box sm:mt-0 sm:z-10 mr-[0] md:mr-[-30px] w-[95%] md:w-1/2 h-auto md:h-[420px] rounded-3xl text-primary-700 font-text-sm-regular bg-white dark:bg-black flex flex-col justify-start overflow-y-auto md:px-8 p-4 mb-8 md:mb-0">
+                <div className="text-[2.25rem] tracking-[-0.02em] leading-[2.75rem] font-semibold text-black dark:text-white text-left mb-4">
                     {whatAreWeData?.content?.title}
                 </div>
                 <div

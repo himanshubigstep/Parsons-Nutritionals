@@ -10,7 +10,7 @@ const TermsConditions = () => {
    return (
       <main className="flex min-h-screen flex-col items-cente">
          <TopBanner bannerImage={bannerImage} BannerContainerData={BannerContainerData} />
-         <div className='w-full relative py-8 max-w-[1280px] mx-auto bg-white my-16 rounded-xl px-8'>
+         <div className='w-full relative py-8 max-w-[1280px] mx-auto bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 my-16 rounded-xl px-8'>
             <div className="py-20"><h1 className="block p text-5xl mb-5" id="privacy-policy">Terms and Conditions</h1>
             </div>
          </div>
