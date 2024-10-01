@@ -8,7 +8,7 @@ const HomePageLegacy = () => {
   return (
     <div className='relative w-full max-w-[1280px] mx-auto pb-24'>
       <div className="text-[1rem] text-center text-primary-700 font-text-sm-regular mb-8">
-        <div className="md:text-[2.25rem] text-[26px] tracking-[-0.02em] leading-[2.75rem] font-semibold text-black dark:text-white">
+        <div className="md:text-2xl text-2xl font-semibold text-black dark:text-white">
           A legacy with an immaculate reputation
         </div>
       </div>
@@ -22,7 +22,7 @@ const HomePageLegacy = () => {
               src={Litigations}
             />
           </div>
-          <div className="md:tracking-[-0.02em] md:leading-[2.75rem] capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
+          <div className="text-xl capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
             Zero Litigations
           </div>
         </div>
@@ -35,7 +35,7 @@ const HomePageLegacy = () => {
               src={Churns}
             />
           </div>
-          <div className="md:tracking-[-0.02em] md:leading-[2.75rem] capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
+          <div className="text-xl capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
             Zero customer churn*
           </div>
         </div>
@@ -48,7 +48,7 @@ const HomePageLegacy = () => {
               src={Recals}
             />
           </div>
-          <div className="md:tracking-[-0.02em] md:leading-[2.75rem] capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
+          <div className="text-xl capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
             Zero product recalls
           </div>
         </div>

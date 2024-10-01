@@ -36,7 +36,7 @@ const NavBar = () => {
                         alt=""
                         src={Logo}
                     />
-                    <p className='relative text-md font-medium'>Parsons Nutritionals</p>
+                    <p className='relative text-sm font-medium'>Parsons Nutritionals</p>
                 </Link>
                 <div className="hidden lg:flex flex-row items-center justify-center gap-[2rem]">
                     <NavItem href="/">
@@ -128,6 +128,7 @@ const NavBar = () => {
 const NavItem = ({ href, children, subMenuItems }: { href: string; children: React.ReactNode; subMenuItems?: string[] }) => {
     const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
     const subMenuRef = useRef<HTMLDivElement>(null);
+    const [isActive, setIsActive] = useState(false);
 
     const toggleSubMenu = (event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLDivElement;
@@ -158,7 +159,12 @@ const NavItem = ({ href, children, subMenuItems }: { href: string; children: Rea
 
     return (
         <div className="relative" ref={subMenuRef}>
-            <div className="flex justify-between items-center gap-2 leading-[1.5rem] font-medium text-lg" onClick={toggleSubMenu}>
+            <div
+                className={`flex justify-between items-center gap-2 leading-[1.5rem] font-medium text-lg cursor-pointer ${isActive ? 'text-blue-500' : 'text-darkslate-500'}`}
+                onClick={toggleSubMenu}
+                onMouseEnter={() => setIsActive(true)}
+                onMouseLeave={() => setIsActive(false)}
+            >
                 <Link href={href}>{children}</Link>
                 {subMenuItems && subMenuItems.length > 0 && (
                     <div style={{

@@ -43,7 +43,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
         <div className='relative w-full h-full bg-white dark:bg-black px-8 md:py-24 py-8'>
 
             <div className='w-full max-w-[1280px] mx-auto'>
-                <h1 className='text-center text-5xl font-bold mb-4 uppercase'>{clientData?.About?.title}</h1>
+                <h1 className='text-center text-3xl font-bold mb-4 uppercase'>{clientData?.About?.title}</h1>
                 <p className='text-center max-w-[80%] mx-auto font-medium text-lg'>{clientData?.About?.content}</p>
             </div>
 
@@ -62,10 +62,10 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                             </div>
                             <div className='client-block-content relative w-2/3 h-[420px] bg-[#F0F0F9] dark:bg-[#242424] rounded-[3rem] flex items-center big-container'>
                                 <div className='client-block-content-text z-20 pl-36 max-w-[90%]'>
-                                    <h1 className='relative text-3xl font-bold mb-2'>
+                                    <h1 className='relative text-xl font-bold mb-2'>
                                         {client?.attributes?.name}
                                     </h1>
-                                    <p className='text-lg font-medium text-justify md:line-clamp-none line-clamp-[10]'>
+                                    <p className='text-md font-medium text-justify md:line-clamp-none line-clamp-[10]'>
                                         {client?.attributes?.description}
                                     </p>
                                 </div>
@@ -80,7 +80,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                         {clientDestails && clientDestails.map((detail: ClientDetail, index: number) => (
                             <Button
                                 key={index}
-                                className={`flex items-center px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 text-gray-800'}`}
+                                className={`text-md flex items-center px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 text-gray-800'}`}
                                 onClick={() => setActiveTab(index)}
                             >
                                 {detail?.attributes?.name}

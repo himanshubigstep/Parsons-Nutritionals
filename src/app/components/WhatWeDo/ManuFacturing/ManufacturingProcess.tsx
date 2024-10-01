@@ -7,7 +7,7 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
         <div className='w-full max-w-[1280px] mx-auto relative md:py-24 py-0 flex flex-col justify-center items-center'>
             <div className='w-full flex flex-col justify-center items-center'>
                 <div className='header w-[95%] mx-auto flex flex-col justify-center items-center'>
-                    <h2 className='text-3xl font-bold text-black dark:text-white leading-[2.75rem]'>
+                    <h2 className='text-2xl font-bold text-black dark:text-white'>
                         {manufacturingHeader?.title}
                     </h2>
                     <p className='text-md font-medium text-black dark:text-white leading-[1.875rem]'>
@@ -23,11 +23,11 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
                                     src={process?.header?.image?.data?.attributes?.url}
                                     alt='content-box-image'
                                 />
-                                <div className='absolute left-0 right-0 bottom-0 bg-[#0059DF] w-full md:h-[8rem] flex items-center py-8 px-8 gap-4'>
-                                    <div className='text-white font-bold text-5xl w-[5rem] h-[5rem] flex justify-center items-center'>
+                                <div className='absolute left-0 right-0 bottom-0 bg-[#0059DF] w-full flex items-center py-8 px-8 gap-2'>
+                                    <div className='text-white font-bold text-2xl w-[5rem] flex justify-center items-center'>
                                         {process?.body?.number}
                                     </div>
-                                    <div className='text-white text-lg flex flex-col justify-center'>
+                                    <div className='text-white text-md flex flex-col justify-center'>
                                         <div className='font-bold'>
                                             {process?.body?.title}
                                         </div>

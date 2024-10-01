@@ -28,16 +28,16 @@ const AboutContact = ({ contactSections }: { contactSections: any }) => {
                 />
                 <div className='md:absolute left-0 right-0 top-0 bottom-0 w-full max-w-[1280px] mx-auto'>
                     <div className="px-4 py-4 sm:px-8 sm:py-8 bg-[#0059DF] absolute top-[50%] translate-y-[-50%] z-20 right-0 rounded-3xl w-full sm:w-[28rem] flex justify-center items-center flex-col md:left-auto mx-auto left-0 max-w-[90%] md:max-w-fit opacity-90">
-                        <div className="mb-4 sm:mb-2 text-white text-[1.5rem] sm:text-[2.25rem] tracking-[-0.02em] leading-[2rem] sm:leading-[2.75rem] font-semibold text-left">
+                        <div className="mb-4 sm:mb-2 text-white text-2xl sm:text-2xl font-semibold text-left">
                             {contactSectionData?.btn_text}
                         </div>
-                        <div className="leading-[1.5rem] sm:leading-[1.875rem] text-center text-white">
+                        <div className="text-md text-center text-white">
                             <p className="[margin-block-start:0] [margin-block-end:20px] font-medium">
                                 {contactSectionData?.content}
                             </p>
                         </div>
                         
-                        <Link href='/contact-us' className='bg-white rounded-lg text-black text-lg font-medium px-4 py-2'>
+                        <Link href='/contact-us' className='bg-white rounded-lg text-black text-md font-medium px-4 py-2'>
                             {contactSectionData?.btn_text}
                         </Link>
                     </div>

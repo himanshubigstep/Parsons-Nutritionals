@@ -14,12 +14,12 @@ const Footer = () => {
                 <div className='flex flex-col lg:flex-row justify-between items-center gap-10'>
                     <div className="flex flex-col items-start justify-start gap-5">
                         <Image
-                            className="w-[110px] relative h-[90px] object-cover"
+                            className="w-[80px] relative h-[50px] object-cover"
                             alt=""
                             src={Logo}
                         />
-                        <div className="w-[95%] lg:w-[15rem] relative leading-[1.5rem] text-white">
-                        Parsons Nutritionals - your ideal business partner
+                        <div className="w-[95%] lg:w-[15rem] relative text-md text-white">
+                            Parsons Nutritionals - your ideal business partner
                         </div>
                     </div>
 
@@ -50,13 +50,13 @@ const Footer = () => {
                     </div> */}
                     <div className='w-full mx-auto h-full'>
                         <div className='md:px-8 flex justify-center max-w-[85%] items-start flex-col'>
-                            <h1 className='text-3xl text-white font-bold mb-2'>
+                            <h1 className='text-2xl text-white font-bold mb-2'>
                                 Join Our Team
                             </h1>
-                            <p className='text-white text-lg font-normal text-left'>
+                            <p className='text-white text-md font-normal text-left'>
                                 For the latest and greatest, Send your query to us from here.
                             </p>
-                            <Link href='/contact-us' className='text-center text-black text-lg font-bold bg-white px-2 py-2 rounded-lg w-[10rem] mt-4'>Contact Us</Link>
+                            <Link href='/contact-us' className='text-center text-black text-md font-bold bg-white px-2 py-2 rounded-lg w-[10rem] mt-4'>Contact Us</Link>
                         </div>
                     </div>
                 </div>
@@ -65,16 +65,16 @@ const Footer = () => {
                     <div className="self-stretch flex flex-col items-end justify-start gap-[0.75rem]">
                         <div className="w-full md:w-auto flex flex-row items-center justify-start text-gray-200 bg-black">
                             <div className="overflow-hidden flex flex-row items-center justify-center gap-[0.5rem]">
-                                <div className="relative leading-[1.5rem] font-semibold flex flex-col">
+                                <div className="relative font-semibold flex flex-col">
                                     <Link
-                                        className="relative leading-[1.5rem] font-medium text-lg mb-2"
+                                        className="relative font-medium text-md mb-2"
                                         href="/"
                                         target="_blank"
                                     >
                                         <span className="[text-decoration:underline]">Home</span>
                                     </Link>
                                     <Link
-                                        className="relative leading-[1.5rem] font-medium text-lg mb-2"
+                                        className="relative font-medium text-md mb-2"
                                         href='/about-us'
                                         target="_blank"
                                     >
@@ -83,7 +83,7 @@ const Footer = () => {
                                         </span>
                                     </Link>
                                     <Link
-                                        className="relative leading-[1.5rem] font-medium text-lg mb-2"
+                                        className="relative font-medium text-md mb-2"
                                         href='/clients'
                                         target="_blank"
                                     >
@@ -92,7 +92,7 @@ const Footer = () => {
                                         </span>
                                     </Link>
                                     <Link
-                                        className="relative leading-[1.5rem] font-medium text-lg mb-2"
+                                        className="relative font-medium text-md mb-2"
                                         href='/what-we-do'
                                         target="_blank"
                                     >
@@ -101,7 +101,7 @@ const Footer = () => {
                                         </span>
                                     </Link>
                                     <Link
-                                        className="relative leading-[1.5rem] font-medium text-lg mb-2"
+                                        className="relative font-medium text-md mb-2"
                                         href='/product-range'
                                         target="_blank"
                                     >
@@ -110,7 +110,7 @@ const Footer = () => {
                                         </span>
                                     </Link>
                                     <Link
-                                        className="relative leading-[1.5rem] font-medium text-lg mb-2"
+                                        className="relative font-medium text-md mb-2"
                                         href="/esg"
                                         target="_blank"
                                     >
@@ -119,7 +119,7 @@ const Footer = () => {
                                         </span>
                                     </Link>
                                     {/* <Link
-                                        className="relative leading-[1.5rem] font-medium text-lg mb-2"
+                                        className="relative font-medium text-md mb-2"
                                         href="/contact-us"
                                         target="_blank"
                                     >
@@ -137,14 +137,14 @@ const Footer = () => {
 
             <div className="w-full max-w-[1280px] mx-auto flex flex-col items-start justify-start box-border text-gray-300">
                 <div className="self-stretch flex flex-col lg:flex-row items-center justify-start pt-[2rem] px-[0rem] gap-[2rem] border-t-[1px] border-solid border-gray-600">
-                    <div className="flex-1 relative leading-[1.5rem]">
-                        © 2015 mannventures.com. All rights reserved
+                    <div className="flex-1 relative text-md">
+                        © 2015 Parsons Nutritionals. All rights reserved
                     </div>
                     <div className="w-[14.188rem] relative flex items-center justify-end gap-5">
-                        <Link href='terms-conditions' className="leading-[1.5rem]">
+                        <Link href='terms-conditions' className="text-md">
                             Terms
                         </Link>
-                        <Link href='privacy-policy' className="leading-[1.5rem]">
+                        <Link href='privacy-policy' className="text-md">
                             Privacy
                         </Link>
                     </div>

@@ -179,7 +179,7 @@ export const ProductPageTypes = async () => {
   }
 };
 
-export const ProductPageContent = async () => {
+export const ProductPageContent = async (page?: number) => {
   try {
     const response = await axios.get(`${ApiBaseUrl}/products?populate=*`, {
       headers: {

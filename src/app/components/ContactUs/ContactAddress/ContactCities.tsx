@@ -34,7 +34,7 @@ const ContactCities = ({mapLocations}: {mapLocations: any}) => {
   };
 
   return (
-    <div className='relative'>
+    <div className=''>
     <Image
       className='w-[100%] h-full object-contain dark:invert-0 invert'
       src={MapIndia}
@@ -59,7 +59,7 @@ const ContactCities = ({mapLocations}: {mapLocations: any}) => {
       })}
     </svg>
     {hoveredCity && (
-      <div className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-full bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 p-2 rounded shadow">
+      <div className="absolute top-0 right-0 bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 p-2 rounded shadow">
         <p>{hoveredCity}</p>
       </div>
     )}

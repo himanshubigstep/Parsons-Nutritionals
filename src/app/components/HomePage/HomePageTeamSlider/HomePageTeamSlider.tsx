@@ -52,8 +52,8 @@ const HomePageTeamSlider = ({homePageDataValue, homePageMembersValue}: {homePage
 
     return (
         <div className='relative w-full max-w-[1280px] mx-auto h-full md:h-[42rem] md:py-24 py-8'>
-            <div className='w-full flex justify-center items-center text-3xl text-black font-bold'>
-                <h1 className='w-[48rem] mb-8 text-center dark:text-white'>
+            <div className='w-full flex justify-center items-center text-2xl text-black font-bold'>
+                <h1 className='w-[42rem] mb-8 text-center dark:text-white'>
                     {TeamSliderTitle}
                 </h1>
             </div>
@@ -66,12 +66,12 @@ const HomePageTeamSlider = ({homePageDataValue, homePageMembersValue}: {homePage
                         </div>
                         <div className='w-[95%] md:w-2/3 h-full flex flex-col'>
                             <div className='w-full relative px-4 py-4 marker-list'>
-                                <h2 className='text-2xl text-black dark:text-white text-left font-bold w-[48rem] mb-8'>{member?.attributes?.name} <span className='text-gray-400 dark:text-gray-500'>{member?.attributes?.position}</span></h2>
-                                <p className='text-lg text-left mb-4 text-[#0059D5] dark:text-gray-400'>
+                                <h2 className='text-xl text-black dark:text-white text-left font-bold w-[48rem] mb-4'>{member?.attributes?.name} <span className='text-gray-400 dark:text-gray-500'>{member?.attributes?.position}</span></h2>
+                                <p className='text-md text-left mb-4 text-[#0059D5] dark:text-gray-400'>
                                     {member?.attributes?.role}
                                 </p>
                                 <ul
-                                    className='text-left text-lg text-black dark:text-white list-disc px-4'
+                                    className='text-left text-md text-black dark:text-white list-disc px-4'
                                     dangerouslySetInnerHTML={{ __html: md.render(member?.attributes?.career_highlights) }}
                                 >
                                 </ul>
