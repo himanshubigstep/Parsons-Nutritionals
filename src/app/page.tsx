@@ -21,7 +21,6 @@ export default function Home() {
   const [homePageAwardValue, setHomePageAwardValue] = useState(null);
   const [homePageMembersValue, setHomePageMembersValue] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchDataFromApis = async () => {
@@ -40,8 +39,6 @@ export default function Home() {
 
       } catch (error) {
         console.log(error, 'api-get-error');
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -57,10 +54,6 @@ export default function Home() {
     
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  if (isLoading) {
-    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
-  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between md:p-0 pt-4">

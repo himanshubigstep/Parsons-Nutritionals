@@ -77,10 +77,10 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
                             {HomePageSliderData.stats.map((stat: any, index: number) => (
                                 <React.Fragment key={index}>
                                     <div className="w-[6.188rem] relative h-[3.125rem]">
-                                        <b className="leading-[2rem] text-red-500 flex items-center w-[6.013rem] h-[2rem]">
+                                        <b className="text-md text-red-500 flex items-center w-[6.013rem] h-[2rem]">
                                             {stat.value}
                                         </b>
-                                        <div className="text-[0.875rem] capitalize text-slate-500">
+                                        <div className="text-sm capitalize text-slate-500">
                                             {stat.title}
                                         </div>
                                     </div>

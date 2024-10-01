@@ -4,14 +4,21 @@ import './BoxSectionContainer.css'
 
 const md = new MarkdownIt();
 
-const BoxSectionContainer = ({ contactSections }: { contactSections: any }) => {
+const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections: any, pdfFileUrl: string }) => {
   const esgPageDataContent = contactSections?.Body[0]?.content
   const esgPageDataImage = contactSections?.Body[0]?.media?.data?.attributes?.formats?.medium?.url
 
   return (
     <div className="w-full max-w-[1280px] mx-auto md:py-24 pb-8 pt-24">
       <div className="w-full flex flex-col md:flex-row justify-center items-center">
-        <div className="w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-[3.75rem] flex flex-col py-8 px-8">
+        <div className="relative w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-[3.75rem] flex flex-col py-8 px-8 justify-center">
+        {pdfFileUrl && (
+          <div className='absolute top-8 right-8'>
+            <a target='_blank' href={pdfFileUrl} download className='p-4 rounded-lg bg-blue-500 hover:bg-blue-800 text-white'>
+              Download PDF
+            </a>
+          </div>
+        )}
           <div className="w-full">
             <h3 className="font-semibold text-2xl md:text-4xl mb-4">{esgPageDataContent?.title}</h3>
             <div className="font-medium uppercase text-xl mb-4 w-[95%] md:w-[85%]">

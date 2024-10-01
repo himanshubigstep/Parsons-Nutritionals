@@ -16,7 +16,7 @@ const HomePageOurClients = ({homePageDataValue, homePageClientValue}: {homePageD
   const OurClientsPartnerData = homePageDataValue?.CustomerSection
   const OurClientDataValue = homePageClientValue
   return (
-    <div className="relative bg-[#0059DF] w-full h-auto md:h-[20.875rem] text-[1.5rem] sm:text-[2.25rem] font-montserrat">
+    <div className="relative bg-[#0059DF] w-full h-auto md:h-[20.875rem] text-2xl sm:text-3xl font-montserrat">
       <div className="max-w-[1280px] mx-auto font-extrabold flex items-center justify-center w-full py-4 sm:py-8 text-white capitalize">
         {OurClientsPartnerData?.title}
       </div>

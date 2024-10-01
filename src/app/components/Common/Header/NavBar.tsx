@@ -39,6 +39,9 @@ const NavBar = () => {
                     <p className='relative text-md font-medium'>Parsons Nutritionals</p>
                 </Link>
                 <div className="hidden lg:flex flex-row items-center justify-center gap-[2rem]">
+                    <NavItem href="/">
+                        Home
+                    </NavItem>
                     <NavItem href="/about-us" subMenuItems={['About Parsons Nutritionals', ' Food and healthcare ', 'Our Team', 'Infrastructure', 'Our Strength']}>
                         About us
                     </NavItem>

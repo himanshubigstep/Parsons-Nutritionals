@@ -27,7 +27,6 @@ const ProductRange = () => {
   const [productPageContent, setProductPageContent] = useState<any>(null);
   const [selectedProductType, setSelectedProductType] = useState<string | null>(null);
   const [filteredProductPageContent, setFilteredProductPageContent] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -41,10 +40,8 @@ const ProductRange = () => {
         setProductPageHeaderData(headerData.data);
         setProductPageTypes(typesData.data);
         setProductPageContent(contentData.data);
-        setLoading(false);
       } catch (error) {
         setError('Failed to fetch data');
-        setLoading(false);
       }
     };
 
@@ -55,13 +52,9 @@ const ProductRange = () => {
 
   const handleProductTypeClick = (productType: string) => {
     setSelectedProductType(productType);
-    const filteredContent = productPageContent?.filter((product: Product) => product.attributes.product_type.data.attributes.name === productType);
+    const filteredContent = productPageContent?.filter((product: Product) => product?.attributes?.product_type?.data?.attributes?.name === productType);
     setFilteredProductPageContent(filteredContent);
   };
-  
-  if (loading) {
-    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;
