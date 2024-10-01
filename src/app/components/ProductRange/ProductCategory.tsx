@@ -24,12 +24,10 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
     productPageContent.forEach((product: { attributes: { product_type: { data: { attributes: { name: string }; } }; }; }) => {
       const productTypeName = product?.attributes?.product_type?.data?.attributes?.name;
       if (productTypeName) {
-        // Count unique occurrences of each product type
         productTypeCount[productTypeName] = (productTypeCount[productTypeName] || 0) + 1;
       }
     });
 
-    // Add the total count of all products
     const allProductCount = productPageContent.length;
     productTypeCount["All"] = allProductCount;
   }
@@ -53,7 +51,6 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
 
   return (
     <div className="relative w-[95%] mx-auto md:w-[25%] dark:border-r-[1px] dark:border-gray-700">
-      {/* Hamburger Menu Button */}
       <div className="md:hidden flex items-center justify-between py-4 md:px-8 px-4">
         <h2 className='text-2xl font-bold'>Products Type</h2>
         <button onClick={toggleMenu} className="text-2xl">
@@ -61,7 +58,6 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
         </button>
       </div>
 
-      {/* Category List */}
       <div className={`relative flex flex-col gap-8 h-full md:h-auto border-r-2 md:border-none px-8 ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
         <ul className='flex flex-col gap-8'>
           {productTypesWithAll.map((productType) => (
