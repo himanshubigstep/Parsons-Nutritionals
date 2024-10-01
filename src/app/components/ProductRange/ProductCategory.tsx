@@ -13,34 +13,38 @@ interface ProductCategoryProps {
   productPageContent: any;
 }
 
-const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (productType: string) => void }> = ({ productPageTypes, productPageContent, onProductTypeClick }) => {
+const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (productType: string) => void }> = ({
+  productPageTypes,
+  productPageContent,
+  onProductTypeClick,
+}) => {
   const productTypeCount: { [key: string]: number } = {};
 
   if (productPageContent) {
-    productPageContent.forEach((product: { attributes: { product_type: { data: { attributes: { name: any; }; }; }; }; }) => {
+    productPageContent.forEach((product: { attributes: { product_type: { data: { attributes: { name: string }; } }; }; }) => {
       const productTypeName = product?.attributes?.product_type?.data?.attributes?.name;
-      productTypeCount[productTypeName] = (productTypeCount[productTypeName] || 0) + 1;
+      if (productTypeName) {
+        // Count unique occurrences of each product type
+        productTypeCount[productTypeName] = (productTypeCount[productTypeName] || 0) + 1;
+      }
     });
+
+    // Add the total count of all products
+    const allProductCount = productPageContent.length;
+    productTypeCount["All"] = allProductCount;
   }
 
-  const allProductCount = productPageContent ? productPageContent.length : 0;
-  productTypeCount["All"] = allProductCount;
-
-  const productTypesWithAll = productPageTypes ? [{ id: "all", attributes: { name: "All" } }, ...productPageTypes] : [];
+  const productTypesWithAll = productPageTypes
+    ? [{ id: "all", attributes: { name: "All" } }, ...productPageTypes]
+    : [];
 
   const [selectedProductType, setSelectedProductType] = useState<string>("All");
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // State for menu visibility
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const handleProductTypeClick = (productType: string) => {
     setSelectedProductType(productType);
-    if (productType === "All") {
-      // setSelectedProductType("All");
-      onProductTypeClick("");
-    } else {
-      // setSelectedProductType(productType);
-      onProductTypeClick(productType);
-    }
-    setIsMenuOpen(false); // Close menu after selection on mobile
+    onProductTypeClick(productType === "All" ? "" : productType);
+    setIsMenuOpen(false);
   };
 
   const toggleMenu = () => {
@@ -53,7 +57,7 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
       <div className="md:hidden flex items-center justify-between py-4 md:px-8 px-4">
         <h2 className='text-2xl font-bold'>Products Type</h2>
         <button onClick={toggleMenu} className="text-2xl">
-          {isMenuOpen ? <HiX /> : <HiMenu />} {/* Toggle icon based on menu state */}
+          {isMenuOpen ? <HiX /> : <HiMenu />}
         </button>
       </div>
 
@@ -63,8 +67,8 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
           {productTypesWithAll.map((productType) => (
             <li
               key={productType.id}
-              className={`text-lg font-medium cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} // Apply styles based on selection
-              onClick={() => handleProductTypeClick(productType?.attributes?.name)}
+              className={`text-lg font-medium cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} 
+              onClick={() => handleProductTypeClick(productType.attributes.name)}
             >
               {productType.attributes.name} ({productTypeCount[productType.attributes.name] || 0})
             </li>

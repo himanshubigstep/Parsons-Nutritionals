@@ -41,7 +41,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
     return (
         <div className='relative bg-white dark:bg-black w-full max-w-[1280px] mx-auto mb-16'>
             <div className='w-full overflow-hidden flex flex-col justify-between items-center px-8 py-8'>
-                <h1 className="text-3xl font-extrabold dark:text-white mb-2">Infrastructure</h1>
+                <h1 className="text-2xl font-extrabold dark:text-white mb-2">Infrastructure</h1>
                 {/* Tab content */}
                 <div className='w-full relative flex justify-between items-center gap-8 infrastructure'>
                     {InfrastructureData && InfrastructureData.map((detail: InfrastructureDetail, index: number) => (
@@ -55,10 +55,10 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                             </div>
                             <div className='infrastructure-block-content w-[60%] h-[540px] rounded-3xl bg-[#F0F0F9] dark:bg-black dark:border-2 dark:border-gray-700'>
                                 <div className='infrastructure-block-inner w-[95%] h-full pl-48 py-8'>
-                                    <h2 className='text-2xl font-bold leading-none tracking-tight text-black md:text-2xl lg:text-2xl dark:text-white'>
+                                    <h2 className='text-xl font-bold leading-none tracking-tight text-black md:text-xl lg:text-xl dark:text-white'>
                                         {detail.attributes?.name}
                                     </h2>
-                                    <p className='text-lg font-normal text-gray1-200'>
+                                    <p className='text-md font-normal text-gray1-200'>
                                         {detail.attributes?.details}
                                     </p>
                                     <div className='flex flex-col justify-center mt-8'>

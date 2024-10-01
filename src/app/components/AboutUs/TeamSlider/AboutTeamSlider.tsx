@@ -78,7 +78,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
 
   return (
     <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 md:py-16 py-8'>
-      <h1 className="text-3xl font-extrabold dark:text-white">Our Team</h1>
+      <h1 className="text-2xl font-extrabold dark:text-white">Our Team</h1>
       <div className="w-full flex justify-center items-center gap-2 rounded-xl overflow-hidden relative">
         {aboutUsClientData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
           <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} md:w-[20%] w-[50%] relative rounded-xl transition-all duration-500 ease-in-out`}>
