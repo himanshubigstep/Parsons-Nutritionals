@@ -179,11 +179,16 @@ export const ProductPageTypes = async () => {
   }
 };
 
-export const ProductPageContent = async (page?: number) => {
+export const ProductPageContent = async (page: number = 1, pageSize: number = 10000) => {
   try {
-    const response = await axios.get(`${ApiBaseUrl}/products?populate=*`, {
+    const response = await axios.get(`${ApiBaseUrl}/products`, {
       headers: {
         'ngrok-skip-browser-warning': 'application/json',
+      },
+      params: {
+        "populate": "*",
+        "pagination[page]": page,
+        "pagination[pageSize]": pageSize, // Ensure this is included
       },
     });
     return response.data;

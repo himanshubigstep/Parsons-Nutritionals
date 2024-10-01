@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 
 interface ProductMedia {
   data: {
@@ -40,7 +41,7 @@ interface ProductCategoryProps {
     };
   };
   productPageContent?: Product[];
-  totalItems: number; // Add totalItems prop
+  totalItems: number;
 }
 
 const ProductListcategory: React.FC<ProductCategoryProps> = ({
@@ -50,7 +51,12 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
 }) => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Adjust items per page as needed
+  const itemsPerPage = 6;
+
+  // Reset to the first page if the product content or total items change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [productPageContent]);
 
   if (!productPageHeaderData || !productPageHeaderData.attributes || !productPageContent) {
     return null;
@@ -61,10 +67,7 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
   const openModal = (productId: string) => setSelectedProduct(productId);
   const closeModal = () => setSelectedProduct(null);
 
-  // Calculate total pages
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  // Get current products
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentProducts = productPageContent.slice(startIndex, startIndex + itemsPerPage);
 
@@ -72,53 +75,6 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
     if (page > 0 && page <= totalPages) {
       setCurrentPage(page);
     }
-  };
-
-  // Function to render pagination buttons
-  const renderPaginationButtons = () => {
-    const buttons = [];
-    const maxButtons = 5; // Maximum buttons to show
-
-    let start = Math.max(2, currentPage - Math.floor(maxButtons / 2));
-    let end = Math.min(totalPages - 1, start + maxButtons - 2);
-
-    if (end - start < maxButtons - 2) {
-      start = Math.max(2, end - (maxButtons - 2));
-    }
-
-    if (start > 2) {
-      buttons.push(
-        <button key={1} onClick={() => handlePageChange(1)} className="pagination-button">
-          1
-        </button>
-      );
-      if (start > 2) {
-        buttons.push(<span key="ellipsis-start" className="mx-1">...</span>);
-      }
-    }
-
-    for (let i = start; i <= end; i++) {
-      buttons.push(
-        <button
-          key={i}
-          onClick={() => handlePageChange(i)}
-          className={`pagination-button ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'}`}
-        >
-          {i}
-        </button>
-      );
-    }
-
-    if (end < totalPages - 1) {
-      buttons.push(<span key="ellipsis-end" className="mx-1">...</span>);
-      buttons.push(
-        <button key={totalPages} onClick={() => handlePageChange(totalPages)} className="pagination-button">
-          {totalPages}
-        </button>
-      );
-    }
-
-    return buttons;
   };
 
   return (
@@ -145,24 +101,36 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
         ))}
       </div>
 
-      {/* Pagination Controls */}
-      <div className="pagination flex justify-center gap-2 mt-4">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className="px-4 py-2 border rounded-md bg-white text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white transition"
-        >
-          Previous
-        </button>
-        {renderPaginationButtons()}
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 border rounded-md bg-white text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white transition"
-        >
-          Next
-        </button>
-      </div>
+      {/* Conditional Pagination Controls */}
+      {totalItems > itemsPerPage && (
+        <div className="pagination flex justify-center gap-4 mt-16">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+          >
+            Previous
+          </button>
+
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       {selectedProduct && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">

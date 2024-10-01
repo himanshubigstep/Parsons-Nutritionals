@@ -63,7 +63,7 @@ const ProductRange = () => {
           ProductPageTypes()
         ]);
 
-        // Fetch all pages of product content
+        // Fetch all products in one call
         const contentData = await fetchAllProductContent();
 
         setProductPageHeaderData(headerData.data);
@@ -78,27 +78,23 @@ const ProductRange = () => {
   }, []);
 
   const fetchAllProductContent = async () => {
-    let allContent: Product[] = [];
-    let page = 1;
-    let pageCount = 1;
-
-    while (page <= pageCount) {
-      const response: ProductPageData = await ProductPageContent(page);
-      allContent = allContent.concat(response.data);
-      pageCount = response.meta.pagination.pageCount;
-      page++;
+    try {
+      const response: ProductPageData = await ProductPageContent(1, 10000); // Adjust the API call to accept page size
+      return response.data; // Return all products directly
+    } catch (error) {
+      setError('Failed to fetch product content');
+      return [];
     }
-
-    return allContent;
   };
 
   const bannerImage = productPageHeaderData?.attributes?.Header?.cover?.data?.attributes?.formats?.large?.url;
 
   const handleProductTypeClick = (productType: string) => {
     setSelectedProductType(productType);
-    const filteredContent = productPageContent.filter((product: Product) =>
-      product.attributes.product_type.data.attributes.name === productType
-    );
+    const filteredContent = productPageContent.filter((product: Product) => {
+      const productTypeData = product.attributes.product_type?.data;
+      return productTypeData && productTypeData.attributes?.name === productType;
+    });
     setFilteredProductPageContent(filteredContent);
   };
 
@@ -108,8 +104,6 @@ const ProductRange = () => {
 
   // Calculate total items for pagination
   const totalItems = selectedProductType ? filteredProductPageContent.length : productPageContent.length;
-
-  console.log(totalItems)
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-white dark:bg-black">
