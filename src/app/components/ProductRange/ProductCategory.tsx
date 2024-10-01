@@ -18,7 +18,7 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
 
   if (productPageContent) {
     productPageContent.forEach((product: { attributes: { product_type: { data: { attributes: { name: any; }; }; }; }; }) => {
-      const productTypeName = product.attributes.product_type.data.attributes.name;
+      const productTypeName = product?.attributes?.product_type?.data?.attributes?.name;
       productTypeCount[productTypeName] = (productTypeCount[productTypeName] || 0) + 1;
     });
   }
@@ -32,11 +32,12 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // State for menu visibility
 
   const handleProductTypeClick = (productType: string) => {
+    setSelectedProductType(productType);
     if (productType === "All") {
-      setSelectedProductType("All");
+      // setSelectedProductType("All");
       onProductTypeClick("");
     } else {
-      setSelectedProductType(productType);
+      // setSelectedProductType(productType);
       onProductTypeClick(productType);
     }
     setIsMenuOpen(false); // Close menu after selection on mobile
@@ -63,7 +64,7 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
             <li
               key={productType.id}
               className={`text-lg font-medium cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} // Apply styles based on selection
-              onClick={() => handleProductTypeClick(productType.attributes.name)}
+              onClick={() => handleProductTypeClick(productType?.attributes?.name)}
             >
               {productType.attributes.name} ({productTypeCount[productType.attributes.name] || 0})
             </li>

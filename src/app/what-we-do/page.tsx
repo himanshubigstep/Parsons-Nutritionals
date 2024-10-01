@@ -15,28 +15,20 @@ import ChainsBodyReverse from '../components/WhatWeDo/ChainsBodyReverse/ChainsBo
 
 const WhatWeDo = () => {
   const [whatWeDoDataValue, setWhatWeDoDataValue] = useState<any>(null);
-  const [loading, setLoading] = useState(true); // Add a loading state
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        setLoading(true); // Set loading to true when starting to fetch data
         const responseData = await WhatWeDoData();
         const whatWeDoData = responseData.data.attributes;
         setWhatWeDoDataValue(whatWeDoData);
       } catch (error) {
         console.log(error, 'api-get-error');
-      } finally {
-        setLoading(false); // Set loading to false once data is fetched or if an error occurs
       }
     };
 
     fetchDataFromApi();
   }, []);
-
-  if (loading) {
-    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
-  }
 
   const BannerContainerDataContent = whatWeDoDataValue;
   const bannerImage = whatWeDoDataValue?.Header?.media?.data?.attributes?.formats?.medium?.url;

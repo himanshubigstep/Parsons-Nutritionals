@@ -15,7 +15,6 @@ export default function AboutUs() {
   const [aboutUsPageDataValue, setaboutUsPageDataValue] = useState<any>(null);
   const [homePageMembersValue, setHomePageMembersValue] = useState(null);
   const [aboutUsPageInfrastructureValue, setaboutUsPageInfrastructureValue] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -53,8 +52,6 @@ export default function AboutUs() {
         setaboutUsPageInfrastructureValue(aboutUsInfrastructureData);
       } catch (error) {
         console.log(error, 'api-get-error');
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -64,10 +61,6 @@ export default function AboutUs() {
   const contactSections = aboutUsPageDataValue;
   const bannerImage = aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
   const BannerContainerData = aboutUsPageDataValue?.Header?.content;
-
-  if (loading) {
-    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
-  }
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#F0F0F9] dark:bg-black">

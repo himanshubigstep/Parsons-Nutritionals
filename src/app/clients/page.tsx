@@ -9,7 +9,6 @@ import { ClientPageData, HomePageClientData } from '../Api/Api'
 const Clients = () => {
   const [clientPageDataValue, setClientPageDataValue] = useState<any>(null);
   const [homePageClientValue, setHomePageClientValue] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -19,10 +18,6 @@ const Clients = () => {
         setClientPageDataValue(clientPageData);
       } catch (error) {
         console.log(error, 'api-get-error');
-      } finally {
-        if (homePageClientValue !== null) {
-          setLoading(false);
-        }
       }
     };
 
@@ -33,20 +28,12 @@ const Clients = () => {
         setHomePageClientValue(homePageClientData);
       } catch (error) {
         console.log(error, 'api-get-error');
-      } finally {
-        if (clientPageDataValue !== null) {
-          setLoading(false);
-        }
       }
     };
 
     fetchDataFromApi();
     fetchHomePageClientData();
   }, [clientPageDataValue, homePageClientValue]);
-
-  if (loading) {
-    return <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '2rem'}}>Loading...</div>;
-  }
 
   const contactSections = clientPageDataValue;
   const bannerImage = clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url;
