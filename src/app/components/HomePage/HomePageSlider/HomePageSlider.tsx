@@ -71,12 +71,12 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
             </div>
             
             {HomePageSliderData && HomePageSliderData.stats && (
-                <div className="bg-white dark:bg-black absolute md:bottom-8 left-0 right-0 top-[30%] rounded-xl md:top-auto translate-y-1/2 mx-auto w-[20rem] sm:w-[100%] md:w-[41rem] h-[8rem] sm:h-[7.125rem] text-left text-red font-sf-pro-display">
-                    <div className="flex  sm:px-0 px-4 justify-center items-center dark:shadow-none dark:border-2 dark:border-gray-700 shadow-[0px_0px_0px_0.5px_#e4e5e9,_0px_0px_0px_1px_rgba(228,_229,_233,_0.6),_0px_0px_0px_3.5px_#f9f9fb,_0px_0px_0px_4px_#f3f4f7,_0px_20px_24px_-4px_rgba(16,_24,_40,_0.08),_0px_8px_8px_-4px_rgba(16,_24,_40,_0.03)] rounded-xl bg-base-white w-[20rem]  md:w-[41rem] h-[8rem] sm:h-[7.125rem]">
+                <div className="bg-white dark:bg-black absolute md:bottom-8 left-0 right-0 top-[30%] rounded-xl md:top-auto translate-y-1/2 mx-auto w-[20rem] sm:w-[100%] md:w-[45rem] h-[8rem] sm:h-[7.125rem] text-left text-red font-sf-pro-display">
+                    <div className="flex  sm:px-0 px-4 justify-center items-center dark:shadow-none dark:border-2 dark:border-gray-700 shadow-[0px_0px_0px_0.5px_#e4e5e9,_0px_0px_0px_1px_rgba(228,_229,_233,_0.6),_0px_0px_0px_3.5px_#f9f9fb,_0px_0px_0px_4px_#f3f4f7,_0px_20px_24px_-4px_rgba(16,_24,_40,_0.08),_0px_8px_8px_-4px_rgba(16,_24,_40,_0.03)] rounded-xl bg-base-white w-[20rem]  md:w-[45rem] h-[8rem] sm:h-[7.125rem]">
                         <div className="w-full flex-wrap sm:flex-nowrap md:w-[37.875rem]  md:overflow-hidden flex flex-row md:items-start items-center md:justify-center justify-between md:gap-[1.375rem]">
                             {HomePageSliderData.stats.map((stat: any, index: number) => (
                                 <React.Fragment key={index}>
-                                    <div className="w-[6.188rem] relative h-[3.125rem]">
+                                    <div className="w-[6.188rem] md:w-auto relative">
                                         <b className="text-md text-red-500 flex items-center w-[6.013rem] h-[2rem]">
                                             {stat.value}
                                         </b>
@@ -85,7 +85,7 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
                                         </div>
                                     </div>
                                     {index !== HomePageSliderData.stats.length - 1 && (
-                                        <div className="md:flex hidden w-[0.063rem] relative bg-slate-500 h-[3.125rem] opacity-[0.2]" />
+                                        <div className="md:flex hidden w-[0.063rem] relative bg-slate-500 opacity-[0.2]" />
                                     )}
                                 </React.Fragment>
                             ))}
