@@ -12,8 +12,8 @@ import HomePageJoinTeam from "./components/HomePage/HomePageJoinTeam/HomePageJoi
 import HomePageLegacy from "./components/HomePage/HomePageLegacy/HomePageLegacy";
 import { HomePageAwardstData, HomePageClientData, HomePageData, HomePageMemberstData } from "./Api/Api";
 import Image from "next/image";
-import backgroundImage from '@/app/assets/home-page/home-page-bottom-bg.png'
-import backgroundImageMobile from '@/app/assets/home-page/home-page-bottom-bg-mobile.png'
+import backgroundImage from '@/app/assets/home-page/Webview.png'
+import backgroundImageMobile from '@/app/assets/home-page/Responsive.png'
 
 export default function Home() {
   const [homePageDataValue, setHomePageDataValue] = useState(null);
@@ -60,7 +60,7 @@ export default function Home() {
       <HomePageSlider homePageDataValue={homePageDataValue} />
       <HomePageWhatWeAre homePageDataValue={homePageDataValue} />
       <HomePageOurClients homePageDataValue={homePageDataValue} homePageClientValue={homePageClientValue} />
-      <HomePageOurVisions homePageDataValue={homePageDataValue} />
+      {/* <HomePageOurVisions homePageDataValue={homePageDataValue} />
       <HomePageOurValues homePageDataValue={homePageDataValue} />
       <HomePageAwarded homePageDataValue={homePageDataValue} homePageAwardValue={homePageAwardValue} />
       <HomePageTeamSlider homePageDataValue={homePageDataValue} homePageMembersValue={homePageMembersValue} />
@@ -74,7 +74,7 @@ export default function Home() {
             className="dark:invert w-full h-full object-contain md:rounded-3xl"
           />
         </div>
-      </div>
+      </div> */}
     </main>
   );
 }

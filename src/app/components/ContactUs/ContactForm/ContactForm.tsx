@@ -103,7 +103,7 @@ const ContactForm = () => {
         { name: 'service_requirements', type: "textarea", label: "Describe Your Service Requirements in Detail*", placeholder: "Describe Your Service Requirements in Detail*", value: formData.service_requirements, onChange: handleInputChange('service_requirements') }
     ];
     return (
-        <div className='relative mb-8 w-[95%] mx-auto md:w-[60%] flex'>
+        <div className='relative mb-8 w-[95%] mx-auto md:w-[50%] flex'>
             <div className='w-full flex flex-col'>
                 {inputFields.map((field, index) => (
                     <div key={index} className="mb-4">

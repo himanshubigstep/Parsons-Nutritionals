@@ -10,6 +10,10 @@
     background-color: white;
 }
 
+.hoverd-on:hover .hovered-on-img img {
+    filter: invert(0);
+}
+
 .hoverd-on:hover .hovered-text {
     color: white;
 }

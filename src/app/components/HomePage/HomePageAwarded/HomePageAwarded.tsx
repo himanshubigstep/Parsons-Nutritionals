@@ -30,7 +30,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
     return (
         <div className="relative flex bg-[#0059D5] md:h-[36rem] w-full text-darkslate-500">
             <div className='max-w-[1280px] mx-auto flex flex-col md:flex-row md:py-0 py-8 md:gap-8'>
-                <div className='w-full mt-[20px] md:mt-[0px]  p-4 md:p-0 md:w-1/3 mx-auto mb-2 h-full flex flex-col md:justify-center'>
+                <div className='w-full mt-[20px] md:mt-[0px]  p-4 md:p-0 md:w-1/3 mx-auto mb-2 md:h-full flex flex-col md:justify-center'>
                     <div className='relative mb-4'>
                         <img
                             className="md:w-[8rem] w-[4rem] md:h-[8rem] h-[4rem] object-cover md:rounded-3xl rounded-xl"

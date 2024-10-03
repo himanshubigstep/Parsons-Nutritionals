@@ -14,16 +14,16 @@ const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections:
         <div className="relative w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-[3.75rem] flex flex-col py-8 px-8 justify-center">
         {pdfFileUrl && (
           <div className='absolute top-8 right-8'>
-            <a target='_blank' href={pdfFileUrl} download className='p-4 rounded-lg bg-blue-500 hover:bg-blue-800 text-white'>
+            <a target='_blank' href={pdfFileUrl} download className='py-2 px-4 rounded-md bg-blue-500 hover:bg-blue-800 text-white text-md'>
               Download PDF
             </a>
           </div>
         )}
           <div className="w-full">
-            <h3 className="font-semibold text-2xl md:text-4xl mb-4">{esgPageDataContent?.title}</h3>
-            <div className="font-medium uppercase text-xl mb-4 w-[95%] md:w-[85%]">
+            <h3 className="font-semibold text-2xl md:text-2xl mb-4">{esgPageDataContent?.title}</h3>
+            <div className="font-medium uppercase text-md mb-4 w-[95%] md:w-[85%]">
               <div
-                className="font-normal capitalize lg list-disc mt-2 marker-list"
+                className="font-normal capitalize text-md list-disc mt-2 marker-list"
                 dangerouslySetInnerHTML={{ __html: typeof esgPageDataContent?.content === 'string' ? md.render(esgPageDataContent.content) : '' }}
               >
               </div>

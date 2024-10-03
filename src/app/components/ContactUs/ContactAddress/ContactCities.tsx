@@ -7,15 +7,32 @@ import Image from 'next/image';
 const ContactCities = ({mapLocations}: {mapLocations: any}) => {
   const MapLocations = mapLocations
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
+  // const convertToPercentagePosition = (latitude: string, longitude: string) => {
+  //   const indiaBounds = {
+  //     minX: 68.2,
+  //     maxX: 97.4,
+  //     minY: 9.2,
+  //     maxY: 35.5
+  //   };
+  
+  //   const x = ((parseFloat(longitude) - indiaBounds.minX) / (indiaBounds.maxX - indiaBounds.minX)) * 100;
+  //   const y = 100 - ((parseFloat(latitude) - indiaBounds.minY) / (indiaBounds.maxY - indiaBounds.minY)) * 100;
+  
+  //   return { x, y };
+  // };
+
   const convertToPercentagePosition = (latitude: string, longitude: string) => {
     const indiaBounds = {
-      minX: 68.2,
-      maxX: 97.4,
-      minY: 9.2,
-      maxY: 35.5
+      minX: 68.2, // West
+      maxX: 97.4, // East
+      minY: 8.4,  // South (adjusted)
+      maxY: 37.6  // North (adjusted)
     };
-  
+    
+    // Convert longitude to x percentage
     const x = ((parseFloat(longitude) - indiaBounds.minX) / (indiaBounds.maxX - indiaBounds.minX)) * 100;
+    
+    // Convert latitude to y percentage (note the inversion)
     const y = 100 - ((parseFloat(latitude) - indiaBounds.minY) / (indiaBounds.maxY - indiaBounds.minY)) * 100;
   
     return { x, y };
@@ -34,7 +51,7 @@ const ContactCities = ({mapLocations}: {mapLocations: any}) => {
   };
 
   return (
-    <div className=''>
+    <div className='relative'>
     <Image
       className='w-[100%] h-full object-contain dark:invert-0 invert'
       src={MapIndia}
