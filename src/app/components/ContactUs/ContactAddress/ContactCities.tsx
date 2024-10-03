@@ -39,7 +39,7 @@ const ContactCities = ({mapLocations}: {mapLocations: any}) => {
   };
 
   const handleClick = (url: string) => {
-    window.location.href = '/about-us#infrastructure';
+    window.location.href = '/about-us#locations';
   };
 
   const handleMouseEnter = (cityName: string) => {
