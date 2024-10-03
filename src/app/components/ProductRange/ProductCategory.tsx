@@ -58,12 +58,12 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
         </button>
       </div>
 
-      <div className={`relative flex flex-col gap-8 h-full md:h-auto border-r-2 md:border-none px-8 ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
-        <ul className='flex flex-col gap-8'>
+      <div className={`relative flex flex-col gap-8 h-full md:h-auto border-r-2 px-8 ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
+        <ul className='flex flex-col gap-6'>
           {productTypesWithAll.map((productType) => (
             <li
               key={productType.id}
-              className={`text-lg font-medium cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} 
+              className={`text-md font-medium cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} 
               onClick={() => handleProductTypeClick(productType.attributes.name)}
             >
               {productType.attributes.name} ({productTypeCount[productType.attributes.name] || 0})

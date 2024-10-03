@@ -39,9 +39,9 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
     };
 
     return (
-        <div className='relative bg-white dark:bg-black w-full max-w-[1280px] mx-auto mb-16'>
+        <div className='relative bg-white dark:bg-black w-full max-w-[1280px] mx-auto mb-16 rounded-3xl'>
             <div className='w-full overflow-hidden flex flex-col justify-between items-center px-8 py-8'>
-                <h1 className="text-2xl font-extrabold dark:text-white mb-2">Infrastructure</h1>
+                <h1 className="text-2xl font-extrabold dark:text-white mb-2">Locations</h1>
                 {/* Tab content */}
                 <div className='w-full relative flex justify-between items-center gap-8 infrastructure'>
                     {InfrastructureData && InfrastructureData.map((detail: InfrastructureDetail, index: number) => (

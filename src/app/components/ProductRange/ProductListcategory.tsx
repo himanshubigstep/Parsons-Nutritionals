@@ -80,8 +80,8 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
   return (
     <div className="product-list-category relative flex flex-col w-[95%] mx-auto md:w-[75%]">
       <div className='product-heading relative w-full flex flex-col gap-4 mb-8'>
-        <h1 className='text-6xl font-bold'>{title}</h1>
-        <p className='text-lg font-medium'>{content}</p>
+        <h1 className='text-2xl font-bold'>{title}</h1>
+        <p className='text-md font-medium'>{content}</p>
       </div>
 
       <div className='product-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8'>
@@ -96,50 +96,50 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
               alt={product.attributes.name}
               className="w-full h-[200px] rounded-xl mb-4 object-contain"
             />
-            <h3 className="text-lg font-semibold mb-2">{product.attributes.name}</h3>
+            <h3 className="text-md font-semibold mb-2">{product.attributes.name}</h3>
           </div>
         ))}
       </div>
 
       {/* Conditional Pagination Controls */}
       {totalItems > itemsPerPage && (
-        <div className="pagination flex justify-center gap-4 mt-16">
+        <div className="pagination flex flex-wrap justify-center gap-4 mt-16">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+        >
+          Previous
+        </button>
+    
+        {Array.from({ length: totalPages }, (_, index) => (
           <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
           >
-            Previous
+            {index + 1}
           </button>
-
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-            >
-              {index + 1}
-            </button>
-          ))}
-
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
-          >
-            Next
-          </button>
-        </div>
+        ))}
+    
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+        >
+          Next
+        </button>
+      </div>
       )}
 
       {selectedProduct && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-          <div className="modal bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-xl w-[80%] h-[80%] relative p-2">
+          <div className="modal bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-xl w-auto h-[80%] relative p-2">
             <span className="absolute top-4 right-4 cursor-pointer dark:text-black text-4xl" onClick={closeModal}>&times;</span>
             <img
               src={productPageContent.find(product => product.id === selectedProduct)?.attributes?.media?.data?.attributes?.url}
               alt="Large Product"
-              className="w-full h-full rounded-xl"
+              className="w-full h-full rounded-xl object-contain p-4"
             />
           </div>
         </div>

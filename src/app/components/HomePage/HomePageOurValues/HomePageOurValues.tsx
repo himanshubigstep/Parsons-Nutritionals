@@ -28,7 +28,7 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
                         <div className={`hovered-on-img w-full flex mb-8 items-center text-xl uppercase font-semibold dark:text-white ${hoveredIndex === index ? 'text-white' : 'text-black'}`}>
                             <div className='overflow-hidden w-[62px] h-[62px] bg-[#0059D5] flex justify-center items-center rounded-full mr-4'>
                                 <img
-                                    className="w-full overflow-hidden h-full"
+                                    className="w-full overflow-hidden h-full p-2 invert"
                                     alt=""
                                     src={`${item?.icon?.data?.attributes?.formats?.small?.url}`}
                                 />

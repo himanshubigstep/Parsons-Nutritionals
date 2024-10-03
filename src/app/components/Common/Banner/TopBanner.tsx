@@ -29,7 +29,7 @@ const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData,
             ></div>
             <img
                 src={bannerImage}
-                className={`w-full h-full object-cover ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
+                className={`w-full h-full max-h-40 object-cover ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
                 alt='banner-image'
                 onLoad={handleImageLoad}
                 onError={handleImageError}

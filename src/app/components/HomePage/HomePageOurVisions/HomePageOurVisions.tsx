@@ -15,7 +15,7 @@ const HomePageOurVisions = ({homePageDataValue}: {homePageDataValue:any}) => {
                 alt="Our Vision"
                 src={`${OurVisionDataImage}`}
             />
-            <div className='md:absolute md:mt-[0rem] mt-[13rem] relative px-4 sm:px-0 left-0 right-0 md:top-0 bottom-0 w-full max-w-[1280px] mx-auto'>
+            <div className='md:absolute md:mt-[0rem] mt-4 relative px-4 sm:px-0 left-0 right-0 md:top-0 top-4 bottom-0 w-full max-w-[1280px] mx-auto'>
                 <div className="px-8 py-8 sm:px-16 sm:py-16 bg-[#0059DF] md:absolute bottom-0 right-0 md:rounded-tl-[30px] sm:rounded-tl-[60px] sm:rounded-tr-none sm:rounded-b-none w-full sm:w-[38.375rem] h-auto rounded-[37px] flex flex-col justify-center">
                     <div className="mb-4 sm:mb-4 text-white text-2xl sm:text-2xl font-semibold text-left">
                         {OurVisionData?.title}

@@ -3,9 +3,11 @@
 import React, { useState } from 'react'
 import './ClientsData.css'
 import Button from '../Common/Button/Button';
+import Link from 'next/link';
 
 interface ClientDetail {
     attributes: {
+        website: string;
         image: {
             data: {
                 attributes: {
@@ -54,11 +56,13 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                     {clientDestails && clientDestails.map((client: ClientDetail, index: number) => (
                         <div key={index} className={`client-block h-full max-w-[60%] mx-auto flex justify-center items-center py-8 ${activeTab === index ? '' : 'hidden'}`}>
                             <div className='client-block-img mr-[-10%] w-1/3 h-[320px] bg-[#FFEAEC] rounded-3xl z-10 flex justify-center items-center'>
-                                <img
-                                    className='md:w-[100%] w-1/2 mx-auto'
-                                    alt={`client-logo-${index}`}
-                                    src={`${client?.attributes?.image?.data?.attributes?.url}`}
-                                />
+                                <Link href={client?.attributes?.website} target="_blank" rel="noopener noreferrer">
+                                    <img
+                                        className='md:w-[100%] w-1/2 mx-auto'
+                                        alt={`client-logo-${index}`}
+                                        src={`${client?.attributes?.image?.data?.attributes?.url}`}
+                                    />
+                                </Link>
                             </div>
                             <div className='client-block-content relative w-2/3 h-[420px] bg-[#F0F0F9] dark:bg-[#242424] rounded-[3rem] flex items-center big-container'>
                                 <div className='client-block-content-text z-20 pl-36 max-w-[90%]'>
