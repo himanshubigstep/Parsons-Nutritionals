@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './AboutInfrastructure.css';
 import Button from '../../Common/Button/Button';
 
@@ -29,13 +29,26 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
     const InfrastructureData = aboutUsPageInfrastructureValue
 
     const [activeTab, setActiveTab] = useState(0);
+    const buttonRef = useRef<HTMLDivElement | null>(null);
 
     const handlePrevTab = () => {
         setActiveTab((prev) => (prev === 0 ? InfrastructureData.length - 1 : prev - 1));
+        scrollToTab(activeTab === 0 ? InfrastructureData.length - 1 : activeTab - 1);
     };
 
     const handleNextTab = () => {
         setActiveTab((prev) => (prev === InfrastructureData.length - 1 ? 0 : prev + 1));
+        scrollToTab(activeTab === InfrastructureData.length - 1 ? 0 : activeTab + 1);
+    };
+
+    const scrollToTab = (index: number) => {
+        if (buttonRef.current) {
+            const button = buttonRef.current.children[index] as HTMLElement;
+            buttonRef.current.scrollTo({
+                left: button.offsetLeft - buttonRef.current.offsetLeft,
+                behavior: 'smooth',
+            });
+        }
     };
 
     return (
@@ -98,7 +111,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                 </div>
                 {/* Tab navigation */}
                 <div className="flex justify-center gap-4 mb-4 scroll-button relative">
-                    <div className='flex max-w-[80%] mx-auto gap-2 scroll-button-tab'>
+                    <div ref={buttonRef} className='flex max-w-[80%] mx-auto gap-2 overflow-auto'>
                         {InfrastructureData && InfrastructureData.map((detail: InfrastructureDetail, index: number) => (
                             <Button
                                 key={index}

@@ -48,13 +48,13 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
     return (
         <div className='relative w-full max-w-[1280px] md:h-[560px] mx-auto pb-32 md:pb-0'>
             <div className="relative w-full max-w-[1280px] mx-auto">
-                <div className="relative md:h-[480px] overflow-hidden flex justify-evenly items-center">
+                <div className="relative md:h-[480px] h-[240px] overflow-hidden flex justify-evenly items-center">
                     {HomePageSliderData && HomePageSliderData?.media?.data?.map((item: ImageData, index: number) => (
                         <div
                             key={index}
                             className={`w-full max-w-full h-full mx-auto rounded-3xl md:absolute inset-0 transform transition-transform duration-500 ${index === currentIndex ? 'translate-x-0 image-centered' : index === previousIndex && currentIndex > previousIndex ? '-translate-x-full left-image' : 'translate-x-full right-image'}`}
                         >
-                            <img src={`${item.attributes.formats.large.url}`} alt={`Slide ${index}`} className="w-full md:h-full object-cover rounded-3xl" />
+                            <img src={`${item.attributes.formats.large.url}`} alt={`Slide ${index}`} className="w-full md:h-full h-full object-cover rounded-3xl" />
                         </div>
                     ))}
                 </div>
