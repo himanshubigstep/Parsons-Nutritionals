@@ -11,14 +11,14 @@ const BoxSectionContainerReverse = ({ contactSections }: { contactSections: any 
   return (
     <div className="w-full max-w-[1280px] mx-auto md:py-24 py-8">
       <div className="w-full flex flex-col md:flex-row justify-center items-center">
-          <div className="w-[95%] md:w-[45%] md:h-[520px] rounded-[3.75rem] z-10">
+          <div className="w-[95%] md:w-[45%] md:h-[520px] md:rounded-[3.75rem] rounded-lg z-10">
             <img
-              className="w-full h-full object-cover rounded-[3.75rem] ml-0 md:ml-[10%] mt-0 md:mt-[-10%]"
+              className="w-full h-full object-cover md:rounded-[3.75rem] rounded-lg ml-0 md:ml-[10%] mt-0 md:mt-[-10%]"
               src={esgPageDataImage}
               alt=""
             />
           </div>
-          <div className="w-[95%] md:w-[55%] h-full mt-8 md:mt-0 md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-[3.75rem] flex flex-col py-8 px-8 justify-center">
+          <div className="w-[95%] md:w-[55%] h-full mt-0 md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 md:rounded-[3.75rem] rounded-lg flex flex-col md:py-8 md:px-8 p-12 justify-center">
             <div className="w-full flex flex-col md:pl-[10%]">
                 <h3 className="font-semibold text-2xl md:text-2xl mb-4">{esgPageDataContent?.title}</h3>
                 <div className="font-medium uppercase text-md mb-4">

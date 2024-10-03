@@ -23,13 +23,13 @@ const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData,
     };
 
     return (
-        <div className='relative w-full md:h-[480px] max-w-full flex flex-col justify-center items-center'>
+        <div className='relative w-full md:h-[480px] h-[320px] max-w-full flex flex-col justify-center items-center'>
             <div
                 className={`absolute left-0 right-0 top-0 bottom-0 w-full h-full ${imageLoaded ? 'bg-transparent' : 'bg-gray-400'} opacity-50`}
             ></div>
             <img
                 src={bannerImage}
-                className={`w-full h-full md:max-h-full max-h-40 object-cover ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
+                className={`w-full h-full object-cover ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
                 alt='banner-image'
                 onLoad={handleImageLoad}
                 onError={handleImageError}

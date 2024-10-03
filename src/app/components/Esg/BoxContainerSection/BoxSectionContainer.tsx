@@ -9,12 +9,12 @@ const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections:
   const esgPageDataImage = contactSections?.Body[0]?.media?.data?.attributes?.formats?.medium?.url
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto md:py-24 pb-8 pt-24">
-      <div className="w-full flex flex-col md:flex-row justify-center items-center">
-        <div className="relative w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-[3.75rem] flex flex-col py-8 px-8 justify-center">
+    <div className="w-full max-w-[1280px] mx-auto md:py-24 pb-8 pt-8">
+      <div className="w-full flex flex-col-reverse md:flex-row justify-center items-center">
+        <div className="relative w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 md:rounded-[3.75rem] rounded-lg flex flex-col md:py-8 md:px-8 p-12 justify-center">
         {pdfFileUrl && (
-          <div className='absolute top-8 right-8'>
-            <a target='_blank' href={pdfFileUrl} download className='py-2 px-4 rounded-md bg-blue-500 hover:bg-blue-800 text-white text-md'>
+          <div className='absolute md:top-8 top-4 md:right-8 right-4'>
+            <a target='_blank' href={pdfFileUrl} download className='py-2 md:px-4 px-2 rounded-md bg-blue-500 hover:bg-blue-800 text-white text-md'>
               Download PDF
             </a>
           </div>
@@ -30,9 +30,9 @@ const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections:
             </div>
           </div>
         </div>
-        <div className="w-[95%] md:w-[45%] mx-auto md:h-[520px] rounded-[3.75rem]">
+        <div className="w-[95%] md:w-[45%] mx-auto md:h-[520px] md:rounded-[3.75rem] rounded-lg">
           <img
-            className="w-full h-full object-cover rounded-[3.75rem] ml-0 md:ml-[-15%] mt-8 md:mt-[10%]"
+            className="w-full h-full object-cover md:rounded-[3.75rem] rounded-lg ml-0 md:ml-[-15%] mt-8 md:mt-[10%]"
             src={esgPageDataImage}
             alt=""
           />

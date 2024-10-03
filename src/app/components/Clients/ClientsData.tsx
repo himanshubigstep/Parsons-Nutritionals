@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './ClientsData.css'
 import Button from '../Common/Button/Button';
 import Link from 'next/link';
@@ -30,23 +30,38 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
     const clientDestails = homePageClientValue
     const clientData = clientPageDataValue
     const [activeTab, setActiveTab] = useState(0);
+    const buttonRef = useRef<HTMLDivElement | null>(null);
     const handleTabChange = (index: React.SetStateAction<number>) => {
         setActiveTab(index);
     };
 
     const handlePrevTab = () => {
-        setActiveTab((prev) => (prev === 0 ? clientDestails.length - 1 : prev - 1));
+        const newIndex = (activeTab === 0 ? clientDestails.length - 1 : activeTab - 1);
+        setActiveTab(newIndex);
+        scrollToTab(newIndex);
     };
 
     const handleNextTab = () => {
-        setActiveTab((prev) => (prev === clientDestails.length - 1 ? 0 : prev + 1));
+        const newIndex = (activeTab === clientDestails.length - 1 ? 0 : activeTab + 1);
+        setActiveTab(newIndex);
+        scrollToTab(newIndex);
+    };
+
+    const scrollToTab = (index: number) => {
+        if (buttonRef.current) {
+            const button = buttonRef.current.children[index] as HTMLElement;
+            buttonRef.current.scrollTo({
+                left: button.offsetLeft - buttonRef.current.offsetLeft,
+                behavior: 'smooth',
+            });
+        }
     };
     return (
         <div className='relative w-full h-full bg-white dark:bg-black px-8 md:py-24 py-8'>
 
             <div className='w-full max-w-[1280px] mx-auto'>
-                <h1 className='text-center text-3xl font-bold mb-4 uppercase'>{clientData?.About?.title}</h1>
-                <p className='text-center max-w-[80%] mx-auto font-medium text-lg'>{clientData?.About?.content}</p>
+                <h1 className='md:text-center text-3xl md:font-bold mb-4 uppercase'>{clientData?.About?.title}</h1>
+                <p className='md:text-center md:max-w-[80%] mx-auto md:font-medium text-lg'>{clientData?.About?.content}</p>
             </div>
 
             <div className='relative w-full h-full mx-auto'>
@@ -66,10 +81,10 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                             </div>
                             <div className='client-block-content relative w-2/3 h-[420px] bg-[#F0F0F9] dark:bg-[#242424] rounded-[3rem] flex items-center big-container'>
                                 <div className='client-block-content-text z-20 pl-36 max-w-[90%]'>
-                                    <h1 className='relative text-xl font-bold mb-2'>
+                                    <h1 className='relative text-xl md:font-bold mb-2'>
                                         {client?.attributes?.name}
                                     </h1>
-                                    <p className='text-md font-medium text-justify md:line-clamp-none line-clamp-[10]'>
+                                    <p className='text-md md:font-medium text-justify md:line-clamp-none line-clamp-[10]'>
                                         {client?.attributes?.description}
                                     </p>
                                 </div>
@@ -80,12 +95,12 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                 </div>
                 {/* Tab navigation */}
                 <div className="flex justify-center gap-4 mb-4 scroll-button relative max-w-[1280px] mx-auto">
-                    <div className='flex md:max-w-[80%] max-w-[70%] mx-auto gap-2 scroll-button-tab'>
+                    <div ref={buttonRef} className='flex md:max-w-[80%] max-w-[70%] mx-auto gap-2 scroll-button-tab overflow-auto'>
                         {clientDestails && clientDestails.map((detail: ClientDetail, index: number) => (
                             <Button
                                 key={index}
                                 className={`text-md flex items-center px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 text-gray-800'}`}
-                                onClick={() => setActiveTab(index)}
+                                onClick={() => handleTabChange(index)}
                             >
                                 {detail?.attributes?.name}
                             </Button>
@@ -102,9 +117,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                         </Button>
                     </div>
                 </div>
-
             </div>
-
         </div>
     )
 }

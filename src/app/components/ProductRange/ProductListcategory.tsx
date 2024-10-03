@@ -51,7 +51,7 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
 }) => {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
 
   // Reset to the first page if the product content or total items change
   useEffect(() => {
@@ -84,7 +84,7 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
         <p className='text-md font-medium'>{content}</p>
       </div>
 
-      <div className='product-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8'>
+      <div className='product-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8'>
         {currentProducts.map((product) => (
           <div
             key={product.id}
@@ -94,7 +94,7 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
             <img
               src={product.attributes.media.data.attributes.url}
               alt={product.attributes.name}
-              className="w-full h-[200px] rounded-xl mb-4 object-contain"
+              className="w-full md:h-[200px] h-[80px] rounded-xl mb-4 object-contain"
             />
             <h3 className="text-md font-semibold mb-2">{product.attributes.name}</h3>
           </div>

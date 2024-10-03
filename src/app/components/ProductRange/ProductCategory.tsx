@@ -50,7 +50,7 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
   };
 
   return (
-    <div className="relative w-[95%] mx-auto md:w-[25%] dark:border-r-[1px] dark:border-gray-700">
+    <div className="relative w-[95%] mx-auto md:w-[25%] border-r-[1px] border-solid border-gray-300 dark:border-r-[1px] dark:border-gray-700">
       <div className="md:hidden flex items-center justify-between py-4 md:px-8 px-4">
         <h2 className='text-2xl font-bold'>Products Type</h2>
         <button onClick={toggleMenu} className="text-2xl">
@@ -58,15 +58,15 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
         </button>
       </div>
 
-      <div className={`relative flex flex-col gap-8 h-full md:h-auto border-r-2 px-8 ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
-        <ul className='flex flex-col gap-6'>
+      <div className={`relative flex flex-col gap-8 h-full md:h-auto px-8 ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
+        <ul className='flex flex-col gap-8'>
           {productTypesWithAll.map((productType) => (
             <li
               key={productType.id}
-              className={`text-md font-medium cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} 
+              className={`text-md font-medium cursor-pointer capitalize flex justify-between ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} 
               onClick={() => handleProductTypeClick(productType.attributes.name)}
             >
-              {productType.attributes.name} ({productTypeCount[productType.attributes.name] || 0})
+              {productType.attributes.name} <span className={`text-md font-normal cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : 'text-gray-400'}`}>({productTypeCount[productType.attributes.name] || 0})</span>
             </li>
           ))}
         </ul>

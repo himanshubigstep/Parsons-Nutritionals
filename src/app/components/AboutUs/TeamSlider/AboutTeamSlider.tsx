@@ -101,7 +101,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
           </div>
         ))}
         {pageCount > 1 && (
-          <div className="absolute top-[50%] transform translate-y-[-50%] right-0 space-x-2">
+          <div className="absolute top-[50%] transform translate-y-[-50%] right-4 left-4 flex justify-between space-x-2">
             {currentPage > 0 && (
               <button onClick={handlePrevPage} className="h-[3rem] w-[3rem] sm:w-[40px] md:w-[5rem] bg-[#0059DF] opacity-[0.7] rounded-l-[5px] text-white font-medium text-5xl">
                 {'<'}
