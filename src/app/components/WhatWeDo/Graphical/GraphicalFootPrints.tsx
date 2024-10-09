@@ -24,7 +24,7 @@ const GraphicalFootPrints = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => {
                             <h3 className='font-bold text-2xl'>{block?.content}</h3>
                         </div>
                     ))}
-                    <div className='flex justify-center items-center flex-col w-[45%] md:w-[40%] h-[150px] bg-[#F0F0F9] dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-xl'>
+                    <div className='flex justify-center items-center flex-col w-[45%] md:w-[45%] h-[150px] bg-[#F0F0F9] dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-xl'>
                         <p className='text-center md:font-bold font-medium text-2xl'>{footPrintsLogoBlocks?.title}</p>
                         <div className='w-full flex justify-center items-center gap-4 mt-2'>
                             {footPrintsLogoBlocks && footPrintsLogoBlocks?.logos?.data.map((logo: any, index: number) => (

@@ -70,7 +70,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
 
                     {clientDestails && clientDestails.map((client: ClientDetail, index: number) => (
                         <div key={index} className={`client-block h-full max-w-[60%] mx-auto flex justify-center items-center py-8 ${activeTab === index ? '' : 'hidden'}`}>
-                            <div className='client-block-img mr-[-10%] w-1/3 h-[320px] bg-[#FFEAEC] rounded-3xl z-10 flex justify-center items-center'>
+                            <div className='client-block-img mr-[-10%] w-1/3 h-[320px] bg-white rounded-3xl z-10 flex justify-center items-center'>
                                 <Link href={client?.attributes?.website} target="_blank" rel="noopener noreferrer">
                                     <img
                                         className='md:w-[100%] w-1/2 mx-auto'

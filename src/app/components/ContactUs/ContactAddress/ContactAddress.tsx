@@ -29,19 +29,19 @@ const ContactAddress = ({contactPageData}: {contactPageData: any}) => {
               {contactPageDetails?.Address?.content}
             </span>
           </div>
-          <div className='w-full h-auto flex items-center gap-4'>
-            <span className='w-[7rem] flex gap-2 rounded-full text-white text-md font-medium'>
-              <img
-                className='bg-white flex w-[2rem] h-[2rem] object-contain rounded-full filter invert p-[5px]'
-                src={contactPageDetails?.Phone?.icon?.data?.attributes?.formats?.small?.url}
-                alt={contactPageDetails?.Phone?.icon?.data?.attributes?.formats?.small?.name}
-              />
-              {contactPageDetails?.Phone?.title}
-            </span>
-            <span className='flex gap-2 rounded-full text-white text-md font-medium'>
-              {contactPageDetails?.Phone?.content}
-            </span>
-          </div>
+            {/* <div className='w-full h-auto flex items-center gap-4'>
+              <span className='w-[7rem] flex gap-2 rounded-full text-white text-md font-medium'>
+                <img
+                  className='bg-white flex w-[2rem] h-[2rem] object-contain rounded-full filter invert p-[5px]'
+                  src={contactPageDetails?.Phone?.icon?.data?.attributes?.formats?.small?.url}
+                  alt={contactPageDetails?.Phone?.icon?.data?.attributes?.formats?.small?.name}
+                />
+                {contactPageDetails?.Phone?.title}
+              </span>
+              <span className='flex gap-2 rounded-full text-white text-md font-medium'>
+                {contactPageDetails?.Phone?.content}
+              </span>
+            </div> */}
         </div>
       </div>
     </div>

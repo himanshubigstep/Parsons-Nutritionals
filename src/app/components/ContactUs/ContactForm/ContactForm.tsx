@@ -36,7 +36,11 @@ const ContactForm = () => {
     };
 
     const handleClick = async () => {
-        const emptyFields = Object.entries(formData).filter(([key, value]) => value.trim() === '').map(([key]) => key);
+        const emptyFields = Object.entries(formData)
+        .filter(([key, value]) => 
+            (key !== 'mobile' && key !== 'website') && value.trim() === ''
+        )
+        .map(([key]) => key);
         
         if (emptyFields.length > 0) {
             const fieldWithError = emptyFields[0];
@@ -47,7 +51,7 @@ const ContactForm = () => {
             return;
         }
 
-        if (!validateMobile(formData.mobile)) {
+        if (formData.mobile && !validateMobile(formData.mobile)) {
             setErrors((prevState) => ({
                 ...prevState,
                 mobile: 'Please enter a valid mobile number'
@@ -93,12 +97,12 @@ const ContactForm = () => {
         value: string;
         onChange: (value: string) => void;
     }[] = [
-        { name: 'name', type: "text", label: "Name", placeholder: "Enter Your Name", value: formData.name, onChange: handleInputChange('name') },
-        { name: 'email', type: "email", label: "Email", placeholder: "Enter Your Email", value: formData.email, onChange: handleInputChange('email') },
+        { name: 'name', type: "text", label: "Name*", placeholder: "Enter Your Name", value: formData.name, onChange: handleInputChange('name') },
+        { name: 'email', type: "email", label: "Email*", placeholder: "Enter Your Email", value: formData.email, onChange: handleInputChange('email') },
         { name: 'mobile', type: "text", label: "Mobile Number", placeholder: "Enter Your Mobile Number", value: formData.mobile, onChange: handleInputChange('mobile') },
-        { name: 'city', type: "text", label: "City", placeholder: "Enter Your City", value: formData.city, onChange: handleInputChange('city') },
-        { name: 'country', type: "text", label: "Country", placeholder: "Enter Your Country", value: formData.country, onChange: handleInputChange('country') },
-        { name: 'company_name', type: "text", label: "Company Name", placeholder: "Enter Your Company Name", value: formData.company_name, onChange: handleInputChange('company_name') },
+        { name: 'city', type: "text", label: "City*", placeholder: "Enter Your City", value: formData.city, onChange: handleInputChange('city') },
+        { name: 'country', type: "text", label: "Country*", placeholder: "Enter Your Country", value: formData.country, onChange: handleInputChange('country') },
+        { name: 'company_name', type: "text", label: "Company Name*", placeholder: "Enter Your Company Name", value: formData.company_name, onChange: handleInputChange('company_name') },
         { name: 'website', type: "text", label: "Website", placeholder: "Enter Your Website", value: formData.website, onChange: handleInputChange('website') },
         { name: 'service_requirements', type: "textarea", label: "Describe Your Service Requirements in Detail*", placeholder: "Describe Your Service Requirements in Detail*", value: formData.service_requirements, onChange: handleInputChange('service_requirements') }
     ];
