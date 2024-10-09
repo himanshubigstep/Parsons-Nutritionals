@@ -10,9 +10,10 @@ interface Location {
 
 interface MapCanvasProps {
   locations: Location[];
+  applyFilter?: boolean;
 }
 
-const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [] }) => {
+const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
 
@@ -29,6 +30,12 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [] }) => {
     mapImage.onload = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
+
+      if (applyFilter) {
+        ctx.filter = 'invert(1)';
+        ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
+        ctx.filter = 'none'; // Reset the filter
+      }
 
       const imageWidth = canvas.width;
       const imageHeight = canvas.height;
@@ -121,8 +128,8 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [] }) => {
       {hoveredLocation && (
         <div style={{
           position: 'absolute',
-          left: '50%', // Center horizontally
-          top: '20%', // Adjust as needed
+          left: '50%',
+          top: '20%',
           backgroundColor: 'white',
           border: '1px solid gray',
           padding: '5px',
