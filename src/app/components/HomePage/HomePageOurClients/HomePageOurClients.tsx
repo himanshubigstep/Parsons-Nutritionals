@@ -36,7 +36,7 @@ const HomePageOurClients = ({homePageDataValue, homePageClientValue}: {homePageD
                   <img
                     src={`${item?.attributes?.image?.data?.attributes?.url}`}
                     alt={`Carousel image ${index + 1}`}
-                    className="md:w-full md:h-full w-20 h-20 object-contain mx-2 dark:invert"
+                    className="md:w-40 md:h-24 w-20 h-20 object-contain mx-2 dark:invert"
                   />
                 </Link>
               </div>
