@@ -90,10 +90,36 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         });
       };
 
-      // Add mouse move event listener
+      // Handle click event
+      const handleClick = (event: MouseEvent) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+
+        locations.forEach(({ Latitude, Longitude, LocationName }) => {
+          const latitude = parseLatitude(Latitude);
+          const longitude = parseLongitude(Longitude);
+
+          if (!isNaN(latitude) && !isNaN(longitude)) {
+            const x = ((longitude - longMin) / longRange) * imageWidth;
+            const y = ((latMax - latitude) / latRange) * imageHeight;
+
+            // Check if mouse is within the circle (click detection)
+            const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
+            if (distance < 10) { // Radius for click detection
+              window.location.href = 'about-us/#locations'; // Redirect to the locations section
+            }
+          }
+        });
+      };
+
+      // Add event listeners
       canvas.addEventListener('mousemove', handleMouseMove);
+      canvas.addEventListener('click', handleClick);
+      
       return () => {
         canvas.removeEventListener('mousemove', handleMouseMove);
+        canvas.removeEventListener('click', handleClick);
       };
     };
 
@@ -128,13 +154,11 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       {hoveredLocation && (
         <div style={{
           position: 'absolute',
-          left: '50%',
-          top: '20%',
+          top: '0',
           backgroundColor: 'white',
           border: '1px solid gray',
           padding: '5px',
           borderRadius: '5px',
-          transform: 'translate(-50%, -100%)'
         }}>
           {hoveredLocation.LocationName}
         </div>
