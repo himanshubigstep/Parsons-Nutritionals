@@ -13,7 +13,7 @@ const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections:
       <div className="w-full flex flex-col-reverse md:flex-row justify-center items-center">
         <div className="relative w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 md:rounded-[3.75rem] rounded-lg flex flex-col md:py-8 md:px-8 p-12 justify-center">
         {pdfFileUrl && (
-          <div className='absolute md:top-8 top-4 md:right-8 right-4'>
+          <div className='absolute md:bottom-8 bottom-4 md:right-8 right-4'>
             <a target='_blank' href={pdfFileUrl} download className='py-2 md:px-4 px-2 rounded-md bg-blue-500 hover:bg-blue-800 text-white text-md'>
               Download PDF
             </a>
