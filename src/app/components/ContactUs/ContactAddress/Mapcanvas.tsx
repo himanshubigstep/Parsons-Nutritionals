@@ -150,7 +150,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
 
   return (
     <div style={{ position: 'relative' }}>
-      <canvas ref={canvasRef} width={500} height={600} />
+      <canvas className='india-map' ref={canvasRef} width={500} height={600} />
       {hoveredLocation && (
         <div style={{
           position: 'absolute',

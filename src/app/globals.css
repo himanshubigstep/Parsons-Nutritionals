@@ -32,3 +32,9 @@ body {
     text-wrap: balance;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .india-map {
+    max-width: 100%;
+  }
+}
