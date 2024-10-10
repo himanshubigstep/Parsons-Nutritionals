@@ -17,7 +17,7 @@ const GraphicalFootPrints = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => {
                 <div className='map-india w-[95%] md:w-1/3 h-full mx-auto relative'>
                     <ContactCities mapLocations = {whatWeDoDataValue?.Footprint?.MapLocation} applyFilter={true} />
                 </div>
-                <div className='map-containers flex flex-wrap gap-4 w-full md:w-2/3 h-full justify-end'>
+                <div className='map-containers flex flex-wrap gap-4 w-full md:w-2/3 h-full md:justify-end justify-center'>
                     {footPrintsBlocks && footPrintsBlocks.map((block: any, index: number) => (
                         <div key={index} className='flex flex-col justify-center items-center w-[45%] md:w-[45%] h-[150px] bg-[#F0F0F9] dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-xl'>
                             <p className='text-center md:font-bold font-medium text-xl mb-2'>{block?.title}</p>
