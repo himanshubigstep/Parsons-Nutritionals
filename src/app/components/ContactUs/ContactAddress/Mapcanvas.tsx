@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import indiaImage from '../../../assets/home-page/cities-map-india.png';
+import indiaImage from '../../../assets/home-page/india-map.svg';
 
 interface Location {
   Latitude: string;
@@ -31,11 +31,11 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
 
-      if (applyFilter) {
-        ctx.filter = 'invert(1)';
-        ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
-        ctx.filter = 'none'; // Reset the filter
-      }
+      // if (applyFilter) {
+      //   ctx.filter = 'invert(1)';
+      //   ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
+      //   ctx.filter = 'none'; // Reset the filter
+      // }
 
       const imageWidth = canvas.width;
       const imageHeight = canvas.height;
@@ -159,6 +159,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
           border: '1px solid gray',
           padding: '5px',
           borderRadius: '5px',
+          color: 'black',
         }}>
           {hoveredLocation.LocationName}
         </div>
