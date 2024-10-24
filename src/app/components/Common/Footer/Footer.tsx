@@ -138,16 +138,16 @@ const Footer = () => {
             <div className="w-full max-w-[1280px] mx-auto flex flex-col items-start justify-start box-border text-gray-300">
                 <div className="self-stretch flex flex-col lg:flex-row items-center justify-start pt-[2rem] px-[0rem] gap-[2rem] border-t-[1px] border-solid border-gray-600">
                     <div className="flex-1 relative text-md">
-                        © 2015 Parsons Nutritionals. All rights reserved
+                        © 2024 Parsons Nutritionals. All rights reserved
                     </div>
-                    <div className="w-[14.188rem] relative flex items-center justify-end gap-5">
+                    {/* <div className="w-[14.188rem] relative flex items-center justify-end gap-5">
                         <Link href='terms-conditions' className="text-md">
                             Terms
                         </Link>
                         <Link href='privacy-policy' className="text-md">
                             Privacy
                         </Link>
-                    </div>
+                    </div> */}
                     {/* <div className="flex flex-row items-center justify-start">
                         <div className="flex flex-row items-center justify-start gap-[1.5rem]">
                             <Image
