@@ -38,7 +38,7 @@ const Clients = () => {
 
   const contactSections = clientPageDataValue;
   const bannerImage = imageBaseUrl + clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url;
-
+  
   return (
     <main className="flex min-h-screen flex-col items-center">
       <TopBanner bannerImage={bannerImage} />

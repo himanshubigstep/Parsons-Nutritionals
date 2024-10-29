@@ -104,6 +104,7 @@ export default function AboutUs() {
   const contactSections = aboutUsPageDataValue;
   const bannerImage = imageBaseUrl + aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
   const BannerContainerData = aboutUsPageDataValue?.Header?.content;
+  
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#F0F0F9] dark:bg-black">

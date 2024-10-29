@@ -18,9 +18,12 @@ const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData,
     };
 
     const handleImageError = () => {
-        setImageError(true);
+        // setImageError(true);
         setImageLoaded(true); // To ensure the gray background remains if image fails to load
-    };
+    };    
+    
+    console.log(imageLoaded,'error');
+    
 
     return (
         <div className='relative w-full md:h-[480px] h-[320px] max-w-full flex flex-col justify-center items-center'>
@@ -30,7 +33,7 @@ const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData,
             <img
                 src={bannerImage}
                 className={`w-full h-full object-cover ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
-                alt='banner-image'
+                alt=''
                 onLoad={handleImageLoad}
                 onError={handleImageError}
             />
