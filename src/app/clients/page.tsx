@@ -33,7 +33,7 @@ const Clients = () => {
 
     fetchDataFromApi();
     fetchHomePageClientData();
-  }, [clientPageDataValue, homePageClientValue]);
+  }, []);
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
   const contactSections = clientPageDataValue;
