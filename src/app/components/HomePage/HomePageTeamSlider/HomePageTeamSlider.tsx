@@ -50,6 +50,9 @@ const HomePageTeamSlider = ({homePageDataValue, homePageMembersValue}: {homePage
         setCurrentIndex(index);
     };
 
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
+
     return (
         <div className='relative w-full max-w-[1280px] mx-auto h-full md:h-[42rem] md:py-24 py-8'>
             <div className='w-full flex justify-center items-center text-2xl text-black font-bold'>
@@ -62,7 +65,7 @@ const HomePageTeamSlider = ({homePageDataValue, homePageMembersValue}: {homePage
                 {TeamSliderData && TeamSliderData.map((member: TeamMember, index: number) => (
                     <div key={index} onClick={() => handleClick(index)} className={`bg-white dark:bg-black dark:border-2 dark:border-gray-700 h-full rounded-2xl md:w-[70%] w-full flex flex-col md:flex-row justify-between items-center px-4 py-4 gap-4 transition-transform duration-500 ${index === currentIndex ? 'opacity-100 w-[70%]' : 'opacity-20 w-[15%] absolute'}`} style={{ transform: `translateX(${(index - currentIndex) * 100}%)`, marginLeft: index === 0 ? '0' : '1rem', marginRight: index === TeamSliderData.length - 1 ? '0' : '1rem' }}>
                         <div className='w-[95%] md:w-1/3 h-full bg-[#0059D5] rounded-2xl'>
-                            <img src={`${member?.attributes?.image?.data?.attributes?.formats?.medium?.url}`} alt='' className='w-full h-full rounded-2xl object-cover' />
+                            <img src={`${imageBaseUrl}${member?.attributes?.image?.data?.attributes?.formats?.medium?.url}`} alt='' className='w-full h-full rounded-2xl object-cover' />
                         </div>
                         <div className='w-[95%] md:w-2/3 h-full flex flex-col'>
                             <div className='w-full relative px-4 py-4 marker-list'>

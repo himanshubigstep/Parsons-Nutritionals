@@ -17,6 +17,7 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
     const HomePageSliderData = homePageDataValue?.Header;
     const [currentIndex, setCurrentIndex] = useState(0);
     const [previousIndex, setPreviousIndex] = useState(0);
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
     const goToPrevious = () => {
         setPreviousIndex(currentIndex);
@@ -54,7 +55,7 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
                             key={index}
                             className={`w-full max-w-full h-full mx-auto rounded-3xl md:absolute inset-0 transform transition-transform duration-500 ${index === currentIndex ? 'translate-x-0 image-centered' : index === previousIndex && currentIndex > previousIndex ? '-translate-x-full left-image' : 'translate-x-full right-image'}`}
                         >
-                            <img src={`${item.attributes.formats.large.url}`} alt={`Slide ${index}`} className="w-full md:h-full h-full object-cover rounded-3xl" />
+                            <img src={`${imageBaseUrl}${item.attributes.formats.large.url}`} alt={`Slide ${index}`} className="w-full md:h-full h-full object-cover rounded-3xl" />
                         </div>
                     ))}
                 </div>

@@ -22,9 +22,10 @@ const ContactUs = () => {
 
     fetchDataFromApi();
   }, []);
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
   const BannerContainerData = contactPageData?.Header?.content;
-  const bannerImage = contactPageData?.Header?.media?.data?.attributes?.formats?.large?.url;
+  const bannerImage = imageBaseUrl + contactPageData?.Header?.media?.data?.attributes?.formats?.large?.url;
 
   return (
     <main className="flex min-h-screen flex-col items-center">

@@ -3,12 +3,13 @@ import './AboutStreangth.css'
 
 const AboutUsStrength = ({ aboutUsPageDataValue }: { aboutUsPageDataValue: any }) => {
     const strengthsData = aboutUsPageDataValue?.Strengths
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
     return (
         <div className='max-w-[1280px] mx-auto w-full px-8 py-8 flex justify-center md:mb-8 our-strength'>
             <div className='w-[40%] md:h-[42rem] rounded-3xl px-8 py-8 z-10 flex flex-col gap-8 items-start our-strength-img'>
                 <h2 className='text-2xl font-extrabold'>{strengthsData?.title}</h2>
                 <img
-                    src={strengthsData?.media?.data?.attributes?.formats?.small?.url}
+                    src={imageBaseUrl + strengthsData?.media?.data?.attributes?.formats?.small?.url}
                     alt='infrastructure'
                     className='w-full h-full min-h-24 object-contain rounded-3xl'
                 />

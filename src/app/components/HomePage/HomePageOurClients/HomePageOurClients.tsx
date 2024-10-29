@@ -18,6 +18,8 @@ interface ImageData {
 
 const HomePageOurClients = ({ homePageDataValue, homePageClientValue }: { homePageDataValue: any, homePageClientValue: any }) => {
   const OurClientsPartnerData = homePageDataValue?.CustomerSection;
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
   const OurClientDataValue = homePageClientValue;
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
@@ -48,7 +50,7 @@ const HomePageOurClients = ({ homePageDataValue, homePageClientValue }: { homePa
             <div key={index} className="min-w-[150px] sm:min-w-[240px] h-[100px] sm:h-[140px] px-2 sm:px-4 py-2 sm:py-4 bg-white dark:bg-black rounded-lg flex justify-center items-center">
               <Link href={item?.attributes?.website} target="_blank" rel="noopener noreferrer">
                 <img
-                  src={item?.attributes?.image?.data?.attributes?.url}
+                  src={ imageBaseUrl + item?.attributes?.image?.data?.attributes?.url}
                   alt={item?.attributes?.name}
                   className="md:w-40 md:h-24 w-20 h-20 object-contain mx-2 dark:invert"
                 />
@@ -59,7 +61,7 @@ const HomePageOurClients = ({ homePageDataValue, homePageClientValue }: { homePa
             <div key={`clone-${index}`} className="min-w-[150px] sm:min-w-[240px] h-[100px] sm:h-[140px] px-2 sm:px-4 py-2 sm:py-4 bg-white dark:bg-black rounded-lg flex justify-center items-center">
               <Link href={item?.attributes?.website} target="_blank" rel="noopener noreferrer">
                 <img
-                  src={item?.attributes?.image?.data?.attributes?.url}
+                  src={ imageBaseUrl+ item?.attributes?.image?.data?.attributes?.url}
                   alt={item?.attributes?.name}
                   className="md:w-40 md:h-24 w-20 h-20 object-contain mx-2 dark:invert"
                 />

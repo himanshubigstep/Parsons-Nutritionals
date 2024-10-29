@@ -5,6 +5,8 @@ import './GraphicalFootPrints.css'
 const GraphicalFootPrints = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => {
     const footPrintsHeader = whatWeDoDataValue?.Footprint?.header
     const footPrintsBlocks = whatWeDoDataValue?.Footprint?.blocks
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
     const footPrintsLogoBlocks = whatWeDoDataValue?.Footprint?.LogoBlock
   return (
     <div className='relative w-full mx-auto bg-white dark:bg-black'>
@@ -31,7 +33,7 @@ const GraphicalFootPrints = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => {
                                 <img
                                     key={index}
                                     className='w-[35%]'
-                                    src={logo?.attributes?.formats?.medium?.url}
+                                    src={ imageBaseUrl + logo?.attributes?.formats?.medium?.url}
                                     alt=''
                                 />
                             ))}

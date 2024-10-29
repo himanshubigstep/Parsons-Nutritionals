@@ -1,7 +1,9 @@
 import React from 'react'
 
-const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => {
+const ManufacturingProcess = ({ whatWeDoDataValue }: { whatWeDoDataValue: any }) => {
     const manufacturingHeader = whatWeDoDataValue?.Breakthrough?.header
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
     const manufacturingData = whatWeDoDataValue?.Breakthrough?.Breakthrough
     return (
         <div className='w-full max-w-[1280px] mx-auto relative md:py-24 py-0 flex flex-col justify-center items-center'>
@@ -20,7 +22,7 @@ const ManufacturingProcess = ({whatWeDoDataValue}: {whatWeDoDataValue: any}) => 
                             <div className='content-box-image relative rounded-2xl w-full h-[72%] rounded-tl-2xl rounded-tr-2xl rounded-bl-0 rounded-br-0'>
                                 <img
                                     className='rounded-2xl w-full object-cover h-[24rem]'
-                                    src={process?.header?.image?.data?.attributes?.url}
+                                    src={`${imageBaseUrl}${process.header.image.data.attributes.url}`}
                                     alt='content-box-image'
                                 />
                                 <div className='absolute left-0 right-0 bottom-0 bg-[#0059DF] w-full flex items-center py-8 px-8 gap-2'>

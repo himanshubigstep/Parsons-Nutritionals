@@ -51,6 +51,8 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
         }
     };
 
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
     return (
         <div className='relative bg-white dark:bg-black w-full max-w-[1280px] mx-auto mb-16 rounded-3xl'>
             <div className='w-full overflow-hidden flex flex-col justify-between items-center px-8 py-8'>
@@ -61,7 +63,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                         <div key={index} className={`infrastructure-block w-full px-0 md:px-8 py-8 flex justify-center items-center ${activeTab === index ? '' : 'hidden'}`}>
                             <div className='infrastructure-block-img w-[40%] md:h-[420px] rounded-3xl bg-black mr-[-12%] z-10'>
                                 <img
-                                    src={detail.attributes?.media?.data?.attributes?.url}
+                                    src={imageBaseUrl + detail.attributes?.media?.data?.attributes?.url}
                                     alt='infrastructure'
                                     className='w-full h-full object-cover rounded-3xl'
                                 />

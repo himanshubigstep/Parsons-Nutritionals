@@ -3,10 +3,12 @@ import MarkdownIt from 'markdown-it'
 import '../HomePageWhatWeAre/HomePageWhatWeAre.css'
 
 const md = new MarkdownIt();
+const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
 const HomePageOurVisions = ({homePageDataValue}: {homePageDataValue:any}) => {
     const OurVisionData = homePageDataValue?.Vision?.content
-    const OurVisionDataImage = homePageDataValue?.Vision?.media?.data?.attributes?.formats?.large?.url
+    const OurVisionDataImage = imageBaseUrl + homePageDataValue?.Vision?.media?.data?.attributes?.formats?.large?.url
+    
     const content = typeof OurVisionData?.content === 'string' ? OurVisionData?.content : '';
     return (
         <div className="relative w-full md:w-full max-w-full mx-auto dark:pt-0">

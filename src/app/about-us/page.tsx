@@ -24,6 +24,7 @@ export default function AboutUs() {
   const [homePageAwardValue, setHomePageAwardValue] = useState(null);
   const [aboutUsPageInfrastructureValue, setaboutUsPageInfrastructureValue] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
   useEffect(() => {
     const fetchDataFromApis = async () => {
@@ -101,7 +102,7 @@ export default function AboutUs() {
   }, []);
 
   const contactSections = aboutUsPageDataValue;
-  const bannerImage = aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
+  const bannerImage = imageBaseUrl + aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
   const BannerContainerData = aboutUsPageDataValue?.Header?.content;
 
   return (

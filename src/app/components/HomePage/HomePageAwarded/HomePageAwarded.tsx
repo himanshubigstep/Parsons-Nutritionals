@@ -14,7 +14,8 @@ interface ImageData {
 
 const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDataValue: any, homePageAwardValue: any }) => {
     const AwardedDataTitle = homePageDataValue?.AwardSection?.title
-    const AwardedDataIcon = homePageDataValue?.AwardSection?.media?.data?.attributes?.formats?.medium?.url
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+    const AwardedDataIcon = imageBaseUrl +  homePageDataValue?.AwardSection?.media?.data?.attributes?.formats?.medium?.url
     const AwardImages = homePageAwardValue
 
     if (!AwardImages) {
@@ -50,7 +51,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
                                     key={index}
                                     className="w-full h-[100%] sm:h-[33.3%] rounded-2xl"
                                     alt={`Slider Image ${index + 1}`}
-                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
+                                    src={`${imageBaseUrl}${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
                                 />
                             ))}
                         </div>
@@ -62,7 +63,7 @@ const HomePageAwarded = ({ homePageDataValue, homePageAwardValue }: { homePageDa
                                     key={index}
                                     className="w-full h-[33.3%] rounded-2xl"
                                     alt={`Slider Image ${index + 1}`}
-                                    src={`${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
+                                    src={`${imageBaseUrl}${item?.attributes?.image?.data?.attributes?.formats?.thumbnail?.url}`}
                                 />
                             ))}
                         </div>

@@ -66,7 +66,7 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
 
   const openModal = (productId: string) => setSelectedProduct(productId);
   const closeModal = () => setSelectedProduct(null);
-
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentProducts = productPageContent.slice(startIndex, startIndex + itemsPerPage);
@@ -92,7 +92,7 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
             onClick={() => openModal(product.id)}
           >
             <img
-              src={product.attributes.media.data.attributes.url}
+              src={imageBaseUrl + product.attributes.media.data.attributes.url}
               alt={product.attributes.name}
               className="w-full md:h-[200px] h-[80px] rounded-xl mb-4 object-contain"
             />
@@ -104,32 +104,32 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
       {/* Conditional Pagination Controls */}
       {totalItems > itemsPerPage && (
         <div className="pagination flex flex-wrap justify-center gap-4 mt-16">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
-        >
-          Previous
-        </button>
-    
-        {Array.from({ length: totalPages }, (_, index) => (
           <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
           >
-            {index + 1}
+            Previous
           </button>
-        ))}
-    
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
-        >
-          Next
-        </button>
-      </div>
+
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+              className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded-lg transition duration-200 ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+          >
+            Next
+          </button>
+        </div>
       )}
 
       {selectedProduct && (
@@ -137,10 +137,11 @@ const ProductListcategory: React.FC<ProductCategoryProps> = ({
           <div className="modal bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 rounded-xl w-auto h-[80%] relative p-2">
             <span className="absolute top-4 right-4 cursor-pointer dark:text-black text-4xl" onClick={closeModal}>&times;</span>
             <img
-              src={productPageContent.find(product => product.id === selectedProduct)?.attributes?.media?.data?.attributes?.url}
+              src={`${imageBaseUrl}${productPageContent?.find(product => product.id === selectedProduct)?.attributes?.media?.data?.attributes?.url || ''}`}
               alt="Large Product"
               className="w-full h-full rounded-xl object-contain p-4"
             />
+
           </div>
         </div>
       )}

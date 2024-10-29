@@ -6,7 +6,9 @@ const md = new MarkdownIt();
 
 const BoxSectionContainerReverse = ({ contactSections }: { contactSections: any }) => {
   const esgPageDataContent = contactSections?.Body[1]?.content
-  const esgPageDataImage = contactSections?.Body[1]?.media?.data?.attributes?.formats?.medium?.url
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
+  const esgPageDataImage = imageBaseUrl + contactSections?.Body[1]?.media?.data?.attributes?.formats?.medium?.url
 
   return (
     <div className="w-full max-w-[1280px] mx-auto md:py-24 py-8">

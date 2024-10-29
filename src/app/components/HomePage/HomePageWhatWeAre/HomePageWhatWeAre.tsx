@@ -6,7 +6,9 @@ const md = new MarkdownIt();
 
 const HomePageWhatWeAre = ({ homePageDataValue }: { homePageDataValue: any }) => {
     const whatAreWeData = homePageDataValue?.WhatAreWe
-    const imageUrl = whatAreWeData?.media?.data?.attributes?.formats?.large?.url;
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
+    const imageUrl = imageBaseUrl +  whatAreWeData?.media?.data?.attributes?.formats?.large?.url;
     const content = typeof whatAreWeData?.content?.content === 'string' ? whatAreWeData?.content?.content : '';
     return (
         <div className="relative  flex-col-reverse sm:flex-row w-full max-w-[1280px] mx-auto md:py-24 py-8 flex flex-wrap justify-center items-center">

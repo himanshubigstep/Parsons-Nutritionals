@@ -19,7 +19,7 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
   onProductTypeClick,
 }) => {
   const productTypeCount: { [key: string]: number } = {};
-
+  
   if (productPageContent) {
     productPageContent.forEach((product: { attributes: { product_type: { data: { attributes: { name: string }; } }; }; }) => {
       const productTypeName = product?.attributes?.product_type?.data?.attributes?.name;
