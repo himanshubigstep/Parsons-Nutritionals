@@ -34,9 +34,10 @@ const Clients = () => {
     fetchDataFromApi();
     fetchHomePageClientData();
   }, [clientPageDataValue, homePageClientValue]);
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
   const contactSections = clientPageDataValue;
-  const bannerImage = clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url;
+  const bannerImage = imageBaseUrl + clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url;
 
   return (
     <main className="flex min-h-screen flex-col items-center">

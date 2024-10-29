@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 const AboutContact = ({ contactSections }: { contactSections: any }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
     const handleImageLoad = () => {
         setImageLoaded(true);
@@ -22,7 +23,7 @@ const AboutContact = ({ contactSections }: { contactSections: any }) => {
                 <img
                     className={`rounded-6xl w-full md:h-auto md:object-cover md:absolute left-0 right-0 top-0 bottom-0 h-full ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                     alt="Our Vision"
-                    src={contactSectionData?.media?.data?.attributes?.formats?.large?.url}
+                    src={ imageBaseUrl + contactSectionData?.media?.data?.attributes?.formats?.large?.url}
                     onLoad={handleImageLoad}
                     onError={handleImageError}
                 />

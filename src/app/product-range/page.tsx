@@ -54,7 +54,7 @@ const ProductRange = () => {
   const [selectedProductType, setSelectedProductType] = useState<string | null>(null);
   const [filteredProductPageContent, setFilteredProductPageContent] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
@@ -87,7 +87,7 @@ const ProductRange = () => {
     }
   };
 
-  const bannerImage = productPageHeaderData?.attributes?.Header?.cover?.data?.attributes?.formats?.large?.url;
+  const bannerImage = imageBaseUrl + productPageHeaderData?.attributes?.Header?.cover?.data?.attributes?.formats?.large?.url;
 
   const handleProductTypeClick = (productType: string) => {
     setSelectedProductType(productType);

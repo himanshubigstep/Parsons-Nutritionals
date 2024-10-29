@@ -6,7 +6,9 @@ const md = new MarkdownIt();
 
 const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections: any, pdfFileUrl: string }) => {
   const esgPageDataContent = contactSections?.Body[0]?.content
-  const esgPageDataImage = contactSections?.Body[0]?.media?.data?.attributes?.formats?.medium?.url
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
+  const esgPageDataImage = imageBaseUrl + contactSections?.Body[0]?.media?.data?.attributes?.formats?.medium?.url
 
   return (
     <div className="w-full max-w-[1280px] mx-auto md:py-24 pb-8 pt-8">

@@ -9,6 +9,7 @@ import { EsgPageData } from '../Api/Api'
 
 const ESG = () => {
   const [esgPageValue, setEsgPageValue] = useState<any>(null);
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -26,7 +27,7 @@ const ESG = () => {
 
   const contactSections = esgPageValue
 
-  const bannerImage = esgPageValue?.Header?.media?.data?.attributes?.formats?.large?.url
+  const bannerImage = imageBaseUrl + esgPageValue?.Header?.media?.data?.attributes?.formats?.large?.url
 
   const BannerContainerData = esgPageValue?.Header?.content
 

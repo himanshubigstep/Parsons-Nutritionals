@@ -76,6 +76,8 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
     return null;
   }
 
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
   return (
     <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 md:py-16 py-8'>
       <h1 className="text-2xl font-extrabold dark:text-white">Our Team</h1>
@@ -83,7 +85,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
         {aboutUsClientData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
           <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} md:w-[20%] w-[50%] relative rounded-xl transition-all duration-500 ease-in-out`}>
             <img
-              src={item?.attributes?.image?.data?.attributes?.formats?.medium?.url}
+              src={ imageBaseUrl + item?.attributes?.image?.data?.attributes?.formats?.medium?.url}
               alt='image'
               className={`w-full md:h-[480px] h-[360px] object-cover rounded-xl cursor-pointer`}
               onClick={() => handleClick(index + startIndex)}

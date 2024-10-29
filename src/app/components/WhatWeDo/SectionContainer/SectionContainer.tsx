@@ -6,7 +6,9 @@ const md = new MarkdownIt();
 
 const SectionContainer = ({ contactSections }: { contactSections: any }) => {
   const esgPageDataContent = contactSections?.ProjectsBody[0]?.content
-  const esgPageDataImage = contactSections?.ProjectsBody[0]?.media?.data?.attributes?.formats?.medium?.url
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
+  const esgPageDataImage = imageBaseUrl + contactSections?.ProjectsBody[0]?.media?.data?.attributes?.formats?.medium?.url
 
   return (
     <div className="w-full max-w-[1280px] mx-auto py-24">

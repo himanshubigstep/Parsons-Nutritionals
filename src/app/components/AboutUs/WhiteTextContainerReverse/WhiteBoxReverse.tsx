@@ -19,6 +19,8 @@ interface ImageData {
 
 const WhiteBoxReverse = ({ aboutUsPageDataValue }: { aboutUsPageDataValue: any }) => {
     const boxData = aboutUsPageDataValue?.BodyContent[1]
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+
     const boxDataLogo = aboutUsPageDataValue?.BodyContent[1]?.content?.logos?.data
     const content = typeof boxData?.content?.content === 'string' ? boxData?.content?.content : '';
     return (
@@ -32,7 +34,7 @@ const WhiteBoxReverse = ({ aboutUsPageDataValue }: { aboutUsPageDataValue: any }
             </ul>
             <div className='flex flex-col md:flex-row relative gap-4 mt-8 mb-8 text-md'>
                 {boxDataLogo && boxDataLogo.length > 0 && boxDataLogo.map((item: ImageData, index: number) => (
-                    <img className='h-[40px]' key={index} src={`${item?.attributes?.formats?.thumbnail?.url}`} alt={item?.attributes?.formats?.small?.url} />
+                    <img className='h-[40px]' key={index} src={`${imageBaseUrl}${item?.attributes?.formats?.thumbnail?.url}`} alt={item?.attributes?.formats?.small?.url} />
                 ))}
             </div>
         </div>

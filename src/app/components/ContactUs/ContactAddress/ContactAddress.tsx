@@ -8,7 +8,7 @@ const locations = [
 
 const ContactAddress = ({contactPageData}: {contactPageData: any}) => {
   const contactPageDetails = contactPageData
-
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
   return (
     <div className='w-[95%] mx-auto md:w-[50%] h-full md:py-8 md:px-8 py-2 px-2 relative mb-8 flex flex-col rounded-tl-[2rem] rounded-bl-[2rem] rounded-tr-[0] rounded-br-[0] bg-[#0059DF]'>
       <div className='w-full h-full py-16'>
@@ -20,7 +20,7 @@ const ContactAddress = ({contactPageData}: {contactPageData: any}) => {
             <span className='md:w-[15rem] w-[30rem] flex gap-2 rounded-full text-white text-md font-medium'>
               <img
                 className='bg-white flex w-[2rem] h-[2rem] object-contain rounded-full filter invert p-[5px]'
-                src={contactPageDetails?.Address?.icon?.data?.attributes?.formats?.small?.url}
+                src={ imageBaseUrl + contactPageDetails?.Address?.icon?.data?.attributes?.formats?.small?.url}
                 alt={contactPageDetails?.Address?.icon?.data?.attributes?.formats?.small?.name}
               />
               {contactPageDetails?.Address?.title}

@@ -15,6 +15,7 @@ import ChainsBodyReverse from '../components/WhatWeDo/ChainsBodyReverse/ChainsBo
 
 const WhatWeDo = () => {
   const [whatWeDoDataValue, setWhatWeDoDataValue] = useState<any>(null);
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -31,7 +32,7 @@ const WhatWeDo = () => {
   }, []);
 
   const BannerContainerDataContent = whatWeDoDataValue;
-  const bannerImage = whatWeDoDataValue?.Header?.media?.data?.attributes?.formats?.medium?.url;
+  const bannerImage = imageBaseUrl + whatWeDoDataValue?.Header?.media?.data?.attributes?.formats?.medium?.url;
   const contactSections = whatWeDoDataValue;
 
   const sections = [

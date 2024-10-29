@@ -34,7 +34,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
     const handleTabChange = (index: React.SetStateAction<number>) => {
         setActiveTab(index);
     };
-
+    const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
     const handlePrevTab = () => {
         const newIndex = (activeTab === 0 ? clientDestails.length - 1 : activeTab - 1);
         setActiveTab(newIndex);
@@ -75,7 +75,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                                     <img
                                         className='md:w-[100%] w-1/2 mx-auto'
                                         alt={`client-logo-${index}`}
-                                        src={`${client?.attributes?.image?.data?.attributes?.url}`}
+                                        src={`${imageBaseUrl}${client?.attributes?.image?.data?.attributes?.url}`}
                                     />
                                 </Link>
                             </div>
