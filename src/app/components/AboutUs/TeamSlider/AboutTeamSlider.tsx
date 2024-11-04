@@ -5,6 +5,7 @@ interface TeamMember {
   image: {
     data: {
       attributes: {
+        url: string;
         formats: {
           medium: {
             url: string;
@@ -85,7 +86,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
         {aboutUsClientData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
           <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} md:w-[20%] w-[50%] relative rounded-xl transition-all duration-500 ease-in-out`}>
             <img
-              src={ imageBaseUrl + item?.attributes?.image?.data?.attributes?.formats?.medium?.url}
+              src={ imageBaseUrl + item?.attributes?.image?.data?.attributes?.url}
               alt='image'
               className={`w-full md:h-[480px] h-[360px] object-cover rounded-xl cursor-pointer`}
               onClick={() => handleClick(index + startIndex)}
@@ -97,6 +98,9 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
                   <p className='font-medium'>
                     {item?.attributes?.role}
                   </p>
+                  <p className='font-medium text-sm mt-2'>
+                    {item?.attributes?.career_highlights}
+                  </p>
                 </div>
               </div>
             )}
@@ -105,7 +109,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
         {pageCount > 1 && (
           <div className="absolute top-[50%] transform translate-y-[-50%] right-4 left-4 flex justify-between space-x-2">
             {currentPage > 0 && (
-              <button onClick={handlePrevPage} className="h-[3rem] w-[3rem] sm:w-[40px] md:w-[5rem] bg-[#0059DF] opacity-[0.7] rounded-l-[5px] text-white font-medium text-5xl">
+              <button onClick={handlePrevPage} className="h-[3rem] w-[3rem] sm:w-[40px] md:w-[5rem] md:h-[5rem] bg-[#0059DF] opacity-[0.7] rounded-r-[5px] text-white font-medium text-5xl">
                 {'<'}
               </button>
             )}
