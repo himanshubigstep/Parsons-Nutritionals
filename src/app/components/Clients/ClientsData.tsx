@@ -100,7 +100,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                 </div>
                 {/* Tab navigation */}
                 <div className="flex justify-center gap-4 mb-4 scroll-button relative max-w-[1280px] mx-auto">
-                    <div ref={buttonRef} className='flex md:max-w-[80%] max-w-[70%] mx-auto gap-2 scroll-button-tab overflow-auto'>
+                    <div ref={buttonRef} className='flex md:max-w-[80%] max-w-[70%] mx-auto gap-2 scroll-button-tab md:overflow-hidden overflow-auto'>
                         {sortedClientDestails && sortedClientDestails.map((detail: ClientDetail, index: number) => (
                             <Button
                                 key={index}
