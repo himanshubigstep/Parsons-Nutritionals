@@ -120,7 +120,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                 </div>
                 {/* Tab navigation */}
                 <div className="flex justify-center gap-4 mb-4 scroll-button relative">
-                    <div ref={buttonRef} className='flex max-w-[80%] mx-auto gap-2 overflow-auto'>
+                    <div ref={buttonRef} className='flex max-w-[80%] mx-auto gap-2 md:overflow-hidden overflow-auto'>
                         {sortedInfrastructureData && sortedInfrastructureData.map((detail: InfrastructureDetail, index: number) => (
                             <Button
                                 key={index}
