@@ -46,7 +46,7 @@ const NavBar = () => {
                             alt=""
                             src={Logo}
                         />
-                        <p className='relative text-sm font-medium hidden md:block'>Parsons Nutritionals</p>
+                        <p className='relative text-sm font-medium hidden md:block'>A Mann Group Company</p>
                     </Link>
                 </div>
                 <div className="md:hidden flex flex-row items-start justify-start text-[1rem] text-base-white font-text-sm-regular">
@@ -60,7 +60,7 @@ const NavBar = () => {
                     <NavItem href="/">
                         Home
                     </NavItem>
-                    <NavItem href="/about-us" subMenuItems={['Vision and Values', 'Our Team', 'Timeline', 'Locations', 'Awards', 'Our Strength']}>
+                    <NavItem href="/about-us" subMenuItems={['Vision and Values', 'Management Team', 'Timeline', 'Locations', 'Awards', 'Our Strength']}>
                         About us
                     </NavItem>
                     <NavItem href="/clients">
@@ -90,7 +90,7 @@ const NavBar = () => {
                             <NavItem href="/">
                                 Home
                             </NavItem>
-                            <NavItem href="/about-us" subMenuItems={['Vision and Values', ' Our Team ', 'Timeline', 'Locations', 'Awards', 'Our Strength']}>
+                            <NavItem href="/about-us" subMenuItems={['Vision and Values', ' Management Team ', 'Timeline', 'Locations', 'Awards', 'Our Strength']}>
                                 About us
                             </NavItem>
                             <NavItem href="/clients">
