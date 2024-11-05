@@ -25,6 +25,8 @@ const ESG = () => {
     fetchDataFromApi();
   }, []);
 
+  console.log(esgPageValue)
+
   const contactSections = esgPageValue
 
   const bannerImage = imageBaseUrl + esgPageValue?.Header?.media?.data?.attributes?.formats?.large?.url
