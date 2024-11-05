@@ -19,7 +19,9 @@ interface TeamMember {
     [x: string]: any;
     name: string;
     role: string;
-    career_highlights?: string; // Assuming career_highlights is optional
+    position: string;
+    career_highlights?: string;
+    order?: number;
   };
 }
 
@@ -79,8 +81,11 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
     return null;
   }
 
-  // Sort aboutUsClientData by id in ascending order
-  const sortedData = [...aboutUsClientData].sort((a: TeamMember, b: TeamMember) => a.id - b.id);
+  const sortedTeamMembers = [...aboutUsClientData].sort((a, b) => {
+    const orderA = a?.attributes?.order ?? 0;
+    const orderB = b?.attributes?.order ?? 0;
+    return orderB - orderA;
+  });
 
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
@@ -88,8 +93,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
     <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 md:py-16 py-8'>
       <h1 className="text-2xl font-extrabold dark:text-white">Management Team</h1>
       <div className="w-full flex justify-center items-center gap-2 rounded-xl overflow-hidden relative">
-        {sortedData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
-          console.log(item?.attributes?.career_highlights),
+        {sortedTeamMembers.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
           <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} md:w-[20%] w-[50%] relative rounded-xl transition-all duration-500 ease-in-out`}>
             <img
               src={imageBaseUrl + item?.attributes?.image?.data?.attributes?.url}
