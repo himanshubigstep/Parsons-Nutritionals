@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './AboutTeamSlider.css';
 
 interface TeamMember {
+  id: number;
   image: {
     data: {
       attributes: {
@@ -18,6 +19,7 @@ interface TeamMember {
     [x: string]: any;
     name: string;
     role: string;
+    career_highlights?: string; // Assuming career_highlights is optional
   };
 }
 
@@ -77,16 +79,20 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
     return null;
   }
 
-  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+  // Sort aboutUsClientData by id in ascending order
+  const sortedData = [...aboutUsClientData].sort((a: TeamMember, b: TeamMember) => a.id - b.id);
+
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
   return (
     <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 md:py-16 py-8'>
       <h1 className="text-2xl font-extrabold dark:text-white">Our Team</h1>
       <div className="w-full flex justify-center items-center gap-2 rounded-xl overflow-hidden relative">
-        {aboutUsClientData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
+        {sortedData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
+          console.log(item?.attributes?.career_highlights),
           <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} md:w-[20%] w-[50%] relative rounded-xl transition-all duration-500 ease-in-out`}>
             <img
-              src={ imageBaseUrl + item?.attributes?.image?.data?.attributes?.url}
+              src={imageBaseUrl + item?.attributes?.image?.data?.attributes?.url}
               alt='image'
               className={`w-full md:h-[480px] h-[360px] object-cover rounded-xl cursor-pointer`}
               onClick={() => handleClick(index + startIndex)}
@@ -98,9 +104,17 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
                   <p className='font-medium'>
                     {item?.attributes?.role}
                   </p>
-                  <p className='font-medium text-sm mt-2'>
-                    {item?.attributes?.career_highlights}
-                  </p>
+                  <div className="career-highlights font-medium text-sm mt-2">
+                    {item?.attributes?.career_highlights?.split('-').map((highlight, idx) => {
+                      if (highlight.trim() === '') return null;
+
+                      return (
+                        <p key={idx} className="mt-2">
+                          <span className="font-bold">-</span>{highlight.trim()}
+                        </p>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             )}
