@@ -86,7 +86,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
 
   return (
     <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 md:py-16 py-8'>
-      <h1 className="text-2xl font-extrabold dark:text-white">Our Team</h1>
+      <h1 className="text-2xl font-extrabold dark:text-white">Management Team</h1>
       <div className="w-full flex justify-center items-center gap-2 rounded-xl overflow-hidden relative">
         {sortedData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
           console.log(item?.attributes?.career_highlights),
@@ -102,7 +102,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
                 <div>
                   <h3 className="text-2xl font-bold">{item?.attributes?.name}</h3>
                   <p className='font-medium'>
-                    {item?.attributes?.role}
+                    {item?.attributes?.position}
                   </p>
                   <div className="career-highlights font-medium text-sm mt-2">
                     {item?.attributes?.career_highlights?.split('-').map((highlight, idx) => {
