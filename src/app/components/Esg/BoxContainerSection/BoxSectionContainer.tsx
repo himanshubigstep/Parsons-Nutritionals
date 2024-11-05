@@ -6,7 +6,7 @@ import { EsgPageDataPdf } from '@/app/Api/Api';
 
 const md = new MarkdownIt();
 
-const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections: any, pdfFileUrl: string }) => {
+const BoxSectionContainer = ({ contactSections }: { contactSections: any }) => {
   const [esgPagepdf, setEsgPagePdf] = useState<any>(null);
   const esgPageDataContent = contactSections?.Body[0]?.content
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL

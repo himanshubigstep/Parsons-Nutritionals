@@ -125,7 +125,7 @@ export default function AboutUs() {
         </div>
       </div> */}
 
-      <div id='our-team' className='w-full max-w-[1280px] mx-auto'>
+      <div id='management-team' className='w-full max-w-[1280px] mx-auto'>
         <AboutTeamSlider homePageMembersValue = {homePageMembersValue} />
       </div>
 
