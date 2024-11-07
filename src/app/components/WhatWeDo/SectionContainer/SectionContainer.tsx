@@ -16,9 +16,9 @@ const SectionContainer = ({ contactSections }: { contactSections: any }) => {
         <div className="w-[95%] md:w-[55%] mx-auto h-full md:h-[520px] bg-white rounded-[3.75rem] py-8 px-8">
           <div className="w-full">
             <h3 className="font-semibold text-2xl md:text-4xl mb-4">{esgPageDataContent?.title}</h3>
-            <div className="font-medium uppercase text-xl mb-4 w-[95%] md:w-[85%]">
+            <div className="font-medium   text-xl mb-4 w-[95%] md:w-[85%]">
               <div
-                className="font-normal capitalize lg list-disc mt-2 marker-list"
+                className="font-normal   lg list-disc mt-2 marker-list"
                 dangerouslySetInnerHTML={{ __html: typeof esgPageDataContent?.content === 'string' ? md.render(esgPageDataContent.content) : '' }}
               >
               </div>

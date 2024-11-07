@@ -23,9 +23,9 @@ const BoxSectionContainer = ({ contactSections, pdfFileUrl }: { contactSections:
         )}
           <div className="w-full">
             <h3 className="font-semibold text-2xl md:text-2xl mb-4">{esgPageDataContent?.title}</h3>
-            <div className="font-medium uppercase text-md mb-4 w-[95%] md:w-[85%]">
+            <div className="font-medium   text-md mb-4 w-[95%] md:w-[85%]">
               <div
-                className="font-normal capitalize text-md list-disc mt-2 marker-list"
+                className="font-normal   text-md list-disc mt-2 marker-list"
                 dangerouslySetInnerHTML={{ __html: typeof esgPageDataContent?.content === 'string' ? md.render(esgPageDataContent.content) : '' }}
               >
               </div>

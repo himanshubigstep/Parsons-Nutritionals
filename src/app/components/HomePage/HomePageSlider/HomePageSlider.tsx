@@ -81,7 +81,7 @@ const HomePageSlider = ({ homePageDataValue }: { homePageDataValue: any }) => {
                                         <b className="text-md text-red-500 flex items-center w-[6.013rem] h-[2rem]">
                                             {stat.value}
                                         </b>
-                                        <div className="text-sm capitalize text-slate-500 md:line-clamp-2 line-clamp-1">
+                                        <div className="text-sm   text-slate-500 md:line-clamp-2 line-clamp-1">
                                             {stat.title}
                                         </div>
                                     </div>

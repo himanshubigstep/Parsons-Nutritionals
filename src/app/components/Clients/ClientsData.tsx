@@ -60,7 +60,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
         <div className='relative w-full h-full bg-white dark:bg-black px-8 md:py-24 py-8'>
 
             <div className='w-full max-w-[1280px] mx-auto'>
-                <h1 className='md:text-center text-3xl md:font-bold mb-4 uppercase'>{clientData?.About?.title}</h1>
+                <h1 className='md:text-center text-3xl md:font-bold mb-4  '>{clientData?.About?.title}</h1>
                 <p className='md:text-center md:max-w-[80%] mx-auto md:font-medium text-lg'>{clientData?.About?.content}</p>
             </div>
 
