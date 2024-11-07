@@ -14,7 +14,7 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
     return (
         <div className="w-full max-w-[1280px] mx-auto md:py-16 py-8 text-left text-[1rem] text-primary-700">
             <div className="text-center font-text-sm-regular mb-8">
-                <div className="text-2xl font-semibold text-black capitalize">
+                <div className="text-2xl font-semibold text-black  ">
                     {ourValuesData?.title}
                 </div>
             </div>
@@ -27,7 +27,7 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                     >
-                        <div className={`hovered-on-img w-full flex mb-8 items-center text-xl uppercase font-semibold dark:text-white ${hoveredIndex === index ? 'text-white' : 'text-black'}`}>
+                        <div className={`hovered-on-img w-full flex mb-8 items-center text-xl   font-semibold dark:text-white ${hoveredIndex === index ? 'text-white' : 'text-black'}`}>
                             <div className='overflow-hidden w-[62px] h-[62px] bg-[#0059D5] flex justify-center items-center rounded-full mr-4'>
                                 <img
                                     className="w-full overflow-hidden h-full p-2 invert"

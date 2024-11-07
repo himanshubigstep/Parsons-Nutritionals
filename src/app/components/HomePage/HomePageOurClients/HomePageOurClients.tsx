@@ -46,7 +46,7 @@ const HomePageOurClients = ({ homePageDataValue, homePageClientValue }: { homePa
 
   return (
     <div className="relative bg-[#0059DF] w-full h-auto text-2xl sm:text-2xl font-montserrat md:py-8 py-4">
-      <div className="max-w-[1280px] mx-auto font-extrabold flex items-center justify-center w-full text-white capitalize md:mb-8 mb-4">
+      <div className="max-w-[1280px] mx-auto font-extrabold flex items-center justify-center w-full text-white   md:mb-8 mb-4">
         {OurClientsPartnerData?.title}
       </div>
       <div className="w-full max-w-[1280px] mx-auto h-auto relative overflow-hidden">

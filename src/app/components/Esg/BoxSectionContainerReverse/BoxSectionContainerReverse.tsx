@@ -23,9 +23,9 @@ const BoxSectionContainerReverse = ({ contactSections }: { contactSections: any 
           <div className="w-[95%] md:w-[55%] h-full mt-0 md:h-[520px] bg-white dark:bg-black dark:border-[1px] dark:border-gray-700 md:rounded-[3.75rem] rounded-lg flex flex-col md:py-8 md:px-8 p-12 justify-center">
             <div className="w-full flex flex-col md:pl-[10%]">
                 <h3 className="font-semibold text-2xl md:text-2xl mb-4">{esgPageDataContent?.title}</h3>
-                <div className="font-medium uppercase text-md mb-4">
+                <div className="font-medium   text-md mb-4">
                     <div
-                      className="font-normal capitalize lg list-disc mt-2 marker-list"
+                      className="font-normal   lg list-disc mt-2 marker-list"
                       dangerouslySetInnerHTML={{ __html: typeof esgPageDataContent?.content === 'string' ? md.render(esgPageDataContent.content) : '' }}
                     >
                     </div>

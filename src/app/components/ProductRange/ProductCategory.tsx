@@ -63,10 +63,10 @@ const ProductCategory: React.FC<ProductCategoryProps & { onProductTypeClick: (pr
           {productTypesWithAll.map((productType) => (
             <li
               key={productType.id}
-              className={`text-md font-medium cursor-pointer capitalize flex justify-between ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} 
+              className={`text-md font-medium cursor-pointer   flex justify-between ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : ''}`} 
               onClick={() => handleProductTypeClick(productType.attributes.name)}
             >
-              {productType.attributes.name} <span className={`text-md font-normal cursor-pointer capitalize ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : 'text-gray-400'}`}>({productTypeCount[productType.attributes.name] || 0})</span>
+              {productType.attributes.name} <span className={`text-md font-normal cursor-pointer   ${selectedProductType === productType.attributes.name ? 'text-[#0059DF]' : 'text-gray-400'}`}>({productTypeCount[productType.attributes.name] || 0})</span>
             </li>
           ))}
         </ul>

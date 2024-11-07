@@ -22,7 +22,7 @@ const HomePageLegacy = () => {
               src={Litigations}
             />
           </div>
-          <div className="text-xl capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
+          <div className="text-xl   font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
             Zero Litigations
           </div>
         </div>
@@ -35,7 +35,7 @@ const HomePageLegacy = () => {
               src={Churns}
             />
           </div>
-          <div className="text-xl capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
+          <div className="text-xl   font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
             Zero customer churn*
           </div>
         </div>
@@ -48,7 +48,7 @@ const HomePageLegacy = () => {
               src={Recals}
             />
           </div>
-          <div className="text-xl capitalize font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
+          <div className="text-xl   font-semibold text-center md:w-[15rem] md:h-[2.75rem] mt-2">
             Zero product recalls
           </div>
         </div>
