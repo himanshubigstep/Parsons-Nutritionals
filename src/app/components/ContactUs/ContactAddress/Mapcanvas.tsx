@@ -71,6 +71,9 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
 
+        let isHovering = false;
+
+
         locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
@@ -81,13 +84,32 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
 
             // Check if mouse is within the circle (hover detection)
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
+            console.log('asdasd',LocationName,mouseX,x,mouseY,y,distance);
+
+            if(window.innerWidth < 525){
+              const scaleFactor = (525 - window.innerWidth) / 525;
+
+              // Apply scaling to x and y coordinates for more adaptive positioning
+              const expectedLocationX = x - x * scaleFactor;
+              const expectedLocationY = y - y * scaleFactor;            
+              // Use a slightly larger detection radius on smaller screens for better UX
+              if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
+                setHoveredLocation({ Latitude, Longitude, LocationName });
+                isHovering = true;
+              }
+            }
+            
+
+            
             if (distance < 10) { // Increase radius for hover detection
               setHoveredLocation({ Latitude, Longitude, LocationName });
+              isHovering = true;
             } else if (hoveredLocation?.LocationName === LocationName) {
               setHoveredLocation(null); // Clear hover if not over
             }
           }
         });
+        canvas.style.cursor = isHovering ? 'pointer' : 'default';
       };
 
       // Handle click event
