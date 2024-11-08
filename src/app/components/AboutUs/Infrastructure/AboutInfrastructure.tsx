@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './AboutInfrastructure.css';
 import Button from '../../Common/Button/Button';
 
@@ -32,11 +32,15 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
     const [activeTab, setActiveTab] = useState(0);
     const buttonRef = useRef<HTMLDivElement | null>(null);
     const locationName = useRef('');
-    const sortedInfrastructureData = [...InfrastructureData].sort((a, b) => {
-        const orderA = a?.attributes?.order ?? 0;
-        const orderB = b?.attributes?.order ?? 0;
-        return orderB - orderA;
-    });
+    
+    const sortedInfrastructureData = useMemo(()=>{
+        return [...InfrastructureData].sort((a, b) => {
+            const orderA = a?.attributes?.order ?? 0;
+            const orderB = b?.attributes?.order ?? 0;
+            return orderB - orderA;
+        });
+    },[InfrastructureData]) 
+        
 
     useEffect(()=>{
         
@@ -59,11 +63,13 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
         );
         if (tabIndex !== -1) {
             setActiveTab(tabIndex);
-            scrollToTab(tabIndex);
+            // scrollToTab(tabIndex);
         }
     },[sortedInfrastructureData])
 
-
+    // useEffect(() => {
+    //     scrollToTab(activeTab);
+    // }, [activeTab]);
 
     const handlePrevTab = () => {
         setActiveTab((prev) => (prev === 0 ? sortedInfrastructureData.length - 1 : prev - 1));
