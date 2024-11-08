@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './AboutInfrastructure.css';
 import Button from '../../Common/Button/Button';
 
@@ -27,12 +27,40 @@ interface InfrastructureDetail {
 
 const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfrastructureValue: any}) => {
     const InfrastructureData = aboutUsPageInfrastructureValue
-
+        
     const [activeTab, setActiveTab] = useState(0);
     const buttonRef = useRef<HTMLDivElement | null>(null);
+    const locationName = useRef('');
+
+
+    useEffect(()=>{
+        
+        if(window.location.hash == '#locations'){
+            locationName.current = localStorage.getItem('locationName') || ''
+        }
+        let tabIndex = -1
+        const initialTabIndex = InfrastructureData && InfrastructureData.forEach(
+            (detail: any,index: number) => {
+                const arr = locationName.current.split(',')
+                const loc1 = arr[0];
+                const loc2 = arr[0]+','+  arr[1]
+                
+                if(detail.attributes.name == loc1 || detail.attributes.name == loc2){
+                    tabIndex = index                    
+                    
+                }
+                
+            }
+        );
+        if (tabIndex !== -1) {
+            setActiveTab(tabIndex);
+            scrollToTab(tabIndex);
+        }
+    },[InfrastructureData])
+
 
     const handlePrevTab = () => {
-        setActiveTab((prev) => (prev === 0 ? InfrastructureData.length - 1 : prev - 1));
+        setActiveTab((prev: any) => (prev === 0 ? InfrastructureData.length - 1 : prev - 1));
         scrollToTab(activeTab === 0 ? InfrastructureData.length - 1 : activeTab - 1);
     };
 
