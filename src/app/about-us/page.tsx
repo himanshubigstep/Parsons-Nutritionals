@@ -46,6 +46,13 @@ export default function AboutUs() {
       }
     };
 
+      if (window.location.hash === '#locations') {
+        const element = document.getElementById('locations');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
     fetchDataFromApis();
   }, []);
 
