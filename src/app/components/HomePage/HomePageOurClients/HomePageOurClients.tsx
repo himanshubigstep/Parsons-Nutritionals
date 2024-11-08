@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 interface ImageData {
   attributes: {
+    order?: number;
     name: string;
     website: string;
     image: any;
@@ -23,13 +24,17 @@ const HomePageOurClients = ({ homePageDataValue, homePageClientValue }: { homePa
   const OurClientDataValue = homePageClientValue;
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
-  const scrollSpeed = 1; // Adjust this for faster/slower scrolling
+  const scrollSpeed = 1;
+
+  const sortedClientData = Array.isArray(OurClientDataValue)
+    ? [...OurClientDataValue].sort((a, b) => (b?.attributes?.order ?? 0) - (a?.attributes?.order ?? 0))
+    : [];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setOffset((prevOffset) => {
         if (containerRef.current) {
-          const totalWidth = containerRef.current.scrollWidth / 2; // Two copies for seamless scroll
+          const totalWidth = containerRef.current.scrollWidth / 2;
           return (prevOffset - scrollSpeed) % totalWidth;
         }
         return prevOffset - scrollSpeed;
@@ -46,7 +51,7 @@ const HomePageOurClients = ({ homePageDataValue, homePageClientValue }: { homePa
       </div>
       <div className="w-full max-w-[1280px] mx-auto h-auto relative overflow-hidden">
         <div className="flex whitespace-nowrap gap-4" ref={containerRef} style={{ transform: `translateX(${offset}px)` }}>
-          {OurClientDataValue && OurClientDataValue.map((item: ImageData, index: number) => (
+          {sortedClientData && sortedClientData.map((item: ImageData, index: number) => (
             <div key={index} className="min-w-[150px] sm:min-w-[240px] h-[100px] sm:h-[140px] px-2 sm:px-4 py-2 sm:py-4 bg-white dark:bg-black rounded-lg flex justify-center items-center">
               <Link href={item?.attributes?.website} target="_blank" rel="noopener noreferrer">
                 <img
@@ -57,7 +62,7 @@ const HomePageOurClients = ({ homePageDataValue, homePageClientValue }: { homePa
               </Link>
             </div>
           ))}
-          {OurClientDataValue && OurClientDataValue.map((item: ImageData, index: number) => (
+          {sortedClientData && sortedClientData.map((item: ImageData, index: number) => (
             <div key={`clone-${index}`} className="min-w-[150px] sm:min-w-[240px] h-[100px] sm:h-[140px] px-2 sm:px-4 py-2 sm:py-4 bg-white dark:bg-black rounded-lg flex justify-center items-center">
               <Link href={item?.attributes?.website} target="_blank" rel="noopener noreferrer">
                 <img

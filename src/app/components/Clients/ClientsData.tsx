@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 interface ClientDetail {
     attributes: {
+        order?: number;
         website: string;
         image: {
             data: {
@@ -31,18 +32,22 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
     const clientData = clientPageDataValue
     const [activeTab, setActiveTab] = useState(0);
     const buttonRef = useRef<HTMLDivElement | null>(null);
+
+    const sortedClientDestails = Array.isArray(clientDestails)
+        ? [...clientDestails].sort((a, b) => (b?.attributes?.order ?? 0) - (a?.attributes?.order ?? 0))
+        : [];
     const handleTabChange = (index: React.SetStateAction<number>) => {
         setActiveTab(index);
     };
     const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
     const handlePrevTab = () => {
-        const newIndex = (activeTab === 0 ? clientDestails.length - 1 : activeTab - 1);
+        const newIndex = (activeTab === 0 ? sortedClientDestails.length - 1 : activeTab - 1);
         setActiveTab(newIndex);
         scrollToTab(newIndex);
     };
 
     const handleNextTab = () => {
-        const newIndex = (activeTab === clientDestails.length - 1 ? 0 : activeTab + 1);
+        const newIndex = (activeTab === sortedClientDestails.length - 1 ? 0 : activeTab + 1);
         setActiveTab(newIndex);
         scrollToTab(newIndex);
     };
@@ -68,7 +73,7 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
 
                 <div className='clients-container w-full max-w[1280px] mx-auto h-full flex justify-center items-center gap-4'>
 
-                    {clientDestails && clientDestails.map((client: ClientDetail, index: number) => (
+                    {sortedClientDestails && sortedClientDestails.map((client: ClientDetail, index: number) => (
                         <div key={index} className={`client-block h-full max-w-[60%] mx-auto flex justify-center items-center py-8 ${activeTab === index ? '' : 'hidden'}`}>
                             <div className='client-block-img mr-[-10%] w-1/3 h-[320px] bg-white rounded-3xl z-10 flex justify-center items-center'>
                                 <Link href={client?.attributes?.website} target="_blank" rel="noopener noreferrer">
@@ -95,8 +100,8 @@ const ClientsData = ({clientPageDataValue, homePageClientValue}: {clientPageData
                 </div>
                 {/* Tab navigation */}
                 <div className="flex justify-center gap-4 mb-4 scroll-button relative max-w-[1280px] mx-auto">
-                    <div ref={buttonRef} className='flex md:max-w-[80%] max-w-[70%] mx-auto gap-2 scroll-button-tab overflow-auto'>
-                        {clientDestails && clientDestails.map((detail: ClientDetail, index: number) => (
+                    <div ref={buttonRef} className='flex md:max-w-[80%] max-w-[70%] mx-auto gap-2 scroll-button-tab md:overflow-hidden overflow-auto'>
+                        {sortedClientDestails && sortedClientDestails.map((detail: ClientDetail, index: number) => (
                             <Button
                                 key={index}
                                 className={`text-md flex items-center px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 text-gray-800'}`}

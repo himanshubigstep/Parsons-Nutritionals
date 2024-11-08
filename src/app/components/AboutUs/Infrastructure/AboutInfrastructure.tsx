@@ -22,16 +22,21 @@ interface InfrastructureDetail {
                 }
             }
         }
+        order?: number;
     },
 }
 
 const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfrastructureValue: any}) => {
-    const InfrastructureData = aboutUsPageInfrastructureValue
+    const InfrastructureData = Array.isArray(aboutUsPageInfrastructureValue) ? aboutUsPageInfrastructureValue : [];
         
     const [activeTab, setActiveTab] = useState(0);
     const buttonRef = useRef<HTMLDivElement | null>(null);
     const locationName = useRef('');
-
+    const sortedInfrastructureData = [...InfrastructureData].sort((a, b) => {
+        const orderA = a?.attributes?.order ?? 0;
+        const orderB = b?.attributes?.order ?? 0;
+        return orderB - orderA;
+    });
 
     useEffect(()=>{
         
@@ -39,7 +44,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
             locationName.current = localStorage.getItem('locationName') || ''
         }
         let tabIndex = -1
-        const initialTabIndex = InfrastructureData && InfrastructureData.forEach(
+        const initialTabIndex = sortedInfrastructureData && sortedInfrastructureData.forEach(
             (detail: any,index: number) => {
                 const arr = locationName.current.split(',')
                 const loc1 = arr[0];
@@ -56,17 +61,18 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
             setActiveTab(tabIndex);
             scrollToTab(tabIndex);
         }
-    },[InfrastructureData])
+    },[sortedInfrastructureData])
+
 
 
     const handlePrevTab = () => {
-        setActiveTab((prev: any) => (prev === 0 ? InfrastructureData.length - 1 : prev - 1));
-        scrollToTab(activeTab === 0 ? InfrastructureData.length - 1 : activeTab - 1);
+        setActiveTab((prev) => (prev === 0 ? sortedInfrastructureData.length - 1 : prev - 1));
+        scrollToTab(activeTab === 0 ? sortedInfrastructureData.length - 1 : activeTab - 1);
     };
 
     const handleNextTab = () => {
-        setActiveTab((prev) => (prev === InfrastructureData.length - 1 ? 0 : prev + 1));
-        scrollToTab(activeTab === InfrastructureData.length - 1 ? 0 : activeTab + 1);
+        setActiveTab((prev) => (prev === sortedInfrastructureData.length - 1 ? 0 : prev + 1));
+        scrollToTab(activeTab === sortedInfrastructureData.length - 1 ? 0 : activeTab + 1);
     };
 
     const scrollToTab = (index: number) => {
@@ -87,7 +93,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                 <h1 className="text-2xl font-extrabold dark:text-white mb-2">Locations</h1>
                 {/* Tab content */}
                 <div className='w-full relative flex justify-between items-center gap-8 infrastructure'>
-                    {InfrastructureData && InfrastructureData.map((detail: InfrastructureDetail, index: number) => (
+                    {sortedInfrastructureData && sortedInfrastructureData.map((detail: InfrastructureDetail, index: number) => (
                         <div key={index} className={`infrastructure-block w-full px-0 md:px-8 py-8 flex justify-center items-center ${activeTab === index ? '' : 'hidden'}`}>
                             <div className='infrastructure-block-img w-[40%] md:h-[420px] rounded-3xl bg-black mr-[-12%] z-10'>
                                 <img
@@ -141,8 +147,8 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                 </div>
                 {/* Tab navigation */}
                 <div className="flex justify-center gap-4 mb-4 scroll-button relative">
-                    <div ref={buttonRef} className='flex max-w-[80%] mx-auto gap-2 overflow-auto'>
-                        {InfrastructureData && InfrastructureData.map((detail: InfrastructureDetail, index: number) => (
+                    <div ref={buttonRef} className='flex max-w-[80%] mx-auto gap-2 md:overflow-hidden overflow-auto'>
+                        {sortedInfrastructureData && sortedInfrastructureData.map((detail: InfrastructureDetail, index: number) => (
                             <Button
                                 key={index}
                                 className={`px-4 py-2 rounded-lg focus:outline-none relative ${activeTab === index ? 'bg-[#0059DF] text-white tab-active' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-400'}`}

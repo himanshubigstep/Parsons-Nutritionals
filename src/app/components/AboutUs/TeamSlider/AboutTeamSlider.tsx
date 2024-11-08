@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './AboutTeamSlider.css';
 
 interface TeamMember {
+  id: number;
   image: {
     data: {
       attributes: {
+        url: string;
         formats: {
           medium: {
             url: string;
@@ -17,6 +19,9 @@ interface TeamMember {
     [x: string]: any;
     name: string;
     role: string;
+    position: string;
+    career_highlights?: string;
+    order?: number;
   };
 }
 
@@ -76,16 +81,22 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
     return null;
   }
 
-  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+  const sortedTeamMembers = [...aboutUsClientData].sort((a, b) => {
+    const orderA = a?.attributes?.order ?? 0;
+    const orderB = b?.attributes?.order ?? 0;
+    return orderB - orderA;
+  });
+
+  const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
 
   return (
     <div className='relative w-full max-w-[1280px] flex flex-col items-center gap-8 md:py-16 py-8'>
-      <h1 className="text-2xl font-extrabold dark:text-white">Our Team</h1>
+      <h1 className="text-2xl font-extrabold dark:text-white">Management Team</h1>
       <div className="w-full flex justify-center items-center gap-2 rounded-xl overflow-hidden relative">
-        {aboutUsClientData.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
+        {sortedTeamMembers.slice(startIndex, startIndex + imagesPerPage).map((item: TeamMember, index: number) => (
           <div key={index} className={`${selectedImageIndex === index + startIndex ? 'client-width-full' : ''} md:w-[20%] w-[50%] relative rounded-xl transition-all duration-500 ease-in-out`}>
             <img
-              src={ imageBaseUrl + item?.attributes?.image?.data?.attributes?.formats?.medium?.url}
+              src={imageBaseUrl + item?.attributes?.image?.data?.attributes?.url}
               alt='image'
               className={`w-full md:h-[480px] h-[360px] object-cover rounded-xl cursor-pointer`}
               onClick={() => handleClick(index + startIndex)}
@@ -95,8 +106,19 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
                 <div>
                   <h3 className="text-2xl font-bold">{item?.attributes?.name}</h3>
                   <p className='font-medium'>
-                    {item?.attributes?.role}
+                    {item?.attributes?.position}
                   </p>
+                  <div className="career-highlights font-medium text-sm mt-2">
+                    {item?.attributes?.career_highlights?.split('-').map((highlight, idx) => {
+                      if (highlight.trim() === '') return null;
+
+                      return (
+                        <p key={idx} className="mt-2">
+                          <span className="font-bold">-</span>{highlight.trim()}
+                        </p>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             )}
@@ -105,7 +127,7 @@ const AboutTeamSlider = ({ homePageMembersValue }: { homePageMembersValue: any }
         {pageCount > 1 && (
           <div className="absolute top-[50%] transform translate-y-[-50%] right-4 left-4 flex justify-between space-x-2">
             {currentPage > 0 && (
-              <button onClick={handlePrevPage} className="h-[3rem] w-[3rem] sm:w-[40px] md:w-[5rem] bg-[#0059DF] opacity-[0.7] rounded-l-[5px] text-white font-medium text-5xl">
+              <button onClick={handlePrevPage} className="h-[3rem] w-[3rem] sm:w-[40px] md:w-[5rem] md:h-[5rem] bg-[#0059DF] opacity-[0.7] rounded-r-[5px] text-white font-medium text-5xl">
                 {'<'}
               </button>
             )}
