@@ -116,36 +116,40 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         const rect = canvas.getBoundingClientRect();
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
-        
+      
         locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
-
+      
           if (!isNaN(latitude) && !isNaN(longitude)) {
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
-
-            // Check if mouse is within the circle (click detection)
+      
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
-            if(window.innerWidth < 525){
+            
+            if (window.innerWidth < 525) {
               const scaleFactor = (525 - window.innerWidth) / 525;
-
-              // Apply scaling to x and y coordinates for more adaptive positioning
+      
               const expectedLocationX = x - x * scaleFactor;
-              const expectedLocationY = y - y * scaleFactor;            
-              // Use a slightly larger detection radius on smaller screens for better UX
+              const expectedLocationY = y - y * scaleFactor;
+      
               if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
                 localStorage.setItem('locationName', LocationName);
-                window.location.href = 'about-us/#locations'; // Redirect to the locations section
-
+                
+                // Delay the redirect to ensure scroll happens correctly
+                setTimeout(() => {
+                  window.location.href = 'about-us/#locations';  // Redirect to the locations section
+                }, 1000);  // Small delay to allow page rendering
               }
             }
-            
-            if (distance < 10) { // Radius for click detection
+      
+            if (distance < 10) {  // Radius for click detection
               localStorage.setItem('locationName', LocationName);
-              
-              
-              window.location.href = 'about-us/#locations'; // Redirect to the locations section
+      
+              // Delay the redirect to ensure scroll happens correctly
+              setTimeout(() => {
+                window.location.href = 'about-us/#locations';  // Redirect to the locations section
+              }, 100);  // Small delay to allow page rendering
             }
           }
         });
