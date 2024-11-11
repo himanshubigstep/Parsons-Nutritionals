@@ -25,6 +25,7 @@ export default function AboutUs() {
   const [aboutUsPageInfrastructureValue, setaboutUsPageInfrastructureValue] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchDataFromApis = async () => {
@@ -43,6 +44,8 @@ export default function AboutUs() {
 
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setIsLoading(false); // Set loading to false once data is fetched
       }
     };
 
@@ -111,6 +114,15 @@ export default function AboutUs() {
   const contactSections = aboutUsPageDataValue;
   const bannerImage = imageBaseUrl + aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
   const BannerContainerData = aboutUsPageDataValue?.Header?.content;
+
+  useEffect(() => {
+    if (!isLoading && window.location.hash === '#locations') {
+      const element = document.getElementById('locations');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [isLoading])
   
 
   return (
