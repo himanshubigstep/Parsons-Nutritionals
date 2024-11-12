@@ -31,13 +31,27 @@ export default function AboutUs() {
   useEffect(() => {
     const fetchDataFromApis = async () => {
       try {
-        const [homePageResponse, awardResponse] = await Promise.all([
+        // Fetch all required data concurrently
+        const [
+          homePageResponse,
+          awardResponse,
+          aboutUsResponse,
+          homePageMembersResponse,
+          aboutUsInfrastructureResponse
+        ] = await Promise.all([
           HomePageData(),
           HomePageAwardstData(),
+          AboutUsData(),
+          HomePageMemberstData(),
+          AboutUsInfrastructureData(),
         ]);
 
+        // Set state for each API response
         setHomePageDataValue(homePageResponse.data.attributes);
         setHomePageAwardValue(awardResponse.data);
+        setaboutUsPageDataValue(aboutUsResponse.data.attributes);
+        setHomePageMembersValue(homePageMembersResponse.data);
+        setaboutUsPageInfrastructureValue(aboutUsInfrastructureResponse.data);
 
       } catch (error) {
         console.log(error, 'api-get-error');
@@ -46,87 +60,41 @@ export default function AboutUs() {
       }
     };
 
-    // Check if there's any hash in the URL, and only scroll if not loading
+    fetchDataFromApis();
+
+    // Handle resize for mobile detection
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  // Scroll to the hash in the URL (if any) after data has finished loading
+  useEffect(() => {
     const scrollToHash = () => {
       const hash = window.location.hash;
-      if (hash && !isLoading) {  // Check if there is a hash and it's not loading
-        const element = document.getElementById(hash.substring(1)); // Get element by ID
+      if (hash && !isLoading) {
+        const element = document.getElementById(hash.substring(1));
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
     };
 
-    fetchDataFromApis();
-    scrollToHash(); // Scroll to the appropriate section if available
-
-  }, [isLoading]); // Dependency on isLoading to run when loading state changes
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const responseData = await AboutUsData();
-        const aboutUsData = responseData.data.attributes;
-        setaboutUsPageDataValue(aboutUsData);
-      } catch (error) {
-        console.log(error, 'api-get-error');
-      } finally {
-        setIsLoading(false); // Set loading to false once data is fetched
-      }
-    };
-
-    fetchDataFromApi();
-  }, []);
-
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const responseData = await HomePageMemberstData();
-        const homePageMembersData = responseData.data;
-        setHomePageMembersValue(homePageMembersData);
-      } catch (error) {
-        console.log(error, 'api-get-error');
-      } finally {
-        setIsLoading(false); // Set loading to false once data is fetched
-      }
-    };
-
-    fetchDataFromApi();
-  }, []);
-
-  useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const responseData = await AboutUsInfrastructureData();
-        const aboutUsInfrastructureData = responseData.data;
-        setaboutUsPageInfrastructureValue(aboutUsInfrastructureData);
-      } catch (error) {
-        console.log(error, 'api-get-error');
-      } finally {
-        setIsLoading(false); // Set loading to false once data is fetched
-      }
-    };
-
-    fetchDataFromApi();
-  }, []);
-
-  const contactSections = aboutUsPageDataValue;
-  const bannerImage = imageBaseUrl + aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
-  const BannerContainerData = aboutUsPageDataValue?.Header?.content;
+    scrollToHash();
+  }, [isLoading]); // Dependency on `isLoading` to ensure it runs after data is loaded
 
   if (isLoading) {
     return <LoaderSpinner />;
   }
+
+  const bannerImage = imageBaseUrl + aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
+  const BannerContainerData = aboutUsPageDataValue?.Header?.content;
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#F0F0F9] dark:bg-black">
