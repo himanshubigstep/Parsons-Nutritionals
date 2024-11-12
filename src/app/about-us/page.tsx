@@ -16,6 +16,7 @@ import Image from 'next/image';
 import backgroundImage from '@/app/assets/home-page/Webview.png'
 import backgroundImageMobile from '@/app/assets/home-page/Responsive.png'
 import HomePageAwarded from '../components/HomePage/HomePageAwarded/HomePageAwarded';
+import LoaderSpinner from '../components/Common/loader-spinner/LoadingSpinner';
 
 export default function AboutUs() {
   const [aboutUsPageDataValue, setaboutUsPageDataValue] = useState<any>(null);
@@ -32,15 +33,11 @@ export default function AboutUs() {
       try {
         const [homePageResponse, awardResponse] = await Promise.all([
           HomePageData(),
-          // HomePageClientData(),
           HomePageAwardstData(),
-          // HomePageMemberstData()
         ]);
 
         setHomePageDataValue(homePageResponse.data.attributes);
-        // setHomePageClientValue(clientResponse.data);
         setHomePageAwardValue(awardResponse.data);
-        // setHomePageMembersValue(membersResponse.data);
 
       } catch (error) {
         console.log(error, 'api-get-error');
@@ -49,15 +46,21 @@ export default function AboutUs() {
       }
     };
 
-      if (window.location.hash === '#locations') {
-        const element = document.getElementById('locations');
+    // Check if there's any hash in the URL, and only scroll if not loading
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (hash && !isLoading) {  // Check if there is a hash and it's not loading
+        const element = document.getElementById(hash.substring(1)); // Get element by ID
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }
+      }
+    };
 
     fetchDataFromApis();
-  }, []);
+    scrollToHash(); // Scroll to the appropriate section if available
+
+  }, [isLoading]); // Dependency on isLoading to run when loading state changes
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,6 +80,8 @@ export default function AboutUs() {
         setaboutUsPageDataValue(aboutUsData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setIsLoading(false); // Set loading to false once data is fetched
       }
     };
 
@@ -91,6 +96,8 @@ export default function AboutUs() {
         setHomePageMembersValue(homePageMembersData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setIsLoading(false); // Set loading to false once data is fetched
       }
     };
 
@@ -105,6 +112,8 @@ export default function AboutUs() {
         setaboutUsPageInfrastructureValue(aboutUsInfrastructureData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setIsLoading(false); // Set loading to false once data is fetched
       }
     };
 
@@ -115,15 +124,9 @@ export default function AboutUs() {
   const bannerImage = imageBaseUrl + aboutUsPageDataValue?.Header?.media?.data?.attributes?.url;
   const BannerContainerData = aboutUsPageDataValue?.Header?.content;
 
-  useEffect(() => {
-    if (!isLoading && window.location.hash === '#locations') {
-      const element = document.getElementById('locations');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  }, [isLoading])
-  
+  if (isLoading) {
+    return <LoaderSpinner />;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#F0F0F9] dark:bg-black">
@@ -135,17 +138,8 @@ export default function AboutUs() {
         <HomePageOurValues homePageDataValue={homePageDataValue} />
       </div>
 
-      {/* <div id="about-mann-ventures" className='relative w-full max-w-[1280px] flex justify-center items-center pt-16 about-page'>
-        <WhiteBoxText aboutUsPageDataValue={aboutUsPageDataValue} />
-        <div className='w-1/2 mt-[10%] ml-[-5%] z-10 flex justify-center items-center rounded-[2.4rem] about-page-img'>
-          {aboutUsPageDataValue?.BodyContent[0]?.images?.data.map((item: any, index: number) => (
-            <img className='md:h-[480px] w-full rounded-[2.4rem]' key={index} src={`${item?.attributes?.formats?.large?.url}`} alt={item?.attributes?.formats?.small?.url} />
-          ))}
-        </div>
-      </div> */}
-
       <div id='management-team' className='w-full max-w-[1280px] mx-auto'>
-        <AboutTeamSlider homePageMembersValue = {homePageMembersValue} />
+        <AboutTeamSlider homePageMembersValue={homePageMembersValue} />
       </div>
 
       <div id='timeline' className="w-full h-full md:rounded-3xl md:py-16">
@@ -159,7 +153,7 @@ export default function AboutUs() {
       </div>
 
       <div id='locations' className='w-full max-w-[1280px] mx-auto rounded-3xl'>
-        <AboutInfrastructure aboutUsPageInfrastructureValue = {aboutUsPageInfrastructureValue} />
+        <AboutInfrastructure aboutUsPageInfrastructureValue={aboutUsPageInfrastructureValue} />
       </div>
       
       <div id='awards' className='w-full mx-auto'>
@@ -167,19 +161,8 @@ export default function AboutUs() {
       </div>
 
       <div id='our-strength' className='w-full max-w-[1280px] mx-auto'>
-        <AboutUsStrength aboutUsPageDataValue = {aboutUsPageDataValue} />
+        <AboutUsStrength aboutUsPageDataValue={aboutUsPageDataValue} />
       </div>
-
-      {/* <div id='-food-and-healthcare-' className='relative w-full max-w-[1280px] flex justify-center items-center md:pt-16 md:pb-32 py-8 about-page'>
-        <div className='w-1/2 mt-[-10%] mr-[-5%] z-10 flex justify-center items-center rounded-[2.4rem] about-page-img'>
-          {aboutUsPageDataValue?.BodyContent[1]?.images?.data.map((item: any, index: number) => (
-            <img className='md:h-[480px] w-full rounded-[2.4rem]' key={index} src={`${item?.attributes?.formats?.large?.url}`} alt={item?.attributes?.formats?.small?.url} />
-          ))}
-        </div>
-        <WhiteBoxReverse aboutUsPageDataValue={aboutUsPageDataValue} />
-      </div>
-
-      <AboutContact contactSections={contactSections} /> */}
 
     </main>
   );

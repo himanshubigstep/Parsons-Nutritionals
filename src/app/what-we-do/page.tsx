@@ -12,10 +12,12 @@ import SectionContainer from '../components/WhatWeDo/SectionContainer/SectionCon
 import SectionContainerReverse from '../components/WhatWeDo/SectionContainerReverse/SectionContainerReverse'
 import ChainsBody from '../components/WhatWeDo/ChainsBody/ChainsBody'
 import ChainsBodyReverse from '../components/WhatWeDo/ChainsBodyReverse/ChainsBodyReverse'
+import LoaderSpinner from '../components/Common/loader-spinner/LoadingSpinner'
 
 const WhatWeDo = () => {
   const [whatWeDoDataValue, setWhatWeDoDataValue] = useState<any>(null);
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -25,11 +27,28 @@ const WhatWeDo = () => {
         setWhatWeDoDataValue(whatWeDoData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchDataFromApi();
-  }, []);
+  }, []); const handleScrollToHash = () => {
+    if (!loading) {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.getElementById(hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+  };
+
+  // Run the scroll function once data is loaded or when hash changes
+  useEffect(() => {
+    handleScrollToHash();
+  }, [loading]); // Only run when loading is false (data has been fetched)
 
   const BannerContainerDataContent = whatWeDoDataValue;
   const bannerImage = imageBaseUrl + whatWeDoDataValue?.Header?.media?.data?.attributes?.formats?.medium?.url;
@@ -55,6 +74,10 @@ const WhatWeDo = () => {
       imageSrc: 'https://images.pexels.com/photos/1659438/pexels-photo-1659438.jpeg',
     },
   ];
+
+  if (loading) {
+    return <LoaderSpinner />;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center">

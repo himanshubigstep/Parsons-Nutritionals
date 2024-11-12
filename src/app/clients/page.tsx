@@ -5,10 +5,12 @@ import TopBanner from '../components/Common/Banner/TopBanner'
 import ClientsData from '../components/Clients/ClientsData'
 import AboutContact from '../components/Common/ContactBlock/AboutContact'
 import { ClientPageData, HomePageClientData } from '../Api/Api'
+import LoaderSpinner from '../components/Common/loader-spinner/LoadingSpinner'
 
 const Clients = () => {
   const [clientPageDataValue, setClientPageDataValue] = useState<any>(null);
   const [homePageClientValue, setHomePageClientValue] = useState(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -18,6 +20,8 @@ const Clients = () => {
         setClientPageDataValue(clientPageData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -28,6 +32,8 @@ const Clients = () => {
         setHomePageClientValue(homePageClientData);
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -38,6 +44,10 @@ const Clients = () => {
 
   const contactSections = clientPageDataValue;
   const bannerImage = imageBaseUrl + clientPageDataValue?.Header?.cover?.data?.attributes?.formats?.large?.url;
+
+  if (loading) {
+    return <LoaderSpinner />;
+  }
   
   return (
     <main className="flex min-h-screen flex-col items-center">
