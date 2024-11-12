@@ -4,6 +4,7 @@ import TopBanner from '../components/Common/Banner/TopBanner';
 import ProductCategory from '../components/ProductRange/ProductCategory';
 import ProductListcategory from '../components/ProductRange/ProductListcategory';
 import { ProductPageHeaderData, ProductPageTypes, ProductPageContent } from '../Api/Api';
+import LoaderSpinner from '../components/Common/loader-spinner/LoadingSpinner';
 
 interface ProductMedia {
   data: {
@@ -55,6 +56,7 @@ const ProductRange = () => {
   const [filteredProductPageContent, setFilteredProductPageContent] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_URL
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
@@ -71,6 +73,8 @@ const ProductRange = () => {
         setProductPageContent(contentData);
       } catch (error) {
         setError('Failed to fetch data');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -84,6 +88,8 @@ const ProductRange = () => {
     } catch (error) {
       setError('Failed to fetch product content');
       return [];
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -100,6 +106,10 @@ const ProductRange = () => {
 
   if (error) {
     return <div>Error: {error}</div>;
+  }
+
+  if (loading) {
+    return <LoaderSpinner />;
   }
 
   // Calculate total items for pagination

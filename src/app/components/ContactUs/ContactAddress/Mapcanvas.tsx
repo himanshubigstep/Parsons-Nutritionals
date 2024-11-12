@@ -16,6 +16,7 @@ interface MapCanvasProps {
 const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
+  const [mobileClickState, setMobileClickState] = useState<Location | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,12 +31,6 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
     mapImage.onload = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
-
-      // if (applyFilter) {
-      //   ctx.filter = 'none';
-      //   ctx.drawImage(mapImage, 0, 0, canvas.width, canvas.height);
-      //   ctx.filter = 'invert(1)';
-      // }
 
       const imageWidth = canvas.width;
       const imageHeight = canvas.height;
@@ -73,7 +68,6 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
 
         let isHovering = false;
 
-
         locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
@@ -85,21 +79,20 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
             // Check if mouse is within the circle (hover detection)
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
 
-            if(window.innerWidth < 525){
+            if (window.innerWidth < 525) {
               const scaleFactor = (525 - window.innerWidth) / 525;
 
               // Apply scaling to x and y coordinates for more adaptive positioning
               const expectedLocationX = x - x * scaleFactor;
-              const expectedLocationY = y - y * scaleFactor;            
+              const expectedLocationY = y - y * scaleFactor;
+
               // Use a slightly larger detection radius on smaller screens for better UX
               if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
                 setHoveredLocation({ Latitude, Longitude, LocationName });
                 isHovering = true;
               }
             }
-            
 
-            
             if (distance < 10) { // Increase radius for hover detection
               setHoveredLocation({ Latitude, Longitude, LocationName });
               isHovering = true;
@@ -108,6 +101,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
             }
           }
         });
+
         canvas.style.cursor = isHovering ? 'pointer' : 'default';
       };
 
@@ -116,7 +110,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         const rect = canvas.getBoundingClientRect();
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
-        
+
         locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
@@ -127,25 +121,26 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
 
             // Check if mouse is within the circle (click detection)
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
-            if(window.innerWidth < 525){
+
+            if (window.innerWidth < 525) {
               const scaleFactor = (525 - window.innerWidth) / 525;
 
               // Apply scaling to x and y coordinates for more adaptive positioning
               const expectedLocationX = x - x * scaleFactor;
-              const expectedLocationY = y - y * scaleFactor;            
-              // Use a slightly larger detection radius on smaller screens for better UX
-              if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
-                localStorage.setItem('locationName', LocationName);
-                window.location.href = 'about-us/#locations'; // Redirect to the locations section
+              const expectedLocationY = y - y * scaleFactor;
 
+              // On mobile, set the location on first click
+              if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
+                setMobileClickState({ Latitude, Longitude, LocationName });
+                setHoveredLocation({ Latitude, Longitude, LocationName }); // Show name after first click
               }
             }
-            
-            if (distance < 10) { // Radius for click detection
-              localStorage.setItem('locationName', LocationName);
-              
-              
-              window.location.href = 'about-us/#locations'; // Redirect to the locations section
+
+            if (distance < 10) { // Radius for click detection on larger screens
+              if (window.innerWidth >= 525) {
+                localStorage.setItem('locationName', LocationName);
+                window.location.href = 'about-us/#locations'; // Redirect to the locations section
+              }
             }
           }
         });
@@ -154,7 +149,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       // Add event listeners
       canvas.addEventListener('mousemove', handleMouseMove);
       canvas.addEventListener('click', handleClick);
-      
+
       return () => {
         canvas.removeEventListener('mousemove', handleMouseMove);
         canvas.removeEventListener('click', handleClick);
@@ -164,7 +159,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
     mapImage.onerror = () => {
       console.error("Failed to load the image.");
     };
-  }, [locations, hoveredLocation]);
+  }, [locations, hoveredLocation, mobileClickState]);
 
   // Function to parse latitude
   const parseLatitude = (lat: string): number => {
@@ -186,19 +181,31 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
     return NaN;
   };
 
+  // Handle click on Location Name to trigger redirection
+  const handleLocationNameClick = () => {
+    if (hoveredLocation) {
+      localStorage.setItem('locationName', hoveredLocation.LocationName);
+      window.location.href = 'about-us/#locations'; // Redirect to the locations section
+    }
+  };
+
   return (
     <div style={{ position: 'relative' }}>
-      <canvas className='india-map' ref={canvasRef} width={500} height={600} />
+      <canvas className="india-map" ref={canvasRef} width={500} height={600} />
       {hoveredLocation && (
-        <div style={{
-          position: 'absolute',
-          top: '0',
-          backgroundColor: 'white',
-          border: '1px solid gray',
-          padding: '5px',
-          borderRadius: '5px',
-          color: 'black',
-        }}>
+        <div 
+          style={{
+            position: 'absolute',
+            top: '0',
+            backgroundColor: 'white',
+            border: '1px solid gray',
+            padding: '5px',
+            borderRadius: '5px',
+            color: 'black',
+            cursor: 'pointer',
+          }}
+          onClick={handleLocationNameClick}  // Trigger redirection on click
+        >
           {hoveredLocation.LocationName}
         </div>
       )}

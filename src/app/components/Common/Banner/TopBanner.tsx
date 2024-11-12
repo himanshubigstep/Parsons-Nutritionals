@@ -9,33 +9,17 @@ interface TopBannerProps {
     aboutUsPageDataValue?: any;
 }
 
-const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData, BannerContainerDataContent }) => {
-    const [imageLoaded, setImageLoaded] = useState(false);
-    const [imageError, setImageError] = useState(false);
-
-    const handleImageLoad = () => {
-        setImageLoaded(true);
-    };
-
-    const handleImageError = () => {
-        // setImageError(true);
-        setImageLoaded(true); // To ensure the gray background remains if image fails to load
-    };    
-    
-    console.log(imageLoaded,'error');
-    
+const TopBanner: React.FC<TopBannerProps> = ({ bannerImage, BannerContainerData, BannerContainerDataContent }) => {    
 
     return (
         <div className='relative w-full md:h-[480px] h-[320px] max-w-full flex flex-col justify-center items-center'>
             <div
-                className={`absolute left-0 right-0 top-0 bottom-0 w-full h-full ${imageLoaded ? 'bg-transparent' : 'bg-gray-400'} opacity-50`}
+                className={`absolute left-0 right-0 top-0 bottom-0 w-full h-full'}`}
             ></div>
             <img
                 src={bannerImage}
-                className={`w-full h-full object-cover ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
+                className={`w-full h-full object-cover`}
                 alt=''
-                onLoad={handleImageLoad}
-                onError={handleImageError}
             />
             {BannerContainerData && <BannerSubContainer BannerContainerData={BannerContainerData} />}
             {BannerContainerDataContent &&

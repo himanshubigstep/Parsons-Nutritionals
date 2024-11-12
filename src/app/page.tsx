@@ -14,6 +14,7 @@ import { HomePageAwardstData, HomePageClientData, HomePageData, HomePageMemberst
 import Image from "next/image";
 import backgroundImage from '@/app/assets/home-page/Webview.png'
 import backgroundImageMobile from '@/app/assets/home-page/Responsive.png'
+import LoaderSpinner from "./components/Common/loader-spinner/LoadingSpinner";
 
 export default function Home() {
   const [homePageDataValue, setHomePageDataValue] = useState(null);
@@ -21,6 +22,7 @@ export default function Home() {
   const [homePageAwardValue, setHomePageAwardValue] = useState(null);
   const [homePageMembersValue, setHomePageMembersValue] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchDataFromApis = async () => {
@@ -39,6 +41,8 @@ export default function Home() {
 
       } catch (error) {
         console.log(error, 'api-get-error');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -54,6 +58,10 @@ export default function Home() {
     
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  if (loading) {
+    return <LoaderSpinner />;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between md:p-0 pt-4">
