@@ -109,7 +109,7 @@ const AboutInfrastructure = ({aboutUsPageInfrastructureValue}: {aboutUsPageInfra
                                 />
                             </div>
                             <div className='infrastructure-block-content w-[60%] h-[540px] rounded-3xl bg-[#F0F0F9] dark:bg-black dark:border-2 dark:border-gray-700'>
-                                <div className='infrastructure-block-inner w-[95%] h-full pl-48 py-8'>
+                                <div className='infrastructure-block-inner w-[95%] h-full pl-48 py-8 landscape:pl-28'>
                                     <h2 className='text-xl font-bold leading-none tracking-tight text-black md:text-xl lg:text-xl dark:text-white'>
                                         {detail.attributes?.name}
                                     </h2>

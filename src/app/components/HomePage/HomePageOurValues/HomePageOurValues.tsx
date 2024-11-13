@@ -19,7 +19,7 @@ const HomePageOurValues = ({ homePageDataValue }: { homePageDataValue: any }) =>
                 </div>
             </div>
 
-            <div className='w-[95%] md:w-full mx-auto relative flex flex-wrap justify-between items-center'>
+            <div className='w-[95%] landscape:w-[95%] md:w-full mx-auto relative flex flex-wrap justify-between landscape:justify-center landscape:gap-8 items-center'>
             {ourValuesData?.items.map((item: any, index: number) => (
                     <div
                         key={index}

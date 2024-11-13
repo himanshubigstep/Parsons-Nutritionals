@@ -30,7 +30,7 @@ const ContactUs = () => {
   return (
     <main className="flex min-h-screen flex-col items-center">
         <TopBanner bannerImage={bannerImage} BannerContainerData={BannerContainerData} BannerContainerDataContent={undefined} />
-        <div className='w-full relative py-24'>
+        <div className='w-full relative py-24 md:px-0 px-4 landscape:px-4'>
             <div className='max-w-[1280px] mx-auto flex flex-col md:flex-row justify-center items-start gap-8'>
                 <ContactForm />
                 <ContactAddress contactPageData = {contactPageData} />
