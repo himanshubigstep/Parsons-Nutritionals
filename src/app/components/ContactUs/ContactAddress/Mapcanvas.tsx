@@ -76,22 +76,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
 
-            // Check if mouse is within the circle (hover detection)
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
-
-            if (window.innerWidth < 525) {
-              const scaleFactor = (525 - window.innerWidth) / 525;
-
-              // Apply scaling to x and y coordinates for more adaptive positioning
-              const expectedLocationX = x - x * scaleFactor;
-              const expectedLocationY = y - y * scaleFactor;
-
-              // Use a slightly larger detection radius on smaller screens for better UX
-              if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
-                setHoveredLocation({ Latitude, Longitude, LocationName });
-                isHovering = true;
-              }
-            }
 
             if (distance < 10) { // Increase radius for hover detection
               setHoveredLocation({ Latitude, Longitude, LocationName });
@@ -105,7 +90,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         canvas.style.cursor = isHovering ? 'pointer' : 'default';
       };
 
-      // Handle click event
+      // Handle click event (for larger screens)
       const handleClick = (event: MouseEvent) => {
         const rect = canvas.getBoundingClientRect();
         const mouseX = event.clientX - rect.left;
@@ -119,40 +104,60 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
 
-            // Check if mouse is within the circle (click detection)
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
 
-            if (window.innerWidth < 525) {
-              const scaleFactor = (525 - window.innerWidth) / 525;
-
-              // Apply scaling to x and y coordinates for more adaptive positioning
-              const expectedLocationX = x - x * scaleFactor;
-              const expectedLocationY = y - y * scaleFactor;
-
-              // On mobile, set the location on first click
-              if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
-                setMobileClickState({ Latitude, Longitude, LocationName });
-                setHoveredLocation({ Latitude, Longitude, LocationName }); // Show name after first click
-              }
-            }
-
-            if (distance < 10) { // Radius for click detection on larger screens
-              if (window.innerWidth >= 525) {
-                localStorage.setItem('locationName', LocationName);
-                window.location.href = 'about-us/#locations'; // Redirect to the locations section
-              }
+            if (distance < 10) { // Radius for click detection
+              localStorage.setItem('locationName', LocationName);
+              window.location.href = 'about-us/#locations'; // Redirect to the locations section
             }
           }
         });
       };
 
-      // Add event listeners
-      canvas.addEventListener('mousemove', handleMouseMove);
-      canvas.addEventListener('click', handleClick);
+      // Handle touch event (for mobile devices)
+      const handleTouchStart = (event: TouchEvent) => {
+        const rect = canvas.getBoundingClientRect();
+        const touch = event.touches[0];
+        const mouseX = touch.clientX - rect.left;
+        const mouseY = touch.clientY - rect.top;
+
+        locations.forEach(({ Latitude, Longitude, LocationName }) => {
+          const latitude = parseLatitude(Latitude);
+          const longitude = parseLongitude(Longitude);
+
+          if (!isNaN(latitude) && !isNaN(longitude)) {
+            const x = ((longitude - longMin) / longRange) * imageWidth;
+            const y = ((latMax - latitude) / latRange) * imageHeight;
+
+            // Calculate scale factor for smaller screens to adjust touch coordinates
+            const scaleFactor = (525 - window.innerWidth) / 525;
+            const expectedLocationX = x - x * scaleFactor;
+            const expectedLocationY = y - y * scaleFactor;
+
+            if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
+              setHoveredLocation({ Latitude, Longitude, LocationName });
+              setMobileClickState({ Latitude, Longitude, LocationName });
+              event.preventDefault();
+            }
+          }
+        });
+      };
+
+      // Add event listeners conditionally based on screen size
+      if (window.innerWidth >= 525) {
+        canvas.addEventListener('mousemove', handleMouseMove);
+        canvas.addEventListener('click', handleClick);
+      } else {
+        canvas.addEventListener('touchstart', handleTouchStart);
+      }
 
       return () => {
-        canvas.removeEventListener('mousemove', handleMouseMove);
-        canvas.removeEventListener('click', handleClick);
+        if (window.innerWidth >= 525) {
+          canvas.removeEventListener('mousemove', handleMouseMove);
+          canvas.removeEventListener('click', handleClick);
+        } else {
+          canvas.removeEventListener('touchstart', handleTouchStart);
+        }
       };
     };
 
