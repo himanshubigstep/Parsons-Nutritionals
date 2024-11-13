@@ -86,7 +86,7 @@ const NavBar = () => {
                 </div>
                 {isOpen && (
                     <div className="lg:hidden absolute top-[5.688rem] left-0 w-full bg-white dark:bg-black z-10 shadow-[0px_8px_25px_rgba(71,_71,_71,_0.1)]">
-                        <div className="flex flex-col md:items-center md:justify-start gap-4 md:py-4 p-4">
+                        <div className="flex flex-col landscape:items-start landscape:overflow-y-auto landscape:max-h-screen md:items-center md:justify-start gap-4 md:py-4 p-4">
                             <NavItem href="/">
                                 Home
                             </NavItem>
@@ -161,7 +161,7 @@ const NavItem = ({ href, children, subMenuItems }: { href: string; children: Rea
     }, []);
 
     return (
-        <div className="relative" ref={subMenuRef}>
+        <div className="relative landscape:w-full" ref={subMenuRef}>
             <div
                 className={`flex justify-between items-center gap-2 leading-[1.5rem] font-medium text-lg cursor-pointer ${isActive ? 'text-blue-500' : 'text-darkslate-500'}`}
                 onClick={toggleSubMenu}

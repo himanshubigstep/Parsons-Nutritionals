@@ -38,3 +38,9 @@ body {
     max-width: 100%;
   }
 }
+
+@media screen and (orientation: landscape) {
+  .india-map {
+    max-width: 100%;
+  }
+}
