@@ -16,7 +16,7 @@ const AboutContact = ({ contactSections }: { contactSections: any }) => {
     const contactSectionData = contactSections?.ContactUs
     return (
         <>
-            <div className="relative w-full max-w-full md:h-[38rem] h-96 landscape:h-[25rem] mx-auto pt-8">                
+            <div className="relative w-full max-w-full md:h-[38rem] h-96 mx-auto pt-8">                
             <div
                 className={`absolute left-0 right-0 top-0 bottom-0 w-full h-full ${imageLoaded ? 'bg-transparent' : 'bg-gray-400'} opacity-50`}
             ></div>

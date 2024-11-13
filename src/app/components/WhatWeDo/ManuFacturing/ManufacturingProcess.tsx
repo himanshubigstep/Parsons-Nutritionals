@@ -7,7 +7,7 @@ const ManufacturingProcess = ({ whatWeDoDataValue }: { whatWeDoDataValue: any })
     const manufacturingData = whatWeDoDataValue?.Breakthrough?.Breakthrough
     return (
         <div className='w-full max-w-[1280px] mx-auto relative md:py-24 py-0 flex flex-col justify-center items-center'>
-            <div className='w-full flex flex-col justify-center items-center landscape:px-4'>
+            <div className='w-full flex flex-col justify-center items-center'>
                 <div className='header w-[95%] mx-auto flex flex-col justify-center items-center'>
                     <h2 className='text-2xl font-bold text-black dark:text-white'>
                         {manufacturingHeader?.title}
