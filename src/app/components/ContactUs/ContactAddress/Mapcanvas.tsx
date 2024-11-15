@@ -16,6 +16,8 @@ interface MapCanvasProps {
 
 const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  console.log('bhavya');
+  
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
   const [mobileClickState, setMobileClickState] = useState<Location | null>(null);
 
@@ -141,6 +143,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       
             const distance =
               Math.abs(mouseX - expectedX) + Math.abs(mouseY - expectedY);
+            console.log('yashu');
             
             if (Math.abs(mouseX - expectedX)  < 14 &&  Math.abs(mouseY - expectedY) < 14 && distance < closestDistance) {
               closestLocation = { Latitude, Longitude, LocationName };
