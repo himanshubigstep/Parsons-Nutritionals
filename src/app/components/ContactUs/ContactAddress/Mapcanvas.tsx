@@ -16,7 +16,7 @@ interface MapCanvasProps {
 
 const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  console.log('bhavya');
+  console.log('Himanshu');
   
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
   const [mobileClickState, setMobileClickState] = useState<Location | null>(null);
