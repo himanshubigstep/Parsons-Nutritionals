@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
+
 import indiaImage from '../../../assets/home-page/map-gray.png';
 
 interface Location {
@@ -61,34 +62,36 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       });
 
       // Handle mouse move event
-      const handleMouseMove = (event: MouseEvent) => {
+      const handleMouseMove = debounce((event: MouseEvent) => {
         const rect = canvas.getBoundingClientRect();
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
-
+      
         let isHovering = false;
-
+      
         locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
-
+      
           if (!isNaN(latitude) && !isNaN(longitude)) {
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
-
+      
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
-
-            if (distance < 10) { // Increase radius for hover detection
-              setHoveredLocation({ Latitude, Longitude, LocationName });
+      
+            if (distance < 10) {
+              setHoveredLocation((prev) =>
+                prev?.LocationName !== LocationName
+                  ? { Latitude, Longitude, LocationName }
+                  : prev
+              );
               isHovering = true;
-            } else if (hoveredLocation?.LocationName === LocationName) {
-              setHoveredLocation(null); // Clear hover if not over
             }
           }
         });
-
+      
         canvas.style.cursor = isHovering ? 'pointer' : 'default';
-      };
+      }, 100);
 
       // Handle click event (for larger screens)
       const handleClick = (event: MouseEvent) => {
@@ -115,49 +118,42 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       };
 
       // Handle touch event (for mobile devices)
-      const handleTouchStart = (event: TouchEvent) => {
+      const handleTouchStart = debounce((event: TouchEvent) => {
         const rect = canvas.getBoundingClientRect();
         const touch = event.touches[0];
         const mouseX = touch.clientX - rect.left;
         const mouseY = touch.clientY - rect.top;
-        let accurateHover = {
-          sum : 100000,
-          Latitude: '',
-          Longitude: '',
-          LocationName: ''
-        }
-        locations.forEach(({ Latitude, Longitude, LocationName },index) => {
+      
+        let closestLocation: Location | null = null;
+        let closestDistance = Infinity;
+      
+        locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
-          
-       
+      
           if (!isNaN(latitude) && !isNaN(longitude)) {
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
-
-            // Calculate scale factor for smaller screens to adjust touch coordinates
+      
             const scaleFactor = (525 - window.innerWidth) / 525;
-            const expectedLocationX = x - x * scaleFactor;
-            const expectedLocationY = y - y * scaleFactor;
-            const currentSum = Math.abs(mouseX - expectedLocationX) + Math.abs(mouseY - expectedLocationY);
-
-            if (Math.abs(mouseX - expectedLocationX) < 14 && Math.abs(mouseY - expectedLocationY) < 14) {
-              if(accurateHover.sum > currentSum){
-                accurateHover = {
-                  sum: currentSum,
-                  Longitude,
-                  Latitude,
-                  LocationName
-                }
-              }
-
-              setHoveredLocation({ Latitude: accurateHover.Latitude, Longitude: accurateHover.Latitude,LocationName:  accurateHover.LocationName });
-              setMobileClickState({  Latitude: accurateHover.Latitude, Longitude: accurateHover.Latitude,LocationName:  accurateHover.LocationName });
-              event.preventDefault();
+            const expectedX = x - x * scaleFactor;
+            const expectedY = y - y * scaleFactor;
+      
+            const distance =
+              Math.abs(mouseX - expectedX) + Math.abs(mouseY - expectedY);
+      
+            if (distance < 14 && distance < closestDistance) {
+              closestLocation = { Latitude, Longitude, LocationName };
+              closestDistance = distance;
             }
           }
         });
-      };
+      
+        if (closestLocation) {
+          setHoveredLocation(closestLocation);
+          setMobileClickState(closestLocation);
+        }
+      }, 100);
 
       // Add event listeners conditionally based on screen size
       if (window.innerWidth >= 525) {
@@ -174,6 +170,8 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         } else {
           canvas.removeEventListener('touchstart', handleTouchStart);
         }
+      
+ 
       };
     };
 
@@ -191,6 +189,21 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
     }
     return NaN;
   };
+
+  function debounce<T extends (...args: any[]) => void>(
+    func: T,
+    wait: number
+  ): (...args: Parameters<T>) => void {
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+  
+    return (...args: Parameters<T>) => {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func(...args);
+      }, wait);
+    };
+  }
+  
 
   // Function to parse longitude
   const parseLongitude = (long: string): number => {
