@@ -141,11 +141,9 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       
             const distance =
               Math.abs(mouseX - expectedX) + Math.abs(mouseY - expectedY);
-              console.log(Math.abs(mouseX - expectedX),Math.abs(mouseY - expectedY),LocationName,'nanu');
             
             if (Math.abs(mouseX - expectedX)  < 14 &&  Math.abs(mouseY - expectedY) < 14 && distance < closestDistance) {
               closestLocation = { Latitude, Longitude, LocationName };
-              console.log(Math.abs(mouseX - expectedX),Math.abs(mouseY - expectedY),LocationName,'yashu',closestLocation);
 
               closestDistance = distance;
             }
