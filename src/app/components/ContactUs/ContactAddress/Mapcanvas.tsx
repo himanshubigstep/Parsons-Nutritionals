@@ -120,11 +120,17 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         const touch = event.touches[0];
         const mouseX = touch.clientX - rect.left;
         const mouseY = touch.clientY - rect.top;
-
-        locations.forEach(({ Latitude, Longitude, LocationName }) => {
+        let accurateHover = {
+          sum : 100000,
+          Latitude: '',
+          Longitude: '',
+          LocationName: ''
+        }
+        locations.forEach(({ Latitude, Longitude, LocationName },index) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
-
+          
+       
           if (!isNaN(latitude) && !isNaN(longitude)) {
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
@@ -133,10 +139,20 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
             const scaleFactor = (525 - window.innerWidth) / 525;
             const expectedLocationX = x - x * scaleFactor;
             const expectedLocationY = y - y * scaleFactor;
+            const currentSum = Math.abs(mouseX - expectedLocationX) + Math.abs(mouseY - expectedLocationY);
 
-            if (Math.abs(mouseX - expectedLocationX) < 15 && Math.abs(mouseY - expectedLocationY) < 15) {
-              setHoveredLocation({ Latitude, Longitude, LocationName });
-              setMobileClickState({ Latitude, Longitude, LocationName });
+            if (Math.abs(mouseX - expectedLocationX) < 14 && Math.abs(mouseY - expectedLocationY) < 14) {
+              if(accurateHover.sum > currentSum){
+                accurateHover = {
+                  sum: currentSum,
+                  Longitude,
+                  Latitude,
+                  LocationName
+                }
+              }
+
+              setHoveredLocation({ Latitude: accurateHover.Latitude, Longitude: accurateHover.Latitude,LocationName:  accurateHover.LocationName });
+              setMobileClickState({  Latitude: accurateHover.Latitude, Longitude: accurateHover.Latitude,LocationName:  accurateHover.LocationName });
               event.preventDefault();
             }
           }
