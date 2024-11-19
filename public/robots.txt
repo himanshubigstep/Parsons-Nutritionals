@@ -1,4 +1,5 @@
 User-Agent: *
 Allow: /
 Disallow: /private/
+
 Sitemap: https://api.parsonsnutritionals.in/api/sitemap/index.xml
