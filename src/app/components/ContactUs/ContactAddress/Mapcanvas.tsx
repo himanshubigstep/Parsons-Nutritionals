@@ -16,7 +16,7 @@ interface MapCanvasProps {
 
 const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  
+
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
   const [mobileClickState, setMobileClickState] = useState<Location | null>(null);
 
@@ -67,19 +67,19 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         const rect = canvas.getBoundingClientRect();
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
-      
+
         let isHovering = false;
-      
+
         locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
-      
+
           if (!isNaN(latitude) && !isNaN(longitude)) {
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
-      
+
             const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
-      
+
             if (distance < 10) {
               setHoveredLocation((prev) =>
                 prev?.LocationName !== LocationName
@@ -90,7 +90,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
             }
           }
         });
-      
+
         canvas.style.cursor = isHovering ? 'pointer' : 'default';
       }, 100);
 
@@ -124,33 +124,48 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         const touch = event.touches[0];
         const mouseX = touch.clientX - rect.left;
         const mouseY = touch.clientY - rect.top;
-      
+
         let closestLocation: Location | null = null;
         let closestDistance = Infinity;
-      
+
         locations.forEach(({ Latitude, Longitude, LocationName }) => {
           const latitude = parseLatitude(Latitude);
           const longitude = parseLongitude(Longitude);
-      
+
           if (!isNaN(latitude) && !isNaN(longitude)) {
             const x = ((longitude - longMin) / longRange) * imageWidth;
             const y = ((latMax - latitude) / latRange) * imageHeight;
-      
-            const scaleFactor = (525 - window.innerWidth) / 525;
-            const expectedX = x - x * scaleFactor;
-            const expectedY = y - y * scaleFactor;
-      
-            const distance =
-              Math.abs(mouseX - expectedX) + Math.abs(mouseY - expectedY);
-            
-            if (Math.abs(mouseX - expectedX)  < 14 &&  Math.abs(mouseY - expectedY) < 14 && distance < closestDistance) {
-              closestLocation = { Latitude, Longitude, LocationName };
 
-              closestDistance = distance;
+            const scaleFactor = (525 - window.innerWidth) / 525;
+            let expectedX = x - x * scaleFactor;
+            let expectedY = y - y * scaleFactor;
+
+
+            let distance =
+              Math.abs(mouseX - expectedX) + Math.abs(mouseY - expectedY);
+            if (y > 450) {
+              expectedY = expectedY - 4
+
+              distance =
+                Math.abs(mouseX - expectedX) + Math.abs(mouseY - expectedY);
+
+              if (Math.abs(mouseX - expectedX) < 18 && Math.abs(mouseY - expectedY) < 18 && distance < closestDistance) {
+                closestLocation = { Latitude, Longitude, LocationName };
+
+                closestDistance = distance;
+              }
+            }
+            else {
+
+              if (Math.abs(mouseX - expectedX) < 14 && Math.abs(mouseY - expectedY) < 14 && distance < closestDistance) {
+                closestLocation = { Latitude, Longitude, LocationName };
+
+                closestDistance = distance;
+              }
             }
           }
         });
-      
+
         if (closestLocation) {
           setHoveredLocation(closestLocation);
           setMobileClickState(closestLocation);
@@ -172,8 +187,8 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
         } else {
           canvas.removeEventListener('touchstart', handleTouchStart);
         }
-      
- 
+
+
       };
     };
 
@@ -197,7 +212,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
     wait: number
   ): (...args: Parameters<T>) => void {
     let timeout: ReturnType<typeof setTimeout> | null = null;
-  
+
     return (...args: Parameters<T>) => {
       if (timeout) clearTimeout(timeout);
       timeout = setTimeout(() => {
@@ -205,7 +220,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
       }, wait);
     };
   }
-  
+
 
   // Function to parse longitude
   const parseLongitude = (long: string): number => {
@@ -229,7 +244,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({ locations = [], applyFilter }) =>
     <div style={{ position: 'relative' }}>
       <canvas className="india-map" ref={canvasRef} width={500} height={600} />
       {hoveredLocation && (
-        <div 
+        <div
           style={{
             position: 'absolute',
             top: '0',
